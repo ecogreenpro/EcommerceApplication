@@ -1,0 +1,29 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.home, name="home"),
+    path('about/', views.about, name="about"),
+    path('contact/', views.contact, name="contact"),
+    path('privacy/', views.privacyPolicy, name="privacyPolicy"),
+    path('payment-process/', views.paymentProcess, name="paymentProcess"),
+    path('checkout/', views.checkout, name="checkout"),
+    path('refund-returns-policy/', views.terms, name="refundReturnsPolicy"),
+    path('order-track/', views.orderTrack, name="orderTrack"),
+    path('wishlist/', views.wishlist, name="wishlist"),
+    path('cart/', views.cart, name="cart"),
+    path('become-seller/', views.becomeSeller, name="becomeSeller"),
+    path('login/', views.login, name="login"),
+    path('logout/', views.logout, name="logout"),
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('signup/', views.signup, name="signup"),
+    path('forgotpassword/', views.forgotpassword, name="forgotpassword"),
+    path('userprofile/', views.userprofile, name="userprofile"),
+    path('userorder/', views.userOrder, name="userOrder"),
+    path('balance/', views.balance, name="balance"),
+    path('chat/', views.chat, name="chat"),
+    path('shop/', views.shop, name="shop"),
+    path('product/', views.productDetail, name="productDetail"),
+
+]

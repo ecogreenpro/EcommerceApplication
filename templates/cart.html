@@ -1,0 +1,176 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Ecogreen E-Commerece Application</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .form-count {
+  display: block;
+  width: 40%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/wishlist.css' %}" rel="stylesheet">
+</head>
+<header>
+    {%include 'header.html'%}
+</header>
+<main role="main">
+    <body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        {%include "sideNav.html"%}
+        <br> <br>
+        <!--Main View Start-->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <main role="main"><br>
+                    <div class="cart-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="py-3 text-center alert alert-primary">
+                                        <h2>Your Shopping Cart Summary</h2>
+                                    </div>
+                                    <div class="table-wishlist">
+                                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th width="15%">#Order ID</th>
+                                                <th width="15%">Product Name</th>
+                                                <th width="15%">Unit Price</th>
+                                                <th width="15%" class="text-center">Quantity</th>
+                                                <th width="15%"> Total</th>
+                                                <th width="10%"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td width="15%" class="orderId">3876</td>
+                                                <td width="35%">
+                                                    <div class="display-flex align-center">
+                                                        <div class="img-product">
+                                                            <img src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
+                                                                 alt="" class="mCS_img_loaded">
+                                                        </div>
+                                                        <div class="name-product">
+                                                            <a href="#">Apple iPad Mini</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td width="15%" class="price">$110.00</td>
+                                                <td width="10%" class="text-center"><a href="#"><i
+                                                        class="fas fa-minus mr-3"></i></a>
+                                                    1
+                                                    <a href="#"><i class="fas fa-plus ml-3"></i></a></td>
+
+                                                <td width="15%" class="price" class="text-center">$110.00</td>
+                                                <td width="10%" class="text-center "><a href="#" class="trash-icon "><i
+                                                        class="far fa-trash-alt "></i></a></td>
+                                            </tr>
+                                            <tr class="table-wishlist">
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>Subtotal</td>
+                                                <td class="text-right">$24.59</td>
+                                            </tr>
+                                            <tr>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>Shipping</td>
+                                                <td class="text-right">$6.94</td>
+                                            </tr>
+                                            <tr>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>Total</td>
+                                                <td class="text-right">$31.53</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>  </td>
+                                                <td>
+                                                    <button type="button" class=" text-center btn  btn-warning"><a
+                                                            class="nav-link text-white"
+                                                            href="{% url 'shop'%}">
+                                                        Continue Shopping
+                                                    </a>
+                                                    </button>
+                                                </td>
+                                                <td class="text-right">
+                                                    <button type="button" class="text-center btn btn-success"><a
+                                                            class="nav-link text-white"
+                                                            href="{% url 'checkout'%}">
+                                                        Checkout <i class="fas fa-play"> </i> </a>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </main>
+            </div>
+
+        </div>
+        <!--Main View End-->
+    </div>
+    </body>
+</main>
+{% include 'footer.html'%}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</html>
