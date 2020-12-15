@@ -45,6 +45,14 @@
 }
 
 
+
+
+
+
+
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -56,7 +64,7 @@
 <main role="main">
     <body>
 
-    <div class="d-flex" id="wrapper">
+    <div class="d-flex " id="wrapper">
 
         <!-- Sidebar -->
         {%include "sideNav.html"%}
@@ -68,12 +76,12 @@
                     <div class="cart-wrap">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 rounded mx-auto d-block">
                                     <div class="py-3 text-center alert alert-primary">
                                         <h2>Your Shopping Cart Summary</h2>
                                     </div>
-                                    <div class="table-wishlist">
-                                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <div class="table-wishlist py-3">
+                                        <table >
                                             <thead>
                                             <tr>
                                                 <th width="15%">#Order ID</th>
@@ -108,64 +116,78 @@
                                                 <td width="10%" class="text-center "><a href="#" class="trash-icon "><i
                                                         class="far fa-trash-alt "></i></a></td>
                                             </tr>
-                                            <tr class="table-wishlist">
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>Subtotal</td>
-                                                <td class="text-right">$24.59</td>
-                                            </tr>
-                                            <tr>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>Shipping</td>
-                                                <td class="text-right">$6.94</td>
-                                            </tr>
-                                            <tr>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>Total</td>
-                                                <td class="text-right">$31.53</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>  </td>
-                                                <td>
-                                                    <button type="button" class=" text-center btn  btn-warning"><a
-                                                            class="nav-link text-white"
-                                                            href="{% url 'shop'%}">
-                                                        Continue Shopping
-                                                    </a>
-                                                    </button>
-                                                </td>
-                                                <td class="text-right">
-                                                    <button type="button" class="text-center btn btn-success"><a
-                                                            class="nav-link text-white"
-                                                            href="{% url 'checkout'%}">
-                                                        Checkout <i class="fas fa-play"> </i> </a>
-                                                    </button>
-                                                </td>
-                                            </tr>
-
                                             </tbody>
                                         </table>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-12">
+                                                <div class="card bg-light">
+                                                    <div class="row col-lg-12">
+                                                        <div class="col-md-8">
+                                                            <br>
+                                                            <div class="row d-flex justify-content-between px-4">
+                                                                <p class="mb-1 text-left">Subtotal</p>
+                                                                <h6 class="mb-1 text-right">$23.49</h6>
+                                                            </div>
+                                                            <div class="row d-flex justify-content-between px-4">
+                                                                <p class="mb-1 text-left">Shipping</p>
+                                                                <h6 class="mb-1 text-right">$2.99</h6>
+                                                            </div>
+                                                            <div class="row d-flex justify-content-between px-4"
+                                                                 id="tax">
+                                                                <p class="mb-1 text-left">Total (tax included)</p>
+                                                                <h6 class="mb-1 text-right">$26.48</h6>
+                                                            </div>
+                                                            <br>
+                                                        </div>
+
+                                                        <div class="col-6 col-md-4">
+                                                            <div class="row">
+
+                                                                <div class="responsive ">
+                                                                    <br>
+                                                                    <button type="button"
+                                                                            class=" text-center btn btn-warning">
+                                                                        <a
+                                                                                class="nav-link text-white"
+                                                                                href="{% url 'shop'%}">
+                                                                            Continue Shopping
+                                                                        </a>
+                                                                    </button>
+                                                                </div>
+                                                                &nbsp;
+                                                                <div class="responsive">
+                                                                    <br>
+                                                                    <button type="button"
+                                                                            class="text-center btn btn-success"><a
+                                                                            class="nav-link text-white"
+                                                                            href="{% url 'checkout'%}">
+                                                                        Checkout <i class="fas fa-play"> </i> </a>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                </main>
             </div>
+            <br>
+</main>
+</div>
 
-        </div>
-        <!--Main View End-->
-    </div>
-    </body>
+</div>
+<!--Main View End-->
+</div>
+</body>
 </main>
 {% include 'footer.html'%}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
