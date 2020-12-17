@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories,Brands
+from .models import Categories,Brands,Products
 
 
 
@@ -14,6 +14,10 @@ class CategoriesAdmin(admin.ModelAdmin):
     list_display_links = ['Catagories_photo','name']
     prepopulated_fields = {'slug': ("name",)}
 
+    list_filter = ['name', 'isactive']
+    search_fields = ['name', 'isactive']
+
+
 class BrandsAdmin(admin.ModelAdmin):
     list_display = [
         'brands_photo',
@@ -24,6 +28,29 @@ class BrandsAdmin(admin.ModelAdmin):
     ]
     list_display_links = ['brands_photo','name']
     prepopulated_fields = {'slug': ("name",)}    
+    list_filter = ['name', 'isactive']
+    search_fields = ['name']
+
+class ProductsAdmin(admin.ModelAdmin):
+    list_display = [
+        'products_photo',
+        'name',
+        'slug',
+        'price',
+        'discountPrice',
+        'label',
+        'stockQuantity',
+        'shortDescription',
+        'isactive'
+    ]
+    list_display_links = ['products_photo','name']
+    prepopulated_fields = {'slug': ("name",)}
+    list_filter = ['name', 'isactive','category']
+    search_fields = ['name']
+
+
+
 
 admin.site.register(Categories,CategoriesAdmin)
 admin.site.register(Brands,BrandsAdmin)
+admin.site.register(Products,ProductsAdmin)
