@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 
 class Categories(models.Model):
-    name = models.CharField(max_length= 100)
+    name = models.CharField(max_length= 100, unique=True)
     slug= models.SlugField()
     description = models.TextField()
     image = models.ImageField(upload_to = 'Photos')
@@ -13,6 +13,7 @@ class Categories(models.Model):
 
     def __str__(self):
         return self.name
+
 
     def get_absolute_url(self):
         return reverse("core:categories", kwargs={'slug': self.slug})    
@@ -23,7 +24,7 @@ class Categories(models.Model):
     Catagories_photo.allow_tags = True
 
 class Brands(models.Model):
-    name = models.CharField(max_length= 100)
+    name = models.CharField(max_length= 100, unique=True)
     slug= models.SlugField()
     description = models.TextField()
     image = models.ImageField(upload_to = 'Photos')
@@ -31,6 +32,7 @@ class Brands(models.Model):
 
     def __str__(self):
         return self.name
+        
 
     def get_absolute_url(self):
         return reverse("core:brands", kwargs={'slug': self.slug})    
