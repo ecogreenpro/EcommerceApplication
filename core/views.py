@@ -16,9 +16,9 @@ def footer(request):
     return render(request, 'footer.html', context)
 
 
-def home(request):
-    context = {}
-    return render(request, 'home.html', context)
+# def home(request):
+#     context = {}
+#     return render(request, 'home.html', context)
 
 
 def about(request):
@@ -141,3 +141,9 @@ class shop(ListView):
 class productDetail(DetailView):
     model = Products
     template_name = "productDetail.html"
+
+
+class home(ListView):
+    model = Products
+    paginate_by = 6
+    template_name = "home.html"

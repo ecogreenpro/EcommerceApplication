@@ -184,7 +184,24 @@ img {
                                                         <span class="ml-1">5.0</span>
                                                     </div>
                                                     <div class="about"><span class="font-weight-bold">{{object.name}} </span>
-                                                        <h4 class="font-weight-bold">BDT {{object.price}}</h4>
+                                                        <h4 class="font-weight-bold">
+                                                            {% if object.discountPrice %}
+                                                        <span class="block2-newprice m-text8 p-r-5"
+                                                              style="font-size: 1.5rem;">
+									                            ৳ {{ object.discountPrice }}
+								                                </span>
+                                                            <br>
+                                                        <del class="block2-oldprice m-text7 p-r-5"
+                                                              style="font-size: 1rem; color:red">
+									                            ৳ {{ object.price }}
+								                                </del>
+                                                        {% else %}
+                                                        <span class="m-text17">
+									                    ৳ {{object.price}}
+								                            </span>
+                                                        {% endif %}
+                                                        </h4>
+
                                                     </div>
                                                     <div class="buttons">
                                                         <button class="btn btn-outline-warning btn-long cart"> <i
@@ -209,7 +226,7 @@ img {
                                                                 class="green"></span> </label> <label class="radio">
                                                             <input type="radio" name="gender" value="FEMALE"> <span
                                                                 class="orange"></span> </label></div>
-                                                    
+
                                                         <div class="mt-2"><span
                                                                 class="font-weight-bold">Description</span>
                                                             <p>{{object.shortDescription}}</p>
@@ -302,7 +319,7 @@ img {
                                     </div>
                                     <div class="card">
                                         <div class="card text-white bg-info mb-3">
-                                            Product details of Titan Watch
+                                            Product details of <strong>{{object.name}}</strong>
                                         </div>
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
