@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Products
+
+from .models import Products
+
 
 # Create your views here.
 def header(request):
@@ -112,17 +116,28 @@ def becomeSeller(request):
     return render(request, 'becomeSeller.html', context)
 
 
-def shop(request):
-    context = {}
-    product = Products.objects.raw("SELECT * FROM core_products")
-    return render(request, 'shop.html', {"Product":product})
-
-
-def productDetail(request):
-    context = {}
-    product = Products.objects.raw("SELECT * FROM core_products")
-    return render(request, 'productDetail.html', {"Product":product})
+# def shop(request):
+#     context = {}
+#     product = Products.objects.raw("SELECT * FROM core_products")
+#     return render(request, 'shop.html', {"Product":product})
+#
+#
+# def productDetail(request):
+#     context = {}
+#     product = Products.objects.raw("SELECT * FROM core_products")
+#     return render(request, 'productDetail.html', {"Product":product})
 
 
 def notFound(request, exception):
     return render(request, 'base/404.html')
+
+
+class shop(ListView):
+    model = Products
+    paginate_by = 6
+    template_name = "shop.html"
+
+
+class productDetail(DetailView):
+    model = Products
+    template_name = "productDetail.html"

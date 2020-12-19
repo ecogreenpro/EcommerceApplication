@@ -124,16 +124,16 @@
                                     Categories
                                 </h4>
                                 <br>
-                                
+
                                 <ul class="list-group list-group-flush">
-                                    {% for item in Product %}
+                                    {% for item in object_list %}
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <a href="#"> {{item.category.name}}</a>
                                         <span class="badge badge-primary badge-pill">14</span>
                                     </li>
                                     {%endfor%}
                                 </ul>
-                                
+
                                 <br>
                                 <!--  -->
                                 <h4 class="m-text14 p-b-32">
@@ -239,7 +239,7 @@
                             <div class="row" id="ads">
                                 <div class="container">
                                     <div class="row">
-                                        {% for item in Product %}
+                                        {% for item in object_list %}
                                         <div class="col-md-3 col-sm-6">
                                             <div class="product-grid4">
                                                 <div class="product-image4">
@@ -250,7 +250,7 @@
                                                              src="{{item.altImageOne.url}}" width="200px" height="200px">
                                                     </a>
                                                     <ul class="social">
-                                                        <li><a href="{% url 'productDetail' %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
+                                                        <li><a href="{% url 'productDetail' item.slug %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
                                                         </li>
                                                         <li><a href="#" data-tip="Add to Wishlist"><i
                                                                 class="fa fa-shopping-bag"></i></a></li>

@@ -71,7 +71,7 @@ class Products(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("core:brands", kwargs={'slug': self.slug})
+        return reverse("core:product", kwargs={'slug': self.slug})
 
     def products_photo(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.mainImage.url))

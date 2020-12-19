@@ -97,14 +97,12 @@ img {
                                                 <div class="card">
                                                     <div class="demo">
                                                         <ul id="lightSlider">
-                                                            <li data-thumb="{% static 'media/item-01.webp' %}"><img
-                                                                    src="{% static 'media/item-01.webp' %}"/></li>
-                                                            <li data-thumb="{% static 'media/item-02.webp' %}"><img
-                                                                    src="{% static 'media/item-02.webp' %}"/></li>
-                                                            <li data-thumb="{% static 'media/item-05.webp' %}"><img
-                                                                    src="{% static 'media/item-05.webp' %}"/></li>
-                                                            <li data-thumb="{% static 'media/item-08.webp' %}"><img
-                                                                    src="{% static 'media/item-08.webp' %}"/></li>
+                                                            <li data-thumb="{{object.mainImage.url}}"><img
+                                                                    src="{{object.mainImage.url}}"/></li>
+                                                            <li data-thumb="{{object.altImageOne.url}}"><img
+                                                                    src="{{object.altImageOne.url}}"/></li>
+                                                            <li data-thumb="{{object.altImageTwo.url}}"><img
+                                                                    src="{{object.altImageTwo.url}}"/></li>
 
                                                         </ul>
                                                     </div>
@@ -185,8 +183,8 @@ img {
                                                         </div>
                                                         <span class="ml-1">5.0</span>
                                                     </div>
-                                                    <div class="about"><span class="font-weight-bold">{{Product.name}} </span>
-                                                        <h4 class="font-weight-bold">BDT {{Product.price}}</h4>
+                                                    <div class="about"><span class="font-weight-bold">{{object.name}} </span>
+                                                        <h4 class="font-weight-bold">BDT {{object.price}}</h4>
                                                     </div>
                                                     <div class="buttons">
                                                         <button class="btn btn-outline-warning btn-long cart"> <i
@@ -214,13 +212,7 @@ img {
                                                     
                                                         <div class="mt-2"><span
                                                                 class="font-weight-bold">Description</span>
-                                                            <p>The minimalist collaboration features chairs, lightening,
-                                                                Shelves, Sofas, Desks and various home accessories, all
-                                                                offering form and function at the same point.We use
-                                                                high-strength clamps and joinery techniques specially
-                                                                designed for engineered wood beds. Ergo, no irksome
-                                                                creaks - and you can sleep like a baby, well into
-                                                                adulthood!</p>
+                                                            <p>{{object.shortDescription}}</p>
                                                             <div class="bullets">
                                                                 <div class="d-flex align-items-center"><span
                                                                         class="dot"></span> <span class="bullet-text">Best in Quality</span>
@@ -314,10 +306,8 @@ img {
                                         </div>
                                         <div class="card-body">
                                             <blockquote class="blockquote mb-0">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                                                    posuere erat a ante.</p>
-                                                <footer class="blockquote-footer">Someone famous in <cite
-                                                        title="Source Title">Source Title</cite></footer>
+                                                <p>{{object.longDescirption}}</p>
+
                                             </blockquote>
                                         </div>
                                     </div>
