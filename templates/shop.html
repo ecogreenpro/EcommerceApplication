@@ -258,7 +258,7 @@
                                                                 class="fa fa-shopping-cart"></i></a></li>
                                                     </ul>
                                                     <span class="product-new-label">{{item.label}}</span>
-                                                    <span class="product-discount-label">-10%</span>
+                                                    <span class="product-discount-label">-{{item.get_percentage}}%</span>
                                                 </div>
                                                 <div class="product-content">
                                                     <h3 class="title"><a href="{%url 'productDetail' item.slug %}">{{item.name}}</a></h3>
