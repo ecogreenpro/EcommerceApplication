@@ -32,6 +32,7 @@
 
 
 }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -135,6 +136,22 @@
                                 </ul>
 
                                 <br>
+
+                                <h4 class="m-text14 p-b-7">
+                                    Brands
+                                </h4>
+                                <br>
+
+                                <ul class="list-group list-group-flush">
+                                    {% for item in object_list %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="#"> {{item.brand.name}}</a>
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+
+                                <br>
                                 <!--  -->
                                 <h4 class="m-text14 p-b-32">
                                     Filters
@@ -161,38 +178,7 @@
                                             </div> <!-- card-body.// -->
                                         </div>
                                     </article> <!-- card-group-item.// -->
-                                    <article class="card-group-item">
-                                        <header class="card-header">
-                                            <h6 class="title">Selection </h6>
-                                        </header>
-                                        <div class="filter-content">
-                                            <div class="card-body">
-                                                <div class="custom-control custom-checkbox">
-                                                    <span class="float-right badge badge-light round">52</span>
-                                                    <input type="checkbox" class="custom-control-input" id="Check1">
-                                                    <label class="custom-control-label" for="Check1">Samsung</label>
-                                                </div> <!-- form-check.// -->
-
-                                                <div class="custom-control custom-checkbox">
-                                                    <span class="float-right badge badge-light round">132</span>
-                                                    <input type="checkbox" class="custom-control-input" id="Check2">
-                                                    <label class="custom-control-label" for="Check2">Black berry</label>
-                                                </div> <!-- form-check.// -->
-
-                                                <div class="custom-control custom-checkbox">
-                                                    <span class="float-right badge badge-light round">17</span>
-                                                    <input type="checkbox" class="custom-control-input" id="Check3">
-                                                    <label class="custom-control-label" for="Check3">Samsung</label>
-                                                </div> <!-- form-check.// -->
-
-                                                <div class="custom-control custom-checkbox">
-                                                    <span class="float-right badge badge-light round">7</span>
-                                                    <input type="checkbox" class="custom-control-input" id="Check4">
-                                                    <label class="custom-control-label" for="Check4">Other Brand</label>
-                                                </div> <!-- form-check.// -->
-                                            </div> <!-- card-body.// -->
-                                        </div>
-                                    </article> <!-- card-group-item.// -->
+                                    <!-- card-group-item.// -->
                                     <article class="card-group-item">
                                         <header class="card-header"><h6 class="title">Color check</h6></header>
                                         <div class="filter-content">
@@ -239,7 +225,9 @@
                             <div class="row" id="ads">
                                 <div class="container">
                                     <div class="row">
+
                                         {% for item in object_list %}
+                                        {% if item.isactive %}
                                         <div class="col-md-3 col-sm-6">
                                             <div class="product-grid4">
                                                 <div class="product-image4">
@@ -247,10 +235,12 @@
                                                         <img class="pic-1"
                                                              src="{{item.mainImage.url}}" width="200px" height="200px">
                                                         <img class="pic-2"
-                                                             src="{{item.altImageOne.url}}" width="200px" height="200px">
+                                                             src="{{item.altImageOne.url}}" width="200px"
+                                                             height="200px">
                                                     </a>
                                                     <ul class="social">
-                                                        <li><a href="{% url 'productDetail' item.slug %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
+                                                        <li><a href="{% url 'productDetail' item.slug %}"
+                                                               data-tip="Quick View"><i class="fa fa-eye"></i></a>
                                                         </li>
                                                         <li><a href="#" data-tip="Add to Wishlist"><i
                                                                 class="fa fa-shopping-bag"></i></a></li>
@@ -261,7 +251,8 @@
                                                     <span class="product-discount-label">-10%</span>
                                                 </div>
                                                 <div class="product-content">
-                                                    <h3 class="title"><a href="{%url 'productDetail' item.slug %}">{{item.name}}</a></h3>
+                                                    <h3 class="title"><a href="{%url 'productDetail' item.slug %}">{{item.name}}</a>
+                                                    </h3>
                                                     <div class="price">
                                                         ৳ {{item.price}}
                                                         <span>৳ {{item.discountPrice}}</span>
@@ -271,14 +262,17 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endif %}
                                         {%endfor%}
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
 
-                                <br>
+                        <br>
+                    </div>
                 </main>
             </div>
 
