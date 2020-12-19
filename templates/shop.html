@@ -19,6 +19,10 @@
         -ms-user-select: none;
         user-select: none;
       }
+      .pic-1 .pic-2{
+          width: 200px !important;
+          height:200px !important;
+      }
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -120,20 +124,16 @@
                                     Categories
                                 </h4>
                                 <br>
+                                
                                 <ul class="list-group list-group-flush">
+                                    {% for item in Product %}
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a href="#"> Babies Care</a>
+                                        <a href="#"> {{item.category.name}}</a>
                                         <span class="badge badge-primary badge-pill">14</span>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a href="#">Fashion</a>
-                                        <span class="badge badge-primary badge-pill">2</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a href="#">Food</a>
-                                        <span class="badge badge-primary badge-pill">1</span>
-                                    </li>
+                                    {%endfor%}
                                 </ul>
+                                
                                 <br>
                                 <!--  -->
                                 <h4 class="m-text14 p-b-32">
@@ -239,14 +239,15 @@
                             <div class="row" id="ads">
                                 <div class="container">
                                     <div class="row">
+                                        {% for item in Product %}
                                         <div class="col-md-3 col-sm-6">
                                             <div class="product-grid4">
                                                 <div class="product-image4">
                                                     <a href="#">
                                                         <img class="pic-1"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+                                                             src="{{item.mainImage.url}}" width="200px" height="200px">
                                                         <img class="pic-2"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                                                             src="{{item.altImageOne.url}}" width="200px" height="200px">
                                                     </a>
                                                     <ul class="social">
                                                         <li><a href="{% url 'productDetail' %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
@@ -256,110 +257,21 @@
                                                         <li><a href="#" data-tip="Add to Cart"><i
                                                                 class="fa fa-shopping-cart"></i></a></li>
                                                     </ul>
-                                                    <span class="product-new-label">New</span>
+                                                    <span class="product-new-label">{{item.label}}</span>
                                                     <span class="product-discount-label">-10%</span>
                                                 </div>
                                                 <div class="product-content">
-                                                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
+                                                    <h3 class="title"><a href="{%url 'productDetail' item.slug %}">{{item.name}}</a></h3>
                                                     <div class="price">
-                                                        $14.40
-                                                        <span>$16.00</span>
+                                                        ৳ {{item.price}}
+                                                        <span>৳ {{item.discountPrice}}</span>
                                                     </div>
                                                     <a class="add-to-cart" href=""> <i
                                                             class="fa fa-shopping-cart"></i> ADD TO CART</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <div class="product-grid4">
-                                                <div class="product-image4">
-                                                    <a href="#">
-                                                        <img class="pic-1"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-3.jpg">
-                                                        <img class="pic-2"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-4.jpg">
-                                                    </a>
-                                                    <ul class="social">
-                                                        <li><a href="{% url 'productDetail' %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
-                                                        </li>
-                                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                                class="fa fa-shopping-bag"></i></a></li>
-                                                        <li><a href="#" data-tip="Add to Cart"><i
-                                                                class="fa fa-shopping-cart"></i></a></li>
-                                                    </ul>
-                                                    <span class="product-discount-label">-12%</span>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="title"><a href="#">Men's Blue Shirt</a></h3>
-                                                    <div class="price">
-                                                        $17.60
-                                                        <span>$20.00</span>
-                                                    </div>
-                                                    <a class="add-to-cart" href=""> <i
-                                                            class="fa fa-shopping-cart"></i> ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <div class="product-grid4">
-                                                <div class="product-image4">
-                                                    <a href="#">
-                                                        <img class="pic-1"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-5.jpg">
-                                                        <img class="pic-2"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-6.jpg">
-                                                    </a>
-                                                    <ul class="social">
-                                                        <li><a href="{% url 'productDetail' %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
-                                                        </li>
-                                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                                class="fa fa-shopping-bag"></i></a></li>
-                                                        <li><a href="#" data-tip="Add to Cart"><i
-                                                                class="fa fa-shopping-cart"></i></a></li>
-                                                    </ul>
-                                                    <span class="product-new-label">Sale</span>
-                                                    <span class="product-discount-label">-10%</span>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                                                    <div class="price">
-                                                        $14.40
-                                                        <span>$16.00</span>
-                                                    </div>
-                                                    <a class="add-to-cart" href=""> <i
-                                                            class="fa fa-shopping-cart"></i> ADD TO CART</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <div class="product-grid4">
-                                                <div class="product-image4">
-                                                    <a href="#">
-                                                        <img class="pic-1"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-7.jpg">
-                                                        <img class="pic-2"
-                                                             src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-8.jpg">
-                                                    </a>
-                                                    <ul class="social">
-                                                        <li><a href="{% url 'productDetail' %}" data-tip="Quick View"><i class="fa fa-eye"></i></a>
-                                                        </li>
-                                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                                class="fa fa-shopping-bag"></i></a></li>
-                                                        <li><a href="#" data-tip="Add to Cart"><i
-                                                                class="fa fa-shopping-cart"></i></a></li>
-                                                    </ul>
-                                                    <span class="product-new-label">New</span>
-                                                    <span class="product-discount-label">-10%</span>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="title"><a href="#">Women's Black Top</a></h3>
-                                                    <div class="price">
-                                                        $14.40
-                                                        <span>$16.00</span>
-                                                    </div>
-                                                    <a class="add-to-cart" href=""> <i
-                                                            class="fa fa-shopping-cart"></i> ADD TO CART</a>
-                                                </div>
+                                        {%endfor%}
                                             </div>
                                         </div>
                                     </div>

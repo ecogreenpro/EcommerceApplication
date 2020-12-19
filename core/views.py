@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Products
 
 # Create your views here.
 def header(request):
@@ -114,12 +114,14 @@ def becomeSeller(request):
 
 def shop(request):
     context = {}
-    return render(request, 'shop.html', context)
+    product = Products.objects.raw("SELECT * FROM core_products")
+    return render(request, 'shop.html', {"Product":product})
 
 
 def productDetail(request):
     context = {}
-    return render(request, 'productDetail.html', context)
+    product = Products.objects.raw("SELECT * FROM core_products")
+    return render(request, 'productDetail.html', {"Product":product})
 
 
 def notFound(request, exception):

@@ -6,13 +6,11 @@ from django.utils.safestring import mark_safe
 
 
 Label_Choices = (
-    ('S', 'Sale'),
-    ('N', 'New'),
-    ('Fs', 'Flash Sale'),
-    ('P', 'Promotion')
+    ('Sale', 'Sale'),
+    ('New', 'New'),
+    ('Flash Sale', 'Flash Sale'),
+    ('Promotion', 'Promotion')
 )
-
-
 
 
 class Categories(models.Model):
