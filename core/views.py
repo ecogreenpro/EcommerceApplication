@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Products
-from .models import Categories
 
+from .models import Products, Categories
 
 
 # Create your views here.
@@ -136,17 +136,15 @@ class shop(ListView):
     model = Products
     paginate_by = 6
     template_name = "shop.html"
+    product = Products.objects.raw("SELECT * FROM core_products")
 
 
 class productDetail(DetailView):
     model = Products
-    
     template_name = "productDetail.html"
 
 
 class home(ListView):
     model = Products
-    ft = Categories
     paginate_by = 6
     template_name = "home.html"
-
