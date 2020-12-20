@@ -31,14 +31,11 @@
 </head>
 <div class="bg-light border-right " id="sidebar-wrapper" style="    background-color: #dc3545!important; font-family: 'Rubik';">
     <div class="list-group list-group-flush ">
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-baby"></i> Baby Care</a>
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-h-square"></i> Health &
-            Beauty</a>
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-atom"></i> Electronic</a>
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-hamburger"></i> Food</a>
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-shopping-bag"></i>
-            Groceries</a>
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-gem"></i> Jewellery</a>
+        {% for category in object_list.filter %}
+        {% if category.name == category.name %}
+        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-baby"></i> {{category.category.name}} </a>
+        {%endif%}
+        {% endfor %}
         <a href="{% url 'login'%}" class="list-group-item list-group-item-action bg-danger text-white"><i
                 class="fas fa-sign-in-alt"></i> Login</a>
         <a href="{% url 'signup'%}" class="list-group-item list-group-item-action bg-danger text-white"><i

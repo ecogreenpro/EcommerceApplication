@@ -4,11 +4,12 @@ from . import views
 from .views import (
     productDetail,
     shop,
-    home
+    home,
+
 )
 
 urlpatterns = [
-    #path('', views.home, name="home"),
+    #path('sideNav', views.CategoryNav, name="sideNav"),
     path('about/', views.about, name="about"),
     path('contact/', views.contact, name="contact"),
     path('privacy/', views.privacyPolicy, name="privacyPolicy"),
@@ -33,5 +34,6 @@ urlpatterns = [
     path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('', home.as_view(), name='home'),
+
 
 ]

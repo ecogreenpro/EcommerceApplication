@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 from .models import Products
 
-from .models import Products, Categories
+from .models import Products
+from .models import Categories
 
 
 # Create your views here.
@@ -116,16 +117,10 @@ def becomeSeller(request):
     return render(request, 'becomeSeller.html', context)
 
 
-# def shop(request):
+# def CategoryNav(request):
 #     context = {}
-#     product = Products.objects.raw("SELECT * FROM core_products")
-#     return render(request, 'shop.html', {"Product":product})
-#
-#
-# def productDetail(request):
-#     context = {}
-#     product = Products.objects.raw("SELECT * FROM core_products")
-#     return render(request, 'productDetail.html', {"Product":product})
+#     product = Products.objects.raw("SELECT * FROM core_categories")
+#     return render(request, 'sideNav.html', {"Product": product})
 
 
 def notFound(request, exception):
@@ -134,9 +129,8 @@ def notFound(request, exception):
 
 class shop(ListView):
     model = Products
-    paginate_by = 6
+    paginate_by = 4
     template_name = "shop.html"
-    product = Products.objects.raw("SELECT * FROM core_products")
 
 
 class productDetail(DetailView):
@@ -148,3 +142,8 @@ class home(ListView):
     model = Products
     paginate_by = 6
     template_name = "home.html"
+
+
+# class CategoryNav(View):
+#     model = Categories
+#     template_name = "sideNav.html"
