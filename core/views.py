@@ -129,7 +129,7 @@ def notFound(request, exception):
 
 class shop(ListView):
     model = Products
-    paginate_by = 4
+    paginate_by = 1
     template_name = "shop.html"
 
 
