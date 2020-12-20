@@ -304,10 +304,14 @@
                                                         <small class="text-muted mb-1">{{item.category.name}}</small>
                                                     </div>
                                                     <div class="row px-3">
-                                                        <h5>BDT {{item.price}}</h5>
+                                                        {% if item.discountPrice %}
+                                                        <h5>BDT {{item.discountPrice}}</h5>
                                                         <p class="text-muted ml-2">
-                                                            <del>BDT {{item.discountPrice}}</del>
+                                                            <del>BDT {{item.price}}</del>
                                                         </p>
+                                                        {% else %}
+                                                        <h5>BDT {{item.price}}</h5>
+                                                        {%endif%}
                                                     </div>
                                                 </div>
                                             </div>
