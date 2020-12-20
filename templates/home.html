@@ -251,7 +251,7 @@
                                     <div class="text-left">
                                         <a href="{% url 'productDetail' item.slug %}" style="text-decoration: none;"><h5
                                                 class="mb-0 mt-2">
-                                            {{item.name}}</h5></a>
+                                            {{ item.name|truncatechars_html:25 }} </h5></a>
                                         <small class="text-muted mb-1">{{item.category.name}}</small>
                                     </div>
                                     <div class="row px-3">
