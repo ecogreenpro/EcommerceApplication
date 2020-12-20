@@ -19,10 +19,62 @@
         -ms-user-select: none;
         user-select: none;
       }
-      .pic-1 .pic-2{
-          width: 200px !important;
-          height:200px !important;
-      }
+    .image {
+    width: 200px;
+    height: 250px
+    }
+
+    .info {
+    position: absolute;
+    width: 100%;
+    top: 280px;
+    left: .5%;
+    background-color: #fff
+    }
+
+.add-cart {
+    background-color: #DC3545;
+    color: #fff;
+    padding: 6px;
+    width: 48%;
+    margin-right: 2%;
+    border: 2px solid #DC3545;
+    cursor: pointer
+}
+
+.add-cart:hover {
+    background-color: #C51F2E
+}
+
+.add-order {
+    color: #DC3545;
+    padding: 6px 5px;
+    width: 48%;
+    margin-left: 2%;
+    border: 2px solid #C51F2E;
+    cursor: pointer
+}
+
+.add-order:hover {
+    color: white;
+    background-color: #C51F2E
+}
+
+.sm-font {
+    font-size: 12px
+}
+
+@media screen and (max-width: 992px) {
+    .block {
+        width: 45%
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .block {
+        width: 100%
+    }
+}
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -32,6 +84,8 @@
 
 
 }
+
+
 
     </style>
     <!-- Custom styles for this template -->
@@ -229,39 +283,37 @@
                                         {% for item in object_list %}
                                         {% if item.isactive %}
                                         <div class="col-md-3 col-sm-6">
-                                            <div class="product-grid4">
-                                                <div class="product-image4">
-                                                    <a href="#">
-                                                        <img class="pic-1"
-                                                             src="{{item.mainImage.url}}" width="200px" height="200px">
-                                                        <img class="pic-2"
-                                                             src="{{item.altImageOne.url}}" width="200px"
-                                                             height="200px">
-                                                    </a>
-                                                    <ul class="social">
-                                                        <li><a href="{% url 'productDetail' item.slug %}"
-                                                               data-tip="Quick View"><i class="fa fa-eye"></i></a>
-                                                        </li>
-                                                        <li><a href="#" data-tip="Add to Wishlist"><i
-                                                                class="fa fa-shopping-bag"></i></a></li>
-                                                        <li><a href="#" data-tip="Add to Cart"><i
-                                                                class="fa fa-shopping-cart"></i></a></li>
-                                                    </ul>
-                                                    <span class="product-new-label">{{item.label}}</span>
-                                                    <span class="product-discount-label">-{{item.get_percentage}}%</span>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="title"><a href="{%url 'productDetail' item.slug %}">{{item.name}}</a>
-                                                    </h3>
-                                                    <div class="price">
-                                                        ৳ {{item.price}}
-                                                        <span>৳ {{item.discountPrice}}</span>
+                                            <div class="block text-center">
+                                                <a href="{% url 'productDetail' item.slug %}"><img class="image"
+                                                                                                   src="{{item.mainImage.url}}"></a>
+                                                <div class="info py-2 px-2">
+                                                    <div class="row px-3">
+                                                        <div class="add-cart ">
+                                                            <p class="mb-0 sm-font text-white"><i class="fas fa-cart-plus"></i> ADD TO BAG</p>
+                                                        </div>
+                                                        <div class="add-order">
+                                                            <p class="mb-0 sm-font"> <i class="fas fa-heart"></i> ADD TO Wishlist</p>
+                                                        </div>
+
                                                     </div>
-                                                    <a class="add-to-cart" href=""> <i
-                                                            class="fa fa-shopping-cart"></i> ADD TO CART</a>
+
+                                                    <div class="text-left">
+                                                        <a href="{% url 'productDetail' item.slug %}" style="text-decoration: none;"><h5
+                                                                class="mb-0 mt-2">
+                                                            {{item.name}}</h5></a>
+                                                        <small class="text-muted mb-1">{{item.category.name}}</small>
+                                                    </div>
+                                                    <div class="row px-3">
+                                                        <h5>BDT {{item.price}}</h5>
+                                                        <p class="text-muted ml-2">
+                                                            <del>BDT {{item.discountPrice}}</del>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
+                                        &nbsp; &nbsp;
                                         {% endif %}
                                         {%endfor%}
 
