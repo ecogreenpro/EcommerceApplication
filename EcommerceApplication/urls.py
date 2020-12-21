@@ -23,3 +23,7 @@ urlpatterns = [
                   path('', include('core.urls'), name='core'),
                   path('', include('vendor.urls'), name='vendor'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = 'Ecogreen Shop Admin'
+admin.site.site_title = 'Ecogreen Shop'
+admin.site.index_title  = 'Ecogreen'
