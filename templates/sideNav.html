@@ -29,12 +29,12 @@
 
     </style>
 </head>
-<div class="bg-light border-right " id="sidebar-wrapper" style="    background-color: #dc3545!important; font-family: 'Rubik';">
+<div class="bg-light border-right " id="sidebar-wrapper" style="background-color: #dc3545!important; font-family: 'Rubik';">
     <div class="list-group list-group-flush ">
-        {% for category in object_list.filter %}
-        {% if category.name == category.name %}
-        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-baby"></i> {{category.category.name}} </a>
-        {%endif%}
+        {% for category in Categories %}
+       
+        <a href="#" class="list-group-item list-group-item-action bg-danger text-white"><i class="fas fa-baby"></i> {{category.name}} </a>
+        
         {% endfor %}
         <a href="{% url 'login'%}" class="list-group-item list-group-item-action bg-danger text-white"><i
                 class="fas fa-sign-in-alt"></i> Login</a>
@@ -45,7 +45,6 @@
 </div>
 
 <br>
-
 
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

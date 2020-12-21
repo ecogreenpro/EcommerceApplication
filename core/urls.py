@@ -9,7 +9,7 @@ from .views import (
 )
 
 urlpatterns = [
-    #path('sideNav', views.CategoryNav, name="sideNav"),
+    path('', views.home, name="home"),
     path('about/', views.about, name="about"),
     path('contact/', views.contact, name="contact"),
     path('privacy/', views.privacyPolicy, name="privacyPolicy"),
@@ -29,11 +29,11 @@ urlpatterns = [
     path('userorder/', views.userOrder, name="userOrder"),
     path('balance/', views.balance, name="balance"),
     path('chat/', views.chat, name="chat"),
-    # path('shop/', views.shop, name="shop"),
+    path('shop/', views.shop, name="shop"),
     # path('product/', views.productDetail, name="productDetail"),
-    path('shop/', shop.as_view(), name='shop'),
+    #path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
-    path('', home.as_view(), name='home'),
+    #path('', home.as_view(), name='home'),
 
 
 ]
