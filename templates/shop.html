@@ -416,7 +416,9 @@ a:link {
                                             class="fa fa-angle-left"
                                             aria-hidden="true"></i> Prev</a></li>
                                     {% endif %}
-                                    <li><a href="#" style="text-decoration: none;">{{page_obj.number}}</a></li>
+                                    <li><a href="#" style="text-decoration: none;">{{page_obj.number}} </a></li>
+                                    <li>of </li>
+                                    <li><a href="#" style="text-decoration: none;">{{page_obj.paginator.num_pages}} </a></li>
                                     {% if page_obj.has_next %}
                                     <li><a href="?page={{ page_obj.next_page_number}}" class="next"
                                            style="text-decoration: none;"> Next <i class="fa fa-angle-right"
