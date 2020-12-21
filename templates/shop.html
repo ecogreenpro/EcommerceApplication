@@ -88,6 +88,77 @@ height: 100%;
 
 
 }
+.pagination_rounded,
+.pagination_square {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.pagination_rounded ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.pagination_rounded li:first-child {
+    margin-left: 0px
+}
+
+.pagination_rounded ul li {
+    float: left;
+    margin-left: 20px
+}
+
+.pagination_rounded ul li a:hover {
+    background: #4285f4;
+    color: #fff;
+    border: 1px solid #4285f4
+}
+
+a:link {
+    text-decoration: none
+}
+
+.pagination_rounded .prev {
+    margin-left: 0px;
+    border-radius: 35px;
+    width: 90px;
+    height: 34px;
+    line-height: 34px
+}
+
+.pagination_rounded ul li a {
+    float: left;
+    color: #4285f4;
+    border-radius: 50%;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid #e0e0e0
+}
+
+.pagination_rounded .prev i {
+    margin-right: 10px
+}
+
+.pagination_rounded .next {
+    border-radius: 35px;
+    width: 90px;
+    height: 34px;
+    line-height: 34px
+}
+
+.visible-xs {
+    display: none !important
+}
+
+
+
+
 
 
 
@@ -335,26 +406,27 @@ height: 100%;
                                     </div>
                                 </div>
                             </div>
-                            {% if is_paginated %}
-                        <div class="pagination flex-m flex-w p-t-26">
-                            {% if page_obj.has_previous %}
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number}}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            {% endif %}
-                            <a href="?page={{ page_obj.number }}"
-                               class="item-pagination flex-c-m trans-0-4 active-pagination">{{page_obj.number}}</a>
-
-
-                            {% if page_obj.has_next %}
-                            <a class="page-link" href="?page={{ page_obj.next_page_number}}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                            {% endif %}
-                        </div>
-                        {% endif %}
+                            <br>
+                            <div class="pagination_rounded float-right" style="text-align: center;">
+                                {% if is_paginated %}
+                                <ul>
+                                    {% if page_obj.has_previous %}
+                                    <li><a class="prev" href="?page={{ page_obj.previous_page_number}}"
+                                           aria-label="Previous" style="text-decoration: none;"><i
+                                            class="fa fa-angle-left"
+                                            aria-hidden="true"></i> Prev</a></li>
+                                    {% endif %}
+                                    <li><a href="#" style="text-decoration: none;">{{page_obj.number}} </a></li>
+                                    <li>of </li>
+                                    <li><a href="#" style="text-decoration: none;">{{page_obj.paginator.num_pages}} </a></li>
+                                    {% if page_obj.has_next %}
+                                    <li><a href="?page={{ page_obj.next_page_number}}" class="next"
+                                           style="text-decoration: none;"> Next <i class="fa fa-angle-right"
+                                                                                   aria-hidden="true"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                                {% endif %}
+                            </div>
                         </div>
 
 
