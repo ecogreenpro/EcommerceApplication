@@ -16,10 +16,10 @@ def footer(request):
     return render(request, 'footer.html', context)
 
 
-def home(request):
-    context = {}
-    product = Products.objects.raw("SELECT * FROM core_products")
-    return render(request, 'home.html', {"Products": product})
+# def home(request):
+#     context = {}
+#     product = Products.objects.raw("SELECT * FROM core_products")
+#     return render(request, 'home.html', {"Products": product})
 
 
 def about(request):
@@ -126,16 +126,16 @@ def CategoryNav(request):
 def notFound(request, exception):
     return render(request, 'base/404.html')
 
-def shop(request):
-    context = {}
-    product = Products.objects.raw("SELECT * FROM core_products")
-    return render(request, 'shop.html', {"Products": product})
+# def shop(request):
+#     context = {}
+#     product = Products.objects.raw("SELECT * FROM core_products")
+#     return render(request, 'shop.html', {"Products": product})
 
 
-#class shop(ListView):
-#    model = Products
- #   paginate_by = 1
-  #  template_name = "shop.html"
+class shop(ListView):
+    model = Products
+    paginate_by = 4
+    template_name = "shop.html"
 
 
 class productDetail(DetailView):
@@ -143,12 +143,6 @@ class productDetail(DetailView):
     template_name = "productDetail.html"
 
 
-#class home(ListView):
-#    model = Products
-#    paginate_by = 6
-#    template_name = "home.html"
-
-
-# class CategoryNav(View):
-#     model = Categories
-#     template_name = "sideNav.html"
+class home(ListView):
+    model = Products
+    template_name = "home.html"

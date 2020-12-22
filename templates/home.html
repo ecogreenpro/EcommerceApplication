@@ -221,7 +221,7 @@
                         <hr>
 
                         <div class="row featurette">
-                            {% for item in Products %}
+                            {% for item in object_list %}
                             {% if item.isactive %}
                             <div class="block text-center">
                                 <a href="{% url 'productDetail' item.slug %}"><img class="image"
@@ -275,7 +275,7 @@
                                      loading="lazy">
                             </div>
 
-                            {% for item in Products %}
+                            {% for item in object_list %}
                             {% if item.isactive %}
                             <div class="block text-center">
                                 <a href="{% url 'productDetail' item.slug %}"><img class="image"
