@@ -174,7 +174,7 @@ class CategoryView(View):
         item = Products.objects.filter(category=category, isactive=True)
         context = {
             'object_list': item,
-            'category_title': category,
+            'category_title': category.name,
             'category_description': category.description,
             'category_image': category.image
         }

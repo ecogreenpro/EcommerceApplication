@@ -170,6 +170,12 @@ a:link {
 
 
 
+
+
+
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -193,6 +199,7 @@ a:link {
             <div class="container-fluid">
                 <main role="main">
                     <br>
+
                     <!--                    <div id="myCarousel" class="carousel slide" data-ride="carousel">-->
                     <!--                        <ol class="carousel-indicators">-->
                     <!--                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
@@ -333,21 +340,30 @@ a:link {
                         </div>
 
                         <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-                            <!--  -->
-                            <div class="flex-sb-m flex-w p-b-35">
-                                <div class="flex-w">
+                            <p class="text-justify">{{category_description}}</p>
+                            <div class="row">
+                                <div class="col-sm-8"><h3>{{category_title}}</h3></div>
+                                <div class="col-sm-4">
 
-                                    <div class="col-md-4 mb-3">
-                                        <select class="custom-select d-block w-100" id="sorting">
-                                            <option>Default Sorting</option>
-                                            <option>Popularity</option>
-                                            <option>Price: low to high</option>
-                                            <option>Price: high to low</option>
-                                        </select>
-                                    </div>
+
+                                    <select class="custom-select d-block w-100" id="sorting">
+                                        <option>Default Sorting</option>
+                                        <option>Popularity</option>
+                                        <option>Price: low to high</option>
+                                        <option>Price: high to low</option>
+                                    </select>
+
+
                                 </div>
 
-                                <span class="s-text8 p-t-5 p-b-5">
+                                <br>
+
+                            </div>
+                            <!--  -->
+                            <div class="flex-sb-m flex-w p-b-35">
+
+
+                            <span class="s-text8 p-t-5 p-b-5 ">
 							Showing 1–12 of 16 results
 						</span>
                             </div>
