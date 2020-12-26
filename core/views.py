@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, View
 from .models import Products
@@ -70,6 +71,24 @@ def forgotpassword(request):
 def signup(request):
     context = {}
     return render(request, 'account/signup.html', context)
+
+
+def newsignup(request):
+    # first_name = request.POST['firstName']
+    # last_name = request.POST['lastName']
+    email = request.POST.get('email')
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    userRegistration = User.objects.create_user(username=username, email=email, password=password)
+
+    userRegistration.is_staff = True
+    userRegistration.save()
+
+    # messages.info(request, 'Registration Confirmed')
+    return render(request, 'account/signup.html')
+
+    return render(request, 'account/signup.html')
 
 
 def userprofile(request):
