@@ -126,6 +126,7 @@ def CategoryNav(request):
 def notFound(request, exception):
     return render(request, 'base/404.html')
 
+
 # def shop(request):
 #     context = {}
 #     product = Products.objects.raw("SELECT * FROM core_products")
@@ -146,3 +147,16 @@ class productDetail(DetailView):
 class home(ListView):
     model = Products
     template_name = "home.html"
+
+
+class CategoryView(View):
+    def get(self, *args, **kwargs):
+        category = Categories.objects.get(slug=self.kwargs['slug'])
+        item = Products.objects.filter(category=category, isactive=True)
+        context = {
+            'object_list': item,
+            'category_title': category,
+            'category_description': category.description,
+            'category_image': category.image
+        }
+        return render(self.request, "category.html", context)
