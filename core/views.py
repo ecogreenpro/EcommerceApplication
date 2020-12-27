@@ -1,4 +1,4 @@
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, View
@@ -51,6 +51,17 @@ def paymentProcess(request):
 
 def login(request):
     context = {}
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return render(request, 'account/userprofile.html')
+        else:
+            messages.info(request, 'Invalid Login')
+    else:
+        return render(request, 'account/login.html', context)
     return render(request, 'account/login.html', context)
 
 
