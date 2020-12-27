@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.forms import EmailField
 from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
 
@@ -144,7 +145,9 @@ class Order(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=30)
+
     email = models.EmailField()
+
     ordered_date = models.DateTimeField()
     isOrdered = models.BooleanField(default=False)
     address = models.CharField(max_length=100)
@@ -152,10 +155,11 @@ class Order(models.Model):
     district = models.CharField(max_length=30)
     zip_code = models.CharField(max_length=10)
     order_note = models.TextField(max_length=70)
-    payment = models.CharField(choices=Label_Choices, max_length= 20)
+
+    payment = models.CharField(choices=Label_Choices, max_length=20)
     coupon = models.ForeignKey(
         'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
-    order_status = models.CharField(choices=Status_Choices, max_length= 20)
+    order_status = models.CharField(choices=Status_Choices, max_length=20)
 
     '''
     1. Item added to cart
