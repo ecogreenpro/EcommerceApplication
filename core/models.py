@@ -9,6 +9,21 @@ Label_Choices = (
     ('Flash Sale', 'Flash Sale'),
     ('Promotion', 'Promotion')
 )
+Payment_Choices = (
+    ('COD', 'Cash on Delivery'),
+    ('Bk', 'Bkash')
+)
+
+Status_Choices = (
+
+    ('Pr', 'Processing'),
+    ('Pen', 'Pending'),
+    ('Can', 'Canceled'),
+    ('Dlv', 'Delivered'),
+    ('Ref', 'Refund in Process'),
+    ('Refd', 'Refunded')
+
+)
 
 
 class Categories(models.Model):
@@ -99,7 +114,7 @@ class Products(models.Model):
 class CartProducts(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    ordered = models.BooleanField(default=False)
+    isOrdered = models.BooleanField(default=False)
     item = models.ForeignKey(Products, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
@@ -119,3 +134,43 @@ class CartProducts(models.Model):
         if self.item.discount_price:
             return self.get_total_discount_product_price()
         return self.get_total_product_price()
+
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    order_id = models.CharField(max_length=20)
+    items = models.ManyToManyField(CartProducts)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=30)
+    email = models.EmailField()
+    ordered_date = models.DateTimeField()
+    isOrdered = models.BooleanField(default=False)
+    address = models.CharField(max_length=100)
+    country = models.CharField(max_length=30)
+    district = models.CharField(max_length=30)
+    zip_code = models.CharField(max_length=10)
+    order_note = models.TextField(max_length=70)
+    payment = models.CharField(choices=Label_Choices, max_length= 20)
+    coupon = models.ForeignKey(
+        'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    order_status = models.CharField(choices=Status_Choices, max_length= 20)
+
+    '''
+    1. Item added to cart
+    2. Adding a BillingAddress
+    (Failed Checkout)
+    3. Payment
+    4. Being delivered
+    5. Received
+    6. Refunds
+    '''
+
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=15)
+    amount = models.FloatField()
+
+    def __str__(self):
+        return self.code
