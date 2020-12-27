@@ -6,11 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
-<<<<<<< HEAD
+
 from django.shortcuts import render, get_object_or_404, redirect
-=======
+
 from django.shortcuts import render, redirect
->>>>>>> f3e447b4f90c8244bb18fdf91df2836506304a43
+
 from django.views.generic import ListView, DetailView, View
 from .models import Products, CartProducts, Order
 
