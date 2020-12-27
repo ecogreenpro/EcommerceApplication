@@ -44,6 +44,11 @@ class Brands(models.Model):
     def get_absolute_url(self):
         return reverse("core:brands", kwargs={'slug': self.slug})
 
+    def get_add_to_cart_url(self):
+        return reverse("core:add-to-cart", kwargs={
+            'slug': self.slug
+        })
+
     def brands_photo(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.image.url))
 
@@ -76,16 +81,41 @@ class Products(models.Model):
     def products_photo(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.mainImage.url))
 
-# <<<<<<< Updated upstream
-#     # def get_percentage(self):
-#     #     Percentage = self.price - (self.price * self.discountPrice / 100)
-#     #     return (int)(Percentage)
-# =======
-#     @property
-#     def get_percentage(self):
-#         Percentage = ((self.price - self.discountPrice)*100)/self.price
-#         return (int)(Percentage)
-# >>>>>>> Stashed changes
+    # <<<<<<< Updated upstream
+    #     # def get_percentage(self):
+    #     #     Percentage = self.price - (self.price * self.discountPrice / 100)
+    #     #     return (int)(Percentage)
+    # =======
+    #     @property
+    #     def get_percentage(self):
+    #         Percentage = ((self.price - self.discountPrice)*100)/self.price
+    #         return (int)(Percentage)
+    # >>>>>>> Stashed changes
 
     products_photo.short_description = 'Image'
     products_photo.allow_tags = True
+
+
+class CartProducts(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.item.name}"
+
+    def get_total_product_price(self):
+        return self.quantity * self.item.price
+
+    def get_total_discount_product_price(self):
+        return self.quantity * self.item.discountPrice
+
+    def get_amount_saved(self):
+        return self.get_total_product_price() - self.get_total_discount_product_price()
+
+    def get_final_price(self):
+        if self.item.discount_price:
+            return self.get_total_discount_product_price()
+        return self.get_total_product_price()
