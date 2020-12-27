@@ -6,7 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404, redirect
+=======
+from django.shortcuts import render, redirect
+>>>>>>> f3e447b4f90c8244bb18fdf91df2836506304a43
 from django.views.generic import ListView, DetailView, View
 from .models import Products, CartProducts, Order
 
@@ -98,39 +102,21 @@ def createUser(request):
     email = request.POST['email']
     username = request.POST['username']
     password = request.POST['password']
-
-    userRegistration = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
-                                                email=email,
-                                                password=password)
-
-    userRegistration.is_staff = False
-    userRegistration.save()
-
-    messages.info(request, 'Registration Confirmed')
+    if User.objects.filter(email=email).exists():
+        messages.warning(request, 'This Email already taken')
+        return redirect('signup')
+    else:
+        if User.objects.filter(username=username).exists():
+            messages.warning(request, 'This username already taken,Please Choose another one')
+            return redirect('signup')
+        else:
+            userRegistration = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
+                                                        email=email,
+                                                        password=password)
+            userRegistration.is_staff = False
+            userRegistration.save()
+            messages.info(request, 'Registration Confirmed')
     return render(request, 'account/login.html')
-
-
-# def newsignup(request):
-#     # first_name = request.POST.get('firstName')
-#     # last_name = request.POST.get('lastName')
-#     # email = request.POST.get('email')
-#     # username = request.POST.get('username')
-#     # password = request.POST.get('password')
-#
-#     first_name = request.POST['firstName']
-#     last_name = request.POST['lastName']
-#     email = request.POST['email']
-#     username = request.POST['username']
-#     password = request.POST['password']
-#
-#     userRegistration = User(username=username, first_name=first_name, last_name=last_name,
-#                                                 email=email, password=password)
-#
-#     userRegistration.is_staff = False
-#     userRegistration.save()
-#
-#     messages.info(request, 'Registration Confirmed')
-#     return render(request, 'account/login.html')
 
 
 def userprofile(request):
