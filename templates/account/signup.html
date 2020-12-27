@@ -62,7 +62,15 @@
 
                             <form method="post" action="/create-user/" class="needs-validation" novalidate>
                                 {% csrf_token %}
+                                {% for message in messages %}
+                                <div class="form-group ">
+                                    <div class="col-md-12">
 
+                                        <p class="form-control alert alert-danger" id="messages">{{message}}</p>
+
+                                    </div>
+                                </div>
+                                {% endfor %}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="firstName">First name</label>
