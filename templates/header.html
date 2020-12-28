@@ -135,6 +135,8 @@
     content: '';
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'navbar-top.css' %}" rel="stylesheet">
@@ -232,9 +234,51 @@
 
             </ul>
             <div class="top_bar_user text-white" style="font-family: 'Rubik';">
-                <div><i class="far fa-user"></i></div>
-                <div><a class="text-white" href="#">Hello!</a></div>
-                <div><a class="text-white" href="{% url 'dashboard' %}">Ecogreen</a></div>
+                {% if request.user.is_authenticated %}
+                <div><i class="far fa-user"></i> Hello!</div>
+                <div><a class="text-white" href="{% url 'dashboard' %}">{{request.user.first_name}}</a></div>
+                <div><a class="text-white" data-toggle="modal"
+                        data-target="#my-modal">logout</a></div>
+                {%else%}
+                <div><i class="far fa-user"></i> Hello!</div>
+                {%endif%}
+            </div>
+        </div>
+
+        <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content border-0">
+                    <div class="modal-body p-0">
+                        <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                            <div class="card-header pb-0 bg-white border-0 ">
+                                <div class="row">
+                                    <div class="col ml-auto">
+                                        <button type="button" class="close"
+                                                data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                </div>
+                                <p class="font-weight-bold mb-2"> Are you sure you wanna logout?</p>
+
+                            </div>
+                            <div class="card-body px-sm-4 mb-2 pt-1 pb-0">
+                                <div class="row justify-content-end no-gutters">
+                                    <div class="col-auto">
+                                        <button type="button"
+                                                class="btn btn-light text-muted"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                    </div> &nbsp;
+                                    <div class="col-auto">
+                                        <a href="{% url 'logout' %} " type="button" class="btn btn-danger px-4"> logout
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -251,6 +295,8 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+
 
 
 
