@@ -37,7 +37,7 @@ def categories_home():
                                      src="/media/{}" focusable="false" role="img"/>
                                 <h2> {} </h2>
                                 <a class="btn btn-success" href="/category/{}" role="button">
-                                    Shop &raquo;</a></div>""".format(
+                                    Shop </a></div>""".format(
             i.image, i.name, i.slug)
     return mark_safe(items_li)
 

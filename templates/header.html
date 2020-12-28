@@ -101,7 +101,7 @@
 }
 
 .search-button {
-    color: #007bff;
+    color: #000;
     background-color: #ffffff;
     border-color: #ffffff
 }
@@ -133,6 +133,8 @@
     height: 17px;
     background: #f8f9fa;
     content: '';
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'navbar-top.css' %}" rel="stylesheet">
@@ -154,11 +156,13 @@
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix"><input style="font-family: 'Rubik';" type="search"
-                                                                                                required="required"
-                                                                                                class="header_search_input"
-                                                                                                placeholder="Search for products(e.g. Phone, dresses)">
-                                        <button type="submit" class="header_search_button trans_300" value="Submit"><i
+                                    <form action="#" class="header_search_form clearfix"><input
+                                            style="font-family: 'Rubik';" type="search"
+                                            required="required"
+                                            class="header_search_input"
+                                            placeholder="Search for products(e.g. Phone, dresses)">
+                                        <button type="submit" class="header_search_button trans_300" value="Submit"
+                                                style="background-color: #000!important;"><i
                                                 class="fas fa-search text-white"></i></button>
                                     </form>
                                 </div>
@@ -168,18 +172,20 @@
                     <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                         <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                <a href="{% url 'wishlist' %}" >
+                                <a href="{% url 'wishlist' %}">
                                     <div class="wishlist_icon"><img
                                             src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png"
                                             alt=""></div>
                                     <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="{% url 'wishlist' %}" class="text-dark" style="font-family: 'Rubik';">Wishlist</a>
+                                        <div class="wishlist_text"><a href="{% url 'wishlist' %}" class="text-dark"
+                                                                      style="font-family: 'Rubik';">Wishlist</a>
                                         </div>
-                                        <div class="badge badge-pill badge-primary" style="font-family: 'Rubik';">10</div>
+                                        <div class="badge badge-pill badge-primary" style="font-family: 'Rubik';">10
+                                        </div>
                                     </div>
                                 </a>
                             </div> <!-- Cart -->
-                            <div class="cart">
+                            <div class="bag">
                                 <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                     <a href="{% url 'cart' %}" style="font-family: 'Rubik';">
                                         <div class="cart_icon"><img
@@ -202,8 +208,9 @@
         </div>
         </div>
     </section>
-    <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #0e8ce4!important;">
-        <button class="btn btn-danger" id="menu-toggle" width="70" height="40" style="font-family: 'Rubik';"><i class="fas fa-bars"></i> Catagories
+    <nav class="navbar navbar-expand-md navbar-dark " style="background-color: #000!important;">
+        <button class="btn btn-danger" id="menu-toggle" width="70" height="40" style="font-family: 'Rubik';"><i
+                class="fas fa-bars"></i> Catagories
         </button> &nbsp; &nbsp; &nbsp;
         <!--<a class="navbar-brand" href="#">
             <img src="{% static 'media/eco.png' %}" width="40" height="40" class="d-inline-block align-top" alt=""
@@ -226,7 +233,7 @@
             </ul>
             <div class="top_bar_user text-white" style="font-family: 'Rubik';">
                 <div><i class="far fa-user"></i></div>
-                <div><a class="text-white" href="#" >Hello!</a></div>
+                <div><a class="text-white" href="#">Hello!</a></div>
                 <div><a class="text-white" href="{% url 'dashboard' %}">Ecogreen</a></div>
             </div>
         </div>
@@ -244,6 +251,8 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+
 
 
 

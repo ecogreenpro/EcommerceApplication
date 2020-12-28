@@ -156,10 +156,11 @@ class Order(models.Model):
     zip_code = models.CharField(max_length=10)
     order_note = models.TextField(max_length=70)
 
-    payment = models.CharField(choices=Label_Choices, max_length=20)
+    payment = models.CharField(choices=Payment_Choices, max_length=20)
     coupon = models.ForeignKey(
         'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
     order_status = models.CharField(choices=Status_Choices, max_length=20)
+    OrderAmount = models.FloatField()
 
     '''
     1. Item added to cart

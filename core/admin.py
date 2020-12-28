@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Brands, Products, CartProducts, Order
+from .models import Categories, Brands, Products, CartProducts, Order, Coupon
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -48,8 +48,35 @@ class ProductsAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
+class CartProductsAdmin(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'item',
+        'quantity'
+    ]
+class CouponAdmin(admin.ModelAdmin):
+    list_display = [
+        'code',
+        'amount',
+
+    ]
+class OderAdmin(admin.ModelAdmin):
+    list_display = [
+        'first_name',
+        'order_id',
+        'phone_number',
+        'address',
+        'ordered_date',
+        'OrderAmount',
+        'order_status',
+
+
+    ]
+    search_fields = ['order_id', 'phone_number']
+
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Products, ProductsAdmin)
-admin.site.register(CartProducts)
-admin.site.register(Order)
+admin.site.register(CartProducts,CartProductsAdmin)
+admin.site.register(Coupon,CouponAdmin)
+admin.site.register(Order,OderAdmin)

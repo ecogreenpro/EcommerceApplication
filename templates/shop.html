@@ -39,7 +39,7 @@
 }
 .product-grid4
 {
-width: 200px;
+width: 250px;
 height: 100%;
 }
 
@@ -156,7 +156,10 @@ a:link {
 .visible-xs {
     display: none !important
 }
-
+.image {
+    width: 200px;
+    height: 300px;
+}
 
 
 
@@ -350,13 +353,11 @@ a:link {
 							Showing 1–12 of 16 results
 						</span>
                             </div>
-                            <div class="row">
-                                <div class="container">
+
                                     <div class="row">
 
                                         {% for item in object_list %}
                                         {% if item.isactive %}
-                                        <div class="col">
                                             <div class="product-grid4">
                                                 <div>
                                                     <br>
@@ -393,12 +394,11 @@ a:link {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+
                                         {% endif %}
                                         {%endfor%}
 
-                                    </div>
-                                </div>
+
                             </div>
                             <br>
                             <div class="pagination_rounded float-right" style="text-align: center;">
