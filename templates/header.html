@@ -236,7 +236,7 @@
             <div class="top_bar_user text-white" style="font-family: 'Rubik';">
                 {% if request.user.is_authenticated %}
                 <div><i class="far fa-user"></i> Hello!</div>
-                <div><a class="text-white" href="{% url 'dashboard' %}">{{request.user.first_name}}</a></div>
+                <div><a class="text-white" href="{% url 'userprofile' %}">{{request.user.first_name}}</a></div>
                 <div><a class="text-white" data-toggle="modal"
                         data-target="#my-modal">logout</a></div>
                 {%else%}

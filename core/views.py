@@ -67,7 +67,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return render(request, 'account/dashboard.html')
+            return render(request, 'account/userprofile.html')
         else:
             messages.info(request, 'Invalid Login')
     else:
