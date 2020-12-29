@@ -1,8 +1,12 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.forms import EmailField
 from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
+from django_countries.fields import CountryField
+from django.contrib.auth.models import User
 
 Label_Choices = (
     ('Sale', 'Sale'),
@@ -179,3 +183,31 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class userProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True, null=True)
+    address = models.TextField(null=True)
+    image = models.ImageField(upload_to='Photos', default='media/eco.png')
+    country = CountryField(blank_label='(Select Country)',null=True)
+    city = models.CharField(max_length=30,null=True)
+    Phone = models.CharField(max_length=20, null=True)
+    isActive = models.BooleanField(default=True)
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            userProfile.objects.create(user=instance)
+
+    def __str__(self):
+        return self.user.first_name
+
+    def get_absolute_url(self):
+        return reverse("core:categories", kwargs={'slug': self.slug})
+
+    def userPhoto(self):
+        return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.image.url))
+
+    userPhoto.short_description = 'Image'
+    userPhoto.allow_tags = True
