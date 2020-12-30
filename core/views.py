@@ -6,7 +6,9 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
-from .models import Products, CartProducts, Order
+
+from .forms import ProfileModelForm
+from .models import Products, CartProducts, Order, userProfile
 from .models import Products, Categories
 
 
@@ -111,6 +113,41 @@ def createUser(request):
             userRegistration.save()
             messages.info(request, 'Registration Confirmed')
     return render(request, 'account/login.html')
+
+
+# def updateProfile(request):
+#     address = request.POST['address']
+#     image = request.POST['profilePhoto']
+#     country = request.POST['country']
+#     city = request.POST['city']
+#     phone = request.POST['phone']
+#
+#     profile = userProfile.objects.get_or_create(user=request.user, address=address, image=image, city=city, country=country,
+#                                       Phone=phone)
+#
+#     if request.method == 'POST':
+#         if profile.is_valid():
+#             profile.save()
+#     return render(request, 'account/userprofile.html')
+
+
+def updateProfile(request):
+    profile = userProfile.objects.get(user=request.user)
+    form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
+    confirm = False
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            confirm = True
+
+    context = {
+        'profile': profile,
+        'form': form,
+        'confirm': confirm,
+    }
+
+    return render(request, 'account/userprofile.html', context)
 
 
 def userprofile(request):

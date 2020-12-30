@@ -189,7 +189,7 @@ class userProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, null=True)
     address = models.TextField(null=True)
-    image = models.ImageField(upload_to='Photos', default='media/eco.png')
+    image = models.ImageField(upload_to='Photos', default='eco.png')
     country = CountryField(blank_label='(Select Country)',null=True)
     city = models.CharField(max_length=30,null=True)
     Phone = models.CharField(max_length=20, null=True)
@@ -204,7 +204,7 @@ class userProfile(models.Model):
         return self.user.first_name
 
     def get_absolute_url(self):
-        return reverse("core:categories", kwargs={'slug': self.slug})
+        return reverse("core:Profile", kwargs={'slug': self.slug})
 
     def userPhoto(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.image.url))
