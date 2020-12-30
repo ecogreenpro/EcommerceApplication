@@ -136,7 +136,7 @@ class CartProducts(models.Model):
         return self.get_total_product_price() - self.get_total_discount_product_price()
 
     def get_final_price(self):
-        if self.item.discountPrice:
+        if self.item.discount_price:
             return self.get_total_discount_product_price()
         return self.get_total_product_price()
 
@@ -176,13 +176,6 @@ class Order(models.Model):
     6. Refunds
     '''
 
-    def get_total(self):
-        total = 0
-        for order_item in self.items.all():
-            total += order_item.get_final_price()
-
-        return total
-
 
 class Coupon(models.Model):
     code = models.CharField(max_length=15)
@@ -196,9 +189,9 @@ class userProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, null=True)
     address = models.TextField(null=True)
-    image = models.ImageField(upload_to='Photos', default='media/eco.png')
-    country = CountryField(blank_label='(Select Country)', null=True)
-    city = models.CharField(max_length=30, null=True)
+    image = models.ImageField(upload_to='Photos', default='eco.png')
+    country = CountryField(blank_label='(Select Country)',null=True)
+    city = models.CharField(max_length=30,null=True)
     Phone = models.CharField(max_length=20, null=True)
     isActive = models.BooleanField(default=True)
 
@@ -211,7 +204,7 @@ class userProfile(models.Model):
         return self.user.first_name
 
     def get_absolute_url(self):
-        return reverse("core:categories", kwargs={'slug': self.slug})
+        return reverse("core:Profile", kwargs={'slug': self.slug})
 
     def userPhoto(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.image.url))
