@@ -8,6 +8,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 from .models import Products, CartProducts, Order
 from .models import Products, Categories
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -133,14 +135,38 @@ def chat(request):
     return render(request, 'account/chat.html', context)
 
 
-def checkout(request):
-    context = {}
-    return render(request, 'checkout.html', context)
+class checkoutView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, isOrdered=False)
+            context = {
+                'object': order
+            }
+            return render(self.request, 'checkout.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
 
 
-def cart(request):
-    context = {}
-    return render(request, 'cart.html', context)
+class CartView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, isOrdered=False)
+            context = {
+                'object': order
+            }
+            return render(self.request, 'cart.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
+
+
+# def cart(self, *args, **kwargs,):
+#     order = Order.objects.get(user=self.request.user, isOrdered=False)
+#     context = {
+#         'object': order
+#     }
+#     return render(self.request, 'cart.html', context)
 
 
 def orderTrack(request):

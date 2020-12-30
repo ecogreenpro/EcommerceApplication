@@ -6,7 +6,9 @@ from .views import (
     shop,
     home,
     CategoryView,
-    add_to_cart
+    add_to_cart,
+    CartView,
+    checkoutView
 
 )
 
@@ -16,12 +18,12 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('privacy/', views.privacyPolicy, name="privacyPolicy"),
     path('payment-process/', views.paymentProcess, name="paymentProcess"),
-    path('checkout/', views.checkout, name="checkout"),
+    # path('checkout/', views.checkout, name="checkout"),
     path('refund-returns-policy/', views.terms, name="refundReturnsPolicy"),
     path('order-track/', views.orderTrack, name="orderTrack"),
     path('wishlist/', views.wishlist, name="wishlist"),
     path('add-to-cart/<slug>/', add_to_cart, name='add-to-cart'),
-    path('cart/', views.cart, name="cart"),
+    # path('cart/', views.cart, name="cart"),
     path('become-seller/', views.becomeSeller, name="becomeSeller"),
     path('login/', views.login, name="login"),
     path('logout/', views.logout, name="logout"),
@@ -38,6 +40,8 @@ urlpatterns = [
     path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
+    path('cart/', CartView.as_view(), name='cart'),
+    path('checkout/', checkoutView.as_view(), name='checkout'),
     path('', home.as_view(), name='home'),
 
 ]

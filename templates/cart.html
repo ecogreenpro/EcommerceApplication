@@ -53,6 +53,28 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -71,123 +93,146 @@
         <br> <br>
         <!--Main View Start-->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <main role="main"><br>
-                    <div class="cart-wrap">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 rounded mx-auto d-block">
-                                    <div class="py-3 text-center alert alert-primary">
-                                        <h2>Your Shopping Cart Summary</h2>
-                                    </div>
-                                    <div class="table-wishlist py-3">
-                                        <table >
-                                            <thead>
-                                            <tr>
-                                                <th width="15%">#Order ID</th>
-                                                <th width="15%">Product Name</th>
-                                                <th width="15%">Unit Price</th>
-                                                <th width="15%" class="text-center">Quantity</th>
-                                                <th width="15%"> Total</th>
-                                                <th width="10%"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td width="15%" class="orderId">3876</td>
-                                                <td width="35%">
-                                                    <div class="display-flex align-center">
-                                                        <div class="img-product">
-                                                            <img src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
-                                                                 alt="" class="mCS_img_loaded">
-                                                        </div>
-                                                        <div class="name-product">
-                                                            <a href="#">Apple iPad Mini</a>
-                                                        </div>
+            <main role="main"><br>
+                <div class="cart-wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 rounded mx-auto d-block">
+                                <div class="py-3 text-center alert alert-primary">
+                                    <h2>Your Shopping Cart Summary</h2>
+                                </div>
+                                <div class="table-wishlist py-3">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th width="15%">No.</th>
+                                            <th width="15%">Image</th>
+                                            <th width="15%">Product Name</th>
+                                            <th width="15%">Unit Price</th>
+                                            <th width="15%" class="text-center">Quantity</th>
+                                            <th width="15%" class="text-center">Total</th>
+                                            <th width="15%"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for Order_item in object.items.all %}
+                                        <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td width="35%">
+                                                <div class="display-flex align-center">
+                                                    <div class="img-product">
+                                                        <img src="{{ Order_item.item.mainImage.url }}" alt=""
+                                                             class="mCS_img_loaded">
                                                     </div>
-                                                </td>
-                                                <td width="15%" class="price">$110.00</td>
-                                                <td width="10%" class="text-center"><a href="#"><i
-                                                        class="fas fa-minus mr-3"></i></a>
-                                                    1
-                                                    <a href="#"><i class="fas fa-plus ml-3"></i></a></td>
+                                                </div>
+                                            </td>
+                                            <td>{{ Order_item.item.name }}</td>
+                                            <td>
+                                                {% if Order_item.item.discountPrice%}
+                                                {{ Order_item.item.discountPrice }}
+                                                {%else%}
+                                                {{ Order_item.item.price }}
+                                                {%endif%}
+                                            </td>
 
-                                                <td width="15%" class="price" class="text-center">$110.00</td>
-                                                <td width="10%" class="text-center "><a href="#" class="trash-icon "><i
+
+                                            <td width="10%" class="text-center">
+                                                <a><i class="fas fa-minus mr-3"></i></a>
+                                                {{ Order_item.quantity }}
+                                                <a><i class="fas fa-plus ml-3"></i></a></td>
+
+                                            <td width="15%" class="price" class="text-center">
+                                                {{Order_item.get_final_price}}
+                                            </td>
+                                            <td width="10%" class="text-center ">
+
+
+                                                <a href="#" class="trash-icon "><i
                                                         class="far fa-trash-alt "></i></a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
 
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-12">
-                                                <div class="card bg-light">
-                                                    <div class="row col-lg-12">
-                                                        <div class="col-md-8">
-                                                            <br>
-                                                            <div class="row d-flex justify-content-between px-4">
-                                                                <p class="mb-1 text-left">Subtotal</p>
-                                                                <h6 class="mb-1 text-right">$23.49</h6>
-                                                            </div>
-                                                            <div class="row d-flex justify-content-between px-4">
-                                                                <p class="mb-1 text-left">Shipping</p>
-                                                                <h6 class="mb-1 text-right">$2.99</h6>
-                                                            </div>
-                                                            <div class="row d-flex justify-content-between px-4"
-                                                                 id="tax">
-                                                                <p class="mb-1 text-left">Total (tax included)</p>
-                                                                <h6 class="mb-1 text-right">$26.48</h6>
-                                                            </div>
-                                                            <br>
+                                    </table>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-12">
+
+                                                <div class="row col-lg-12">
+                                                    <div class="col-md-8">
+                                                        <br>
+                                                        <div class="card bg-light">
+                                                        <div class="row d-flex justify-content-between px-4">
+
+                                                            <p class="mb-1 text-left">Subtotal</p>
+                                                            <h6 class="mb-1 text-right">
+                                                                {{object.get_total}}
+                                                            </h6>
+
+                                                        </div>
                                                         </div>
 
-                                                        <div class="col-6 col-md-4">
-                                                            <div class="row">
+                                                        <div class="row d-flex justify-content-between px-4">
 
-                                                                <div class="responsive ">
-                                                                    <br>
-                                                                    <button type="button"
-                                                                            class=" text-center btn btn-warning">
-                                                                        <a
-                                                                                class="nav-link text-white"
-                                                                                href="{% url 'shop'%}">
-                                                                            Continue Shopping
-                                                                        </a>
-                                                                    </button>
-                                                                </div>
-                                                                &nbsp;
-                                                                <div class="responsive">
-                                                                    <br>
-                                                                    <button type="button"
-                                                                            class="text-center btn btn-success"><a
-                                                                            class="nav-link text-white"
-                                                                            href="{% url 'checkout'%}">
-                                                                        Checkout <i class="fas fa-play"> </i> </a>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row d-flex justify-content-between px-4">
+
+                                                        </div>
+                                                        <div class="row d-flex justify-content-between px-4"
+                                                             id="tax">
+
                                                         </div>
                                                         <br>
                                                     </div>
 
+                                                    <div class="col-6 col-md-4">
+                                                        <div class="row">
+
+                                                            <div class="responsive ">
+                                                                <br>
+                                                                <button type="button"
+                                                                        class=" text-center btn btn-warning">
+                                                                    <a
+                                                                            class="nav-link text-white"
+                                                                            href="{% url 'shop'%}">
+                                                                        Continue Shopping
+                                                                    </a>
+                                                                </button>
+                                                            </div>
+                                                            &nbsp;
+                                                            <div class="responsive">
+                                                                <br>
+                                                                <button type="button"
+                                                                        class="text-center btn btn-success"><a
+                                                                        class="nav-link text-white"
+                                                                        href="{% url 'checkout'%}">
+                                                                    Checkout <i class="fas fa-play"> </i> </a>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
-            </div>
-            <br>
-</main>
-</div>
+                </div>
+                <br>
+            </main>
+        </div>
 
-</div>
-<!--Main View End-->
-</div>
-</body>
+    </div>
+    <!--Main View End-->
+    </div>
+    </body>
 </main>
 {% include 'footer.html'%}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
