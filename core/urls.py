@@ -5,7 +5,8 @@ from .views import (
     productDetail,
     shop,
     home,
-    CategoryView
+    CategoryView,
+    add_to_cart
 
 )
 
@@ -19,6 +20,7 @@ urlpatterns = [
     path('refund-returns-policy/', views.terms, name="refundReturnsPolicy"),
     path('order-track/', views.orderTrack, name="orderTrack"),
     path('wishlist/', views.wishlist, name="wishlist"),
+    path('add-to-cart/<slug>/', add_to_cart, name='add-to-cart'),
     path('cart/', views.cart, name="cart"),
     path('become-seller/', views.becomeSeller, name="becomeSeller"),
     path('login/', views.login, name="login"),
