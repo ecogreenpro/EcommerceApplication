@@ -137,6 +137,9 @@
 
 
 
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'navbar-top.css' %}" rel="stylesheet">
@@ -233,16 +236,62 @@
                 </li>
 
             </ul>
-            <div class="top_bar_user text-white" style="font-family: 'Rubik';">
+            <!--<div class="top_bar_user text-white" style="font-family: 'Rubik';">
                 {% if request.user.is_authenticated %}
                 <div><i class="far fa-user"></i> Hello!</div>
                 <div><a class="text-white" href="{% url 'userprofile' %}">{{request.user.first_name}}</a></div>
-                <div><a class="text-white" data-toggle="modal"
-                        data-target="#my-modal">logout</a></div>
                 {%else%}
                 <div><i class="far fa-user"></i> Hello!</div>
                 {%endif%}
-            </div>
+            </div>-->
+            <ul>
+                <li class="nav-item dropdown no-arrow">
+                    {% if request.user.is_authenticated %}
+                    <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
+                       role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user"></i> Hello! <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.first_name}} {{request.user.last_name}}</span>
+                    </a>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">
+                            <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i> Dashboard
+                        </a>
+
+                        <a class="dropdown-item" href="{% url 'userprofile' %}">
+                            <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                            My Profile
+                        </a>
+
+                        <a class="dropdown-item" href="{% url 'userOrder' %}">
+                            <i class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>
+                            My Order
+                        </a>
+
+                        <a class="dropdown-item" href="{% url 'balance' %}">
+                            <i class="fas fa-money-check-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Balance
+                        </a>
+
+                        <a class="dropdown-item" href="{% url 'chat' %}">
+                            <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Chat
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#my-modal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout
+                        </a>
+                        {%else%}
+                        <a class="dropdown-toggle  text-white" href="#" id="userDropdown" style="text-decoration: none;"
+                       role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user"></i> Hello!</a>
+                        {%endif%}
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <div id="my-modal" class="modal fade" tabindex="-1" role="dialog"
@@ -296,21 +345,6 @@
       $("#wrapper").toggleClass("toggled");
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -320,3 +354,4 @@
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <link href="{% static 'js/navbar.js' %}" rel="stylesheet">
 </html>
+

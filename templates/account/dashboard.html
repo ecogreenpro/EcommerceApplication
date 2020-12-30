@@ -31,6 +31,8 @@
       }
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -50,64 +52,57 @@
             <div class="container-fluid">
                 <main role="main"><br>
 
-                    <div class="container">
 
-                        <div class="row">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                            {%include "userDashboardSideNav.html"%}
-
-                            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-
-                                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-
-                                    <h1 class="h2">Dashboard</h1>
-                                    <div class="btn-toolbar mb-2 mb-md-0">
-                                        <div class="btn-group mr-2">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Share
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Export
-                                            </button>
-                                        </div>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                            <span data-feather="calendar"></span>
-                                            This week
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card text-Black  mb-3" style="max-width: 18rem;">
-
-                                        <a class=" btn btn-outline-primary alert-warnings " href="{% url 'vendorDashboard' %}">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            Go to Vendor Dashboard
-                                        </a>
-
-                                </div>
-
-                                <div class="card text-Black alert-success  mb-3" style="max-width: 18rem;">
-                                    <div class="card-header text-center">Orders</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">3 Orders</h5>
-
-                                    </div>
-                                </div>
-                                <div class="card text-Black alert-warning mb-3" style="max-width: 18rem;">
-                                    <div class="card-header text-center">Wishlist</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">5 Products in Your list</h5>
-
-                                    </div>
-                                </div>
-                                <div class="card text-Black alert-primary  mb-3" style="max-width: 18rem;">
-                                    <div class="card-header text-center">Cart</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">10 Product on your Cart</h5>
-                                    </div>
-                                </div>
+                        <h1 class="h2">Dashboard</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Share
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Export
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                <span data-feather="calendar"></span>
+                                This week
+                            </button>
                         </div>
+                    </div>
+                    <div class="card text-Black  mb-3" style="max-width: 18rem;">
 
-                </main>
+                        <a class=" btn btn-outline-primary alert-warnings " href="{% url 'vendorDashboard' %}">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Go to Vendor Dashboard
+                        </a>
+
+                    </div>
+
+                    <div class="card text-Black alert-success  mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">Orders</div>
+                        <div class="card-body">
+                            <h5 class="card-title">3 Orders</h5>
+
+                        </div>
+                    </div>
+                    <div class="card text-Black alert-warning mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">Wishlist</div>
+                        <div class="card-body">
+                            <h5 class="card-title">5 Products in Your list</h5>
+
+                        </div>
+                    </div>
+                    <div class="card text-Black alert-primary  mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">Cart</div>
+                        <div class="card-body">
+                            <h5 class="card-title">10 Product on your Cart</h5>
+                        </div>
+                    </div>
             </div>
-        </div>
+
+</main>
+</div>
+</div>
 
 </main>
 </div>

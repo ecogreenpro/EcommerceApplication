@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Brands, Products, CartProducts, Order, Coupon
+from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -54,12 +54,16 @@ class CartProductsAdmin(admin.ModelAdmin):
         'item',
         'quantity'
     ]
+
+
 class CouponAdmin(admin.ModelAdmin):
     list_display = [
         'code',
         'amount',
 
     ]
+
+
 class OderAdmin(admin.ModelAdmin):
     list_display = [
         'first_name',
@@ -70,13 +74,29 @@ class OderAdmin(admin.ModelAdmin):
         'OrderAmount',
         'order_status',
 
-
     ]
     search_fields = ['order_id', 'phone_number']
+
+
+class userProfileAdmin(admin.ModelAdmin):
+    list_display = [
+        'userPhoto',
+        'user',
+        'slug',
+        'address',
+        'Phone',
+        'isActive'
+    ]
+    list_display_links = ['userPhoto', 'user']
+    prepopulated_fields = {'slug': ("user",)}
+    list_filter = ['user', 'isActive']
+    search_fields = ['user', 'isActive']
+
 
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Products, ProductsAdmin)
-admin.site.register(CartProducts,CartProductsAdmin)
-admin.site.register(Coupon,CouponAdmin)
-admin.site.register(Order,OderAdmin)
+admin.site.register(CartProducts, CartProductsAdmin)
+admin.site.register(Coupon, CouponAdmin)
+admin.site.register(Order, OderAdmin)
+admin.site.register(userProfile, userProfileAdmin)
