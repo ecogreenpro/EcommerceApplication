@@ -49,7 +49,6 @@
 
 
 
-
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -133,13 +132,12 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form method="POST" action="" enctype='multipart/form-data'>
-                                <div class="form-group">
-                                    {% csrf_token %}
-                                    {{form.as_p}}
-
+                            <form method="POST" action="/updateProfile/">
+                                {% csrf_token %}
+                                {{from.as_p}}
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
-
                                 <!--<div class="modal-body">
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-3">
@@ -192,20 +190,20 @@
                                                 <option value="BD"> Bangladesh</option>
                                             </select>
                                         </div>
-                                    </div>-->
+                                    </div>
 
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>-->
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
+
             </div>
 
         </div>
-
-    </div>
     </div>
     </body>
 

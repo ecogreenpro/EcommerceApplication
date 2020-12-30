@@ -28,17 +28,25 @@
 
 
 
+
+
     </style>
 </head>
-<div class="bg-light border-right " id="sidebar-wrapper" style="background-color: #dc3545!important; font-family: 'Rubik';">
+<div class="bg-light border-right " id="sidebar-wrapper"
+     style="background-color: #dc3545!important; font-family: 'Rubik';">
     <div class="list-group list-group-flush ">
 
-       
+
         {% categories %}
+        {%if request.user.is_authenticated%}
+
+        {%else%}
         <a href="{% url 'login'%}" class="list-group-item list-group-item-action bg-danger text-white"><i
                 class="fas fa-sign-in-alt"></i> Login</a>
         <a href="{% url 'signup'%}" class="list-group-item list-group-item-action bg-danger text-white"><i
                 class="fas fa-user-plus"></i> Register</a>
+        {%endif%}
+
     </div>
 
 </div>
@@ -52,6 +60,8 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+
 
 
 
