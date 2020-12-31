@@ -49,6 +49,7 @@
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -134,11 +135,8 @@
                             </div>
                             <form method="POST" action="/updateProfile/">
                                 {% csrf_token %}
-                                {{from.as_p}}
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
-                                <!--<div class="modal-body">
+
+                                <div class="modal-body">
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-3">
                                             <label for="firstName" class="col-form-label">First Name:</label>
@@ -193,9 +191,9 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Update Profile</button>
                                     </div>
-                                </div>-->
+                                </div>
                             </form>
                         </div>
                     </div>

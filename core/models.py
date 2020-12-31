@@ -206,7 +206,7 @@ class userProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, null=True)
     address = models.TextField(null=True)
-    image = models.ImageField(upload_to='Photos', default='media/eco.png')
+    image = models.ImageField(upload_to='Photos', default='eco.png')
     country = CountryField(blank_label='(Select Country)', null=True)
     city = models.CharField(max_length=30, null=True)
     Phone = models.CharField(max_length=20, null=True)

@@ -117,39 +117,40 @@ def createUser(request):
     return render(request, 'account/login.html')
 
 
+def updateProfile(request):
+    address = request.POST['address']
+    image = request.POST['profilePhoto']
+    country = request.POST['country']
+    city = request.POST['city']
+    phone = request.POST['phone']
+
+    profile = userProfile.objects.filter(user=request.user).update(address=address, image=image, city=city,
+                                                                   country=country,
+                                                                   Phone=phone)
+
+    # if request.method == 'POST':
+    #     if profile.is_valid():
+    #         profile.save()
+    return render(request, 'account/userprofile.html')
+
+
 # def updateProfile(request):
-#     address = request.POST['address']
-#     image = request.POST['profilePhoto']
-#     country = request.POST['country']
-#     city = request.POST['city']
-#     phone = request.POST['phone']
-#
-#     profile = userProfile.objects.get_or_create(user=request.user, address=address, image=image, city=city, country=country,
-#                                       Phone=phone)
+#     profile = userProfile.objects.get(user=request.user)
+#     form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
+#     confirm = False
 #
 #     if request.method == 'POST':
-#         if profile.is_valid():
-#             profile.save()
-#     return render(request, 'account/userprofile.html')
-
-
-def updateProfile(request):
-    profile = userProfile.objects.get(user=request.user)
-    form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
-    confirm = False
-
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            confirm = True
-
-    context = {
-        'profile': profile,
-        'form': form,
-        'confirm': confirm,
-    }
-
-    return render(request, 'account/userprofile.html', context)
+#         if form.is_valid():
+#             form.save()
+#             confirm = True
+#
+#     context = {
+#         'profile': profile,
+#         'form': form,
+#         'confirm': confirm,
+#     }
+#
+#     return render(request, 'account/userprofile.html', context)
 
 
 def userprofile(request):
