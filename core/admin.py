@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile
+from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -64,6 +64,14 @@ class CouponAdmin(admin.ModelAdmin):
     ]
 
 
+class ShippingAdmin(admin.ModelAdmin):
+    list_display = [
+        'location',
+        'charge',
+
+    ]
+
+
 class OderAdmin(admin.ModelAdmin):
     list_display = [
         'first_name',
@@ -98,5 +106,6 @@ admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(CartProducts, CartProductsAdmin)
 admin.site.register(Coupon, CouponAdmin)
+admin.site.register(Shipping, ShippingAdmin)
 admin.site.register(Order, OderAdmin)
 admin.site.register(userProfile, userProfileAdmin)

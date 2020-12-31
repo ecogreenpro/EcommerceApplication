@@ -31,6 +31,8 @@
 
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -70,6 +72,16 @@
                                     <span class="text-muted">{{Order_item.get_final_price}}</span>
                                 </li>
                                 {%endfor%}
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">Shipping Charge</h6>
+                                        <select name="dropdown">
+
+                                            <option selected> </option>
+
+                                        </select>
+                                    </div>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between bg-light alert alert-success">
                                     <div class="text-success">
                                         <h6 class="my-0">Promo code</h6>

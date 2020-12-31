@@ -163,6 +163,8 @@ class Order(models.Model):
     payment = models.CharField(choices=Payment_Choices, max_length=20)
     coupon = models.ForeignKey(
         'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    shipping = models.ForeignKey(
+        'Shipping', on_delete=models.SET_NULL, blank=True, null=True)
     order_status = models.CharField(choices=Status_Choices, max_length=20)
     OrderAmount = models.FloatField()
 
@@ -190,6 +192,14 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class Shipping(models.Model):
+    location = models.CharField(max_length=30)
+    charge = models.FloatField()
+
+    def __str__(self):
+        return self.location
 
 
 class userProfile(models.Model):
