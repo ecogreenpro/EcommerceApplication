@@ -130,6 +130,7 @@ def updateProfile(request):
     # if request.method == 'POST':
     #     if profile.is_valid():
     #         profile.save()
+    messages.info(request, 'Profile Updated ')
     return render(request, 'account/userprofile.html')
 
 
