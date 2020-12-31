@@ -119,12 +119,11 @@ def createUser(request):
 
 def updateProfile(request):
     address = request.POST['address']
-    image = request.POST['profilePhoto']
     country = request.POST['country']
     city = request.POST['city']
     phone = request.POST['phone']
 
-    profile = userProfile.objects.filter(user=request.user).update(address=address, image=image, city=city,
+    profile = userProfile.objects.filter(user=request.user).update(address=address, city=city,
                                                                    country=country,
                                                                    Phone=phone)
 
