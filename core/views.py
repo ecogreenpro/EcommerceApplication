@@ -128,7 +128,7 @@ def updateProfile(request):
     city = request.POST['city']
     phone = request.POST['phone']
 
-    profile = userProfile.objects.filter(user=request.user).update(address=address, city=city,
+    userProfile.objects.filter(user=request.user).update(address=address, city=city,
                                                                    country=country,
                                                                    Phone=phone)
 
@@ -318,9 +318,9 @@ def add_to_cart(request, slug):
     order_qs = Order.objects.filter(user=request.user, isOrdered=False)
     if order_qs.exists():
         order = order_qs[0]
-        if order.items.filter(item__slug=item.slug).exists():
+        if order.items.filter(item_id=item):
             order_item.quantity += 1
-            order_item.save()
+            order_item.update()
             messages.info(request, "Item qty was updated.")
             return redirect("core:cart")
         else:
