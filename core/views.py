@@ -178,6 +178,11 @@ def chat(request):
     return render(request, 'account/chat.html', context)
 
 
+def cart(request):
+    context = {}
+    return render(request, 'cart.html', context)
+
+
 class checkoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
@@ -191,17 +196,19 @@ class checkoutView(LoginRequiredMixin, View):
             return redirect("/")
 
 
-class CartView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        try:
-            order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
-            context = {
-                'object': order
-            }
-            return render(self.request, 'cart.html', context)
-        except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have an active order")
-            return redirect("/")
+#
+#
+# class CartView(LoginRequiredMixin, View):
+#     def get(self, *args, **kwargs):
+#         try:
+#             order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
+#             context = {
+#                 'object': order
+#             }
+#             return render(self.request, 'cart.html', context)
+#         except ObjectDoesNotExist:
+#             messages.error(self.request, "You do not have an active order")
+#             return redirect("/")
 
 
 # def cart(self, *args, **kwargs,):
