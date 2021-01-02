@@ -23,17 +23,22 @@ def cartPage_li():
     for i in items:
         items_li += """<tr start="1">
         <td>1</td>
-        <td width="35%">
-            <div class="display-flex align-center">
+        <td width="20%">
+            <div class="display-flex">
                  <div class="img-product">
-                    <img src="/media/{}" alt="" class="mCS_img_loaded">
+                    <img src="/media/{}" alt="" >
                  </div>
             </div>
         </td>
          <td>{}</td>
          <td>{}</td>
+         <td><a href= "#" class="trash-icon "><i class="fas fa-minus mr-3"></i></a>{} 
+         <a href= "#" class="trash-icon "><i class="fas fa-plus ml-3"></i></a>
+         </td>
          <td>{}</td>
-         <td>{}</td>
+         <td width="10%" class="text-center ">
+            <a href="#" class="trash-icon "><i class="far fa-trash-alt "></i></a>
+            </td>
          </tr>
          """.format(
             i.item.mainImage, i.item.name, i.price(), i.quantity, i.get_final_price())
