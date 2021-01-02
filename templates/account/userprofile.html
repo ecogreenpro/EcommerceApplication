@@ -32,6 +32,38 @@
 
 
 
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px
+}
+
+.alert_info {
+    background-color: #4285f4;
+    border: 2px solid #4285f4
+}
+
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0
+}
+
+.close {
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.9;
+    font-weight: normal
+}
+
+
+
+
 
 
 
@@ -65,6 +97,19 @@
         {%include "sideNav.html"%}
         <!--Main View Start-->
         <div id="page-content-wrapper">
+            <div>
+                {% for message in messages %}
+                <br>
+                <div class="col-md-8">
+                    <div class="alert alert_info">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{message}}!</strong></div>
+
+
+                </div>
+
+                {% endfor %}
+            </div>
             <div class="container-fluid">
                 <main role="main"><br>
 
@@ -110,6 +155,11 @@
                                         <li class="list-group-item"><strong>Phone:</strong>
                                             {{user.userprofile.Phone}}
                                         </li>
+                                        <li class="list-group-item">
+                                            <a class="dropdown-item" href="{% url 'changePassword' %}">
+                                            Change Password
+                                            </a>
+                                        </li>
 
                                     </ul>
                                 </div>
@@ -134,11 +184,8 @@
                             </div>
                             <form method="POST" action="/updateProfile/">
                                 {% csrf_token %}
-                                {{from.as_p}}
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
-                                <!--<div class="modal-body">
+
+                                <div class="modal-body">
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-3">
                                             <label for="firstName" class="col-form-label">First Name:</label>
@@ -165,12 +212,7 @@
                                                    name="phone" id="phone">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="profilePhoto" class="col-form-label">Photo: </label>
-                                        <input type="file" value="{{user.userprofile.image.url}}" name="profilePhoto"
-                                               id="profilePhoto">
 
-                                    </div>
                                     <div class="form-group">
                                         <label for="address" class="col-form-label">Address: </label>
                                         <input type="text" value="{{user.userprofile.address}}"
@@ -193,9 +235,9 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary">Update Profile</button>
                                     </div>
-                                </div>-->
+                                </div>
                             </form>
                         </div>
                     </div>

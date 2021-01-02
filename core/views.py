@@ -88,6 +88,11 @@ def forgotpassword(request):
     return render(request, 'account/forgotpassword.html', context)
 
 
+def changePassword(request):
+    context = {}
+    return render(request, 'account/changePassword.html', context)
+
+
 def signup(request):
     context = {}
     return render(request, 'account/signup.html', context)
@@ -117,39 +122,40 @@ def createUser(request):
     return render(request, 'account/login.html')
 
 
+def updateProfile(request):
+    address = request.POST['address']
+    country = request.POST['country']
+    city = request.POST['city']
+    phone = request.POST['phone']
+
+    profile = userProfile.objects.filter(user=request.user).update(address=address, city=city,
+                                                                   country=country,
+                                                                   Phone=phone)
+
+    # if request.method == 'POST':
+    #     if profile.is_valid():
+    #         profile.save()
+    messages.info(request, 'Profile Updated ')
+    return render(request, 'account/userprofile.html')
+
+
 # def updateProfile(request):
-#     address = request.POST['address']
-#     image = request.POST['profilePhoto']
-#     country = request.POST['country']
-#     city = request.POST['city']
-#     phone = request.POST['phone']
-#
-#     profile = userProfile.objects.get_or_create(user=request.user, address=address, image=image, city=city, country=country,
-#                                       Phone=phone)
+#     profile = userProfile.objects.get(user=request.user)
+#     form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
+#     confirm = False
 #
 #     if request.method == 'POST':
-#         if profile.is_valid():
-#             profile.save()
-#     return render(request, 'account/userprofile.html')
-
-
-def updateProfile(request):
-    profile = userProfile.objects.get(user=request.user)
-    form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
-    confirm = False
-
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            confirm = True
-
-    context = {
-        'profile': profile,
-        'form': form,
-        'confirm': confirm,
-    }
-
-    return render(request, 'account/userprofile.html', context)
+#         if form.is_valid():
+#             form.save()
+#             confirm = True
+#
+#     context = {
+#         'profile': profile,
+#         'form': form,
+#         'confirm': confirm,
+#     }
+#
+#     return render(request, 'account/userprofile.html', context)
 
 
 def userprofile(request):
@@ -172,15 +178,10 @@ def chat(request):
     return render(request, 'account/chat.html', context)
 
 
-def cart(request):
-    context = {}
-    return render(request, 'cart.html', context)
-
-
 class checkoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
-            order = Order.objects.get(user=self.request.user, isOrdered=False)
+            order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
             context = {
                 'object': order
             }
@@ -190,17 +191,17 @@ class checkoutView(LoginRequiredMixin, View):
             return redirect("/")
 
 
-# class CartView(LoginRequiredMixin, View):
-#     def get(self, *args, **kwargs):
-#         try:
-#             order = Order.objects.get(user=self.request.user, isOrdered=False)
-#             context = {
-#                 'object': order
-#             }
-#             return render(self.request, 'cart.html', context)
-#         except ObjectDoesNotExist:
-#             messages.error(self.request, "You do not have an active order")
-#             return redirect("/")
+class CartView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
+            context = {
+                'object': order
+            }
+            return render(self.request, 'cart.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
 
 
 # def cart(self, *args, **kwargs,):
