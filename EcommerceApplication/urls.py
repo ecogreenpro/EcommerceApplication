@@ -18,12 +18,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', include('core.urls'), name='core'),
+                  # path('', include('core.urls'), name='core'),
+                  path('', include('core.urls', namespace='core')),
                   path('', include('vendor.urls'), name='vendor'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Ecogreen Shop Admin'
 admin.site.site_title = 'Ecogreen Shop'
-admin.site.index_title  = 'Ecogreen'
+admin.site.index_title = 'Ecogreen'

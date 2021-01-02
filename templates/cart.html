@@ -77,6 +77,8 @@
 
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -199,7 +201,7 @@
                                                                     class=" text-center btn btn-warning">
                                                                 <a
                                                                         class="nav-link text-white"
-                                                                        href="{% url 'shop'%}">
+                                                                        href="{% url 'core:shop'%}">
                                                                     Continue Shopping
                                                                 </a>
                                                             </button>
@@ -210,7 +212,7 @@
                                                             <button type="button"
                                                                     class="text-center btn btn-success"><a
                                                                     class="nav-link text-white"
-                                                                    href="{% url 'checkout'%}">
+                                                                    href="{% url 'core:checkout'%}">
                                                                 Checkout <i class="fas fa-play"> </i> </a>
                                                             </button>
                                                         </div>

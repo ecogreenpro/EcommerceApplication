@@ -284,14 +284,14 @@ height: 100%;
                             <div class="product-grid4">
                                 <div>
                                     <br>
-                                    <a href="{% url 'productDetail' item.slug %}"><img class="image"
+                                    <a href="{% url 'core:productDetail' item.slug %}"><img class="image"
                                                                                        src="{{item.mainImage.url}}"></a>
                                     <span class="product-new-label">{{item.label}}</span>
                                     <span class="product-discount-label">-{{item.get_percentage}}%</span>
                                 </div>
                                 <div class="product-content">
                                     <h3 class="title">
-                                        <a href="{%url 'productDetail' item.slug %}"
+                                        <a href="{%url 'core:productDetail' item.slug %}"
                                            style="text-decoration: none;">
                                             {{ item.name|truncatechars_html:25 }} </a>
                                     </h3>
@@ -341,14 +341,14 @@ height: 100%;
                             <div class="product-grid4">
                                 <div>
                                     <br>
-                                    <a href="{% url 'productDetail' item.slug %}"><img class="image"
+                                    <a href="{% url 'core:productDetail' item.slug %}"><img class="image"
                                                                                        src="{{item.mainImage.url}}"></a>
                                     <span class="product-new-label">{{item.label}}</span>
                                     <span class="product-discount-label">-{{item.get_percentage}}%</span>
                                 </div>
                                 <div class="product-content">
                                     <h3 class="title">
-                                        <a href="{%url 'productDetail' item.slug %}"
+                                        <a href="{%url 'core:productDetail' item.slug %}"
                                            style="text-decoration: none;">
                                             {{ item.name|truncatechars_html:25 }} </a>
                                     </h3>
