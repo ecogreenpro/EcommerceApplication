@@ -180,7 +180,7 @@ class Order(models.Model):
     shipping = models.ForeignKey(
         'Shipping', on_delete=models.SET_NULL, blank=True, null=True)
     order_status = models.CharField(choices=Status_Choices, max_length=20)
-    OrderAmount = models.FloatField()
+    OrderAmount = models.FloatField(blank=True, null=True)
 
     '''
     1. Item added to cart

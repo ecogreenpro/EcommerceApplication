@@ -1,5 +1,5 @@
 from django.contrib import messages, auth
-from datetime import timezone
+from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -279,25 +279,53 @@ class CategoryView(View):
         return render(self.request, "category.html", context)
 
 
+# def add_to_cart(request, slug):
+#     item = get_object_or_404(Item, slug=slug)
+#     order_item, created = OrderItem.objects.get_or_create(
+#         item=item,
+#         user=request.user,
+#         ordered=False
+#     )
+#     order_qs = Order.objects.filter(user=request.user, ordered=False)
+#     if order_qs.exists():
+#         order = order_qs[0]
+#         if order.items.filter(item__slug=item.slug).exists():
+#             order_item.quantity += 1
+#             order_item.save()
+#             messages.info(request, "Item qty was updated.")
+#             return redirect("core:order-summary")
+#         else:
+#             order.items.add(order_item)
+#             messages.info(request, "Item was added to your cart.")
+#             return redirect("core:order-summary")
+#     else:
+#         ordered_date = timezone.now()
+#         order = Order.objects.create(
+#             user=request.user, ordered_date=ordered_date)
+#         order.items.add(order_item)
+#         messages.info(request, "Item was added to your cart.")
+#     return redirect("core:order-summary")
+
+
 def add_to_cart(request, slug):
     item = get_object_or_404(Products, slug=slug)
-    order_item = CartProducts.objects.get_or_create(items=item)
+    order_item = CartProducts.objects.get_or_create(item=item, user=request.user, isOrdered=False)
     order_qs = Order.objects.filter(user=request.user, isOrdered=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
-            # messages.info(request, "Item qty was updated.")
-        # return redirect("core:cart")
+            messages.info(request, "Item qty was updated.")
+            return redirect("core:cart")
         else:
             order.items.add(order_item)
-            # messages.info(request, "Item was added to your cart.")
-            # return redirect("core:cart")
+            messages.info(request, "Item was added to your cart.")
+            return redirect("core:cart")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        # messages.info(request, "Item was added to your cart.")
+        messages.info(request, "Item was added to your cart.")
     return redirect("core:cart")

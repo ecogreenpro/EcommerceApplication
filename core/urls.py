@@ -12,6 +12,7 @@ from .views import (
 
 )
 
+app_name = 'core'
 urlpatterns = [
     # path('', views.home, name="home"),
     path('about/', views.about, name="about"),
@@ -42,7 +43,7 @@ urlpatterns = [
     path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
-    #path('cart/', CartView.as_view(), name='cart'),
+    # path('cart/', CartView.as_view(), name='cart'),
     path('checkout/', checkoutView.as_view(), name='checkout'),
     path('', home.as_view(), name='home'),
 
