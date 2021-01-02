@@ -50,3 +50,5 @@ def cartPage_total():
          </tr>
          """.format(i.get_total())
     return mark_safe(items_li)
+
+

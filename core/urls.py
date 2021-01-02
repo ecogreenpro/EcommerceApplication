@@ -8,7 +8,7 @@ from .views import (
     CategoryView,
     add_to_cart,
     # CartView,
-    checkoutView
+    #checkoutView
 
 )
 
@@ -18,7 +18,7 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('privacy/', views.privacyPolicy, name="privacyPolicy"),
     path('payment-process/', views.paymentProcess, name="paymentProcess"),
-    # path('checkout/', views.checkout, name="checkout"),
+    path('checkout/', views.checkout, name="checkout"),
     path('refund-returns-policy/', views.terms, name="refundReturnsPolicy"),
     path('order-track/', views.orderTrack, name="orderTrack"),
     path('wishlist/', views.wishlist, name="wishlist"),
@@ -43,7 +43,7 @@ urlpatterns = [
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
     #path('cart/', CartView.as_view(), name='cart'),
-    path('checkout/', checkoutView.as_view(), name='checkout'),
+    #path('checkout/', checkoutView.as_view(), name='checkout'),
     path('', home.as_view(), name='home'),
 
 ]

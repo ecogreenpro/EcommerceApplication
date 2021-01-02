@@ -183,17 +183,22 @@ def cart(request):
     return render(request, 'cart.html', context)
 
 
-class checkoutView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        try:
-            order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
-            context = {
-                'object': order
-            }
-            return render(self.request, 'checkout.html', context)
-        except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have an active order")
-            return redirect("/")
+def checkout(request):
+    context = {}
+    return render(request, 'checkout.html', context)
+
+
+# class checkoutView(LoginRequiredMixin, View):
+#     def get(self, *args, **kwargs):
+#         try:
+#             order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
+#             context = {
+#                 'object': order
+#             }
+#             return render(self.request, 'checkout.html', context)
+#         except ObjectDoesNotExist:
+#             messages.error(self.request, "You do not have an active order")
+#             return redirect("/")
 
 
 #
