@@ -115,7 +115,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for Order_item in object.items.all %}
+                                        {% for Order_item in object.all %}
                                         <tr>
                                             <th scope="row">{{ forloop.counter }}</th>
                                             <td width="35%">
@@ -126,7 +126,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ Order_item.item.name }}</td>
+                                            <td>{{ Order_item.name }}</td>
                                             <td>
                                                 {% if Order_item.item.discountPrice%}
                                                 {{ Order_item.item.discountPrice }}

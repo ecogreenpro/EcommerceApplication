@@ -80,6 +80,7 @@ button.close {
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -153,6 +154,11 @@ button.close {
                                         </li>
                                         <li class="list-group-item"><strong>Phone:</strong>
                                             {{user.userprofile.Phone}}
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a class="dropdown-item" href="{% url 'changePassword' %}">
+                                            Change Password
+                                            </a>
                                         </li>
 
                                     </ul>

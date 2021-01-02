@@ -88,6 +88,11 @@ def forgotpassword(request):
     return render(request, 'account/forgotpassword.html', context)
 
 
+def changePassword(request):
+    context = {}
+    return render(request, 'account/changePassword.html', context)
+
+
 def signup(request):
     context = {}
     return render(request, 'account/signup.html', context)
@@ -176,7 +181,7 @@ def chat(request):
 class checkoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
-            order = Order.objects.get(user=self.request.user, isOrdered=False)
+            order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
             context = {
                 'object': order
             }
@@ -189,7 +194,7 @@ class checkoutView(LoginRequiredMixin, View):
 class CartView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
-            order = Order.objects.get(user=self.request.user, isOrdered=False)
+            order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
             context = {
                 'object': order
             }
