@@ -7,6 +7,7 @@ from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
+from django.db.models import Count
 
 Label_Choices = (
     ('Sale', 'Sale'),
@@ -139,6 +140,19 @@ class CartProducts(models.Model):
         if self.item.discountPrice:
             return self.get_total_discount_product_price()
         return self.get_total_product_price()
+
+    def price(self):
+        if self.item.discountPrice:
+            return self.item.discountPrice
+        else:
+            return self.item.price
+
+    def get_total(self):
+        total = 0
+        for order_item in self:
+            total += order_item.get_final_price()
+
+        return total
 
 
 class Order(models.Model):
