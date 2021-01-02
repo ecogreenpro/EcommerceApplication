@@ -26,17 +26,12 @@ def checkout_li():
 
 @register.simple_tag
 def shipping_li():
-    items = Shipping.objects.filter(location='Dhaka')
+    items = Shipping.objects.filter(isActive=True)
     shipping_li = ""
     for i in items:
-        shipping_li += """<tr start="1">
-      <div class="form-group">
-         <label for="sel1">Shipping Charge:</label>
-            <select class="form-control" id="sel1">
-              <option>{}</option>    
-            </select>
-            <span class="text-muted">{}</span>
-      </div>
+        shipping_li += """
+              <option>{}</option> 
+              <span class="text-muted">{}</span>               
          """.format(
             i.location, i.charge)
-    return mark_safe(shipping_li())
+    return mark_safe(shipping_li)

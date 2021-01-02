@@ -36,7 +36,6 @@
 
 
 
-
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -78,8 +77,14 @@
                                 </li>
                                 {%endfor%}-->
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                   {%shipping_li%}
+                                    <div class="form-group">
+                                        <label for="sel1">Shipping Charge:</label>
+                                        <select class="form-control" id="sel1">
+                                             {% shipping_li %}
 
+                                        </select>
+
+                                    </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between bg-light alert alert-success">
                                     <div class="text-success">

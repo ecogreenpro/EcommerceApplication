@@ -211,6 +211,7 @@ class Coupon(models.Model):
 class Shipping(models.Model):
     location = models.CharField(max_length=30)
     charge = models.FloatField()
+    isActive = models.BooleanField(default=True)
 
     def __str__(self):
         return self.location
