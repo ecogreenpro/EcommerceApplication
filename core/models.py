@@ -36,7 +36,7 @@ Status_Choices = (
 class Categories(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True)
-    description = models.TextField()
+    description = RichTextUploadingField()
     image = models.ImageField(upload_to='Photos')
     isactive = models.BooleanField(default=True)
 
@@ -56,7 +56,7 @@ class Categories(models.Model):
 class Brands(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True)
-    description = models.TextField()
+    description = RichTextUploadingField()
     image = models.ImageField(upload_to='Photos')
     isactive = models.BooleanField(default=True)
 
@@ -82,7 +82,7 @@ class Products(models.Model):
     brand = models.ForeignKey(Brands, on_delete=models.CASCADE)
     label = models.CharField(choices=Label_Choices, max_length=30)
     stockQuantity = models.CharField(max_length=50, verbose_name="Stock Quantity")
-    shortDescription = models.TextField(verbose_name="Short Description")
+    shortDescription = RichTextUploadingField()
     longDescirption = RichTextUploadingField()
     mainImage = models.ImageField(upload_to='Photos', verbose_name="Main Image")
     altImageOne = models.ImageField(upload_to='Photos', verbose_name="Gallery Image One")
@@ -97,6 +97,11 @@ class Products(models.Model):
 
     def get_add_to_cart_url(self):
         return reverse("core:add-to-cart", kwargs={
+            'slug': self.slug
+        })
+
+    def get_remove_from_cart_url(self):
+        return reverse("core:remove-from-cart", kwargs={
             'slug': self.slug
         })
 

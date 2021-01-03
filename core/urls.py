@@ -10,6 +10,8 @@ from .views import (
     # CartView,
     # checkoutView,
     BrandView,
+    remove_from_cart,
+    remove_single_item_from_cart
 
 )
 
@@ -26,6 +28,8 @@ urlpatterns = [
     path('order-track/', views.orderTrack, name="orderTrack"),
     path('wishlist/', views.wishlist, name="wishlist"),
     path('add-to-cart/<slug>/', add_to_cart, name='add-to-cart'),
+    path('remove-from-cart/<slug>/', remove_from_cart, name='remove-from-cart'),
+    path('remove-single-item-cart/<slug>/', remove_single_item_from_cart, name='remove-single-from-cart'),
     path('become-seller/', views.becomeSeller, name="becomeSeller"),
     path('login/', views.login, name="login"),
     path('logout/', views.logout, name="logout"),
