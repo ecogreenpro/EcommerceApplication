@@ -185,7 +185,10 @@ def cart(request):
     cart = CartProducts.objects.filter(user=request.user)
     total = 0
     for rs in cart:
-        total += rs.item.price * rs.quantity
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
     context = {
         'cart': cart,
         'category': category,
@@ -196,7 +199,19 @@ def cart(request):
 
 @login_required(login_url='/login')
 def checkout(request):
-    context = {}
+    category = Categories.objects.all()  # Access User Session information
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    context = {
+        'cart': cart,
+        'category': category,
+        'total': total
+    }
     return render(request, 'checkout.html', context)
 
 
