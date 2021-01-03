@@ -22,7 +22,7 @@ def cartPage_li():
     items_li = ""
     for i in items:
         items_li += """<tr start="1">
-        <td>1</td>
+        <td>#</td>
         <td width="20%">
             <div class="display-flex">
                  <div class="img-product">
@@ -31,11 +31,11 @@ def cartPage_li():
             </div>
         </td>
          <td>{}</td>
-         <td>{}</td>
-         <td><a href= "#" class="trash-icon "><i class="fas fa-minus mr-3"></i></a>{} 
+         <td width="10%" class="text-center">{}</td>
+         <td width="10%" class="text-center"><a href= "#" class="trash-icon "><i class="fas fa-minus mr-3"></i></a>{} 
          <a href= "#" class="trash-icon "><i class="fas fa-plus ml-3"></i></a>
          </td>
-         <td>{}</td>
+         <td width="10%" class="text-center">{}</td>
          <td width="10%" class="text-center ">
             <a href="#" class="trash-icon "><i class="far fa-trash-alt "></i></a>
             </td>
@@ -55,5 +55,3 @@ def cartPage_total():
          </tr>
          """.format(i.get_total())
     return mark_safe(items_li)
-
-

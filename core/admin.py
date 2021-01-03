@@ -75,7 +75,7 @@ class ShippingAdmin(admin.ModelAdmin):
 class OderAdmin(admin.ModelAdmin):
     list_display = [
         'first_name',
-        'order_id',
+        'order_Number',
         'phone_number',
         'address',
         'ordered_date',

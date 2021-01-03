@@ -9,7 +9,7 @@ from django.views.generic import ListView, DetailView, View
 
 from .forms import ProfileModelForm
 from .models import Products, CartProducts, Order, userProfile
-from .models import Products, Categories
+from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -129,8 +129,8 @@ def updateProfile(request):
     phone = request.POST['phone']
 
     userProfile.objects.filter(user=request.user).update(address=address, city=city,
-                                                                   country=country,
-                                                                   Phone=phone)
+                                                         country=country,
+                                                         Phone=phone)
 
     # if request.method == 'POST':
     #     if profile.is_valid():
@@ -257,7 +257,7 @@ def notFound(request, exception):
 
 class shop(ListView):
     model = Products
-    paginate_by = 4
+    paginate_by = 16
     template_name = "shop.html"
 
 
@@ -282,6 +282,19 @@ class CategoryView(View):
             'category_image': category.image
         }
         return render(self.request, "category.html", context)
+
+
+class BrandView(View):
+    def get(self, *args, **kwargs):
+        brand = Brands.objects.get(slug=self.kwargs['slug'])
+        item = Products.objects.filter(brand=brand, isactive=True)
+        context = {
+            'object_list': item,
+            'Brand_title': brand.name,
+            'Brand_description': brand.description,
+            'Brand_image': brand.image
+        }
+        return render(self.request, "brand.html", context)
 
 
 # def add_to_cart(request, slug):

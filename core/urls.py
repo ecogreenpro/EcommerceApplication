@@ -8,7 +8,8 @@ from .views import (
     CategoryView,
     add_to_cart,
     # CartView,
-    # checkoutView
+    # checkoutView,
+    BrandView,
 
 )
 
@@ -43,6 +44,7 @@ urlpatterns = [
     path('shop/', shop.as_view(), name='shop'),
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
+    path('brand/<slug>/', BrandView.as_view(), name='brand'),
     # path('cart/', CartView.as_view(), name='cart'),
     # path('checkout/', checkoutView.as_view(), name='checkout'),
     path('', home.as_view(), name='home'),
