@@ -200,6 +200,7 @@ def cart(request):
 @login_required(login_url='/login')
 def checkout(request):
     category = Categories.objects.all()  # Access User Session information
+    userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
     total = 0
     for rs in cart:
@@ -210,7 +211,8 @@ def checkout(request):
     context = {
         'cart': cart,
         'category': category,
-        'total': total
+        'total': total,
+        'userProfile': userprofile,
     }
     return render(request, 'checkout.html', context)
 
