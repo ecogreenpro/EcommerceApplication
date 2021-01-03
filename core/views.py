@@ -178,11 +178,19 @@ def chat(request):
     return render(request, 'account/chat.html', context)
 
 
+@login_required(login_url='/login')
 def cart(request):
-    context = {}
+    cart = CartProducts.objects.filter(user_id=request.user.id)
+    total = 0
+    for rs in cart:
+        total += rs.item.price * rs.quantity
+    context = {
+        'total': total
+    }
     return render(request, 'cart.html', context)
 
 
+@login_required(login_url='/login')
 def checkout(request):
     context = {}
     return render(request, 'checkout.html', context)
@@ -324,16 +332,16 @@ class BrandView(View):
 #         messages.info(request, "Item was added to your cart.")
 #     return redirect("core:order-summary")
 
-
+@login_required(login_url='/login')
 def add_to_cart(request, slug):
     item = get_object_or_404(Products, slug=slug)
     order_item = CartProducts.objects.get_or_create(item=item, user=request.user, isOrdered=False)
     order_qs = Order.objects.filter(user=request.user, isOrdered=False)
     if order_qs.exists():
         order = order_qs[0]
-        if order.items.filter(item_id=item):
+        if order.items.filter(item_id=item).exists():
             order_item.quantity += 1
-            order_item.update()
+            order_item.save()
             messages.info(request, "Item qty was updated.")
             return redirect("core:cart")
         else:

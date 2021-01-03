@@ -6,6 +6,7 @@ from django.forms import EmailField
 from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
 from django_countries.fields import CountryField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db.models import Count
 
@@ -82,7 +83,7 @@ class Products(models.Model):
     label = models.CharField(choices=Label_Choices, max_length=30)
     stockQuantity = models.CharField(max_length=50, verbose_name="Stock Quantity")
     shortDescription = models.TextField(verbose_name="Short Description")
-    longDescirption = models.TextField(verbose_name="Long Description")
+    longDescirption = RichTextUploadingField()
     mainImage = models.ImageField(upload_to='Photos', verbose_name="Main Image")
     altImageOne = models.ImageField(upload_to='Photos', verbose_name="Gallery Image One")
     altImageTwo = models.ImageField(upload_to='Photos', verbose_name="Gallery Image Two")
