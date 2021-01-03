@@ -326,57 +326,6 @@ class BrandView(View):
         return render(self.request, "brand.html", context)
 
 
-# def add_to_cart(request, slug):
-#     item = get_object_or_404(Item, slug=slug)
-#     order_item, created = OrderItem.objects.get_or_create(
-#         item=item,
-#         user=request.user,
-#         ordered=False
-#     )
-#     order_qs = Order.objects.filter(user=request.user, ordered=False)
-#     if order_qs.exists():
-#         order = order_qs[0]
-#         if order.items.filter(item__slug=item.slug).exists():
-#             order_item.quantity += 1
-#             order_item.save()
-#             messages.info(request, "Item qty was updated.")
-#             return redirect("core:order-summary")
-#         else:
-#             order.items.add(order_item)
-#             messages.info(request, "Item was added to your cart.")
-#             return redirect("core:order-summary")
-#     else:
-#         ordered_date = timezone.now()
-#         order = Order.objects.create(
-#             user=request.user, ordered_date=ordered_date)
-#         order.items.add(order_item)
-#         messages.info(request, "Item was added to your cart.")
-#     return redirect("core:order-summary")
-
-# @login_required(login_url='/login')
-# def add_to_cart(request, slug):
-#     item = get_object_or_404(Products, slug=slug)
-#     order_item = CartProducts.objects.get_or_create(item=item, user=request.user, isOrdered=False)
-#     order_qs = Order.objects.order_item(user=request.user, isOrdered=False)
-#     if order_qs.exists():
-#         order = order_qs[0]
-#         if order.items.filter(item_id=item).exists():
-#             order_item.quantity += 1
-#             order_item.save()
-#             messages.info(request, "Item qty was updated.")
-#             return redirect("core:cart")
-#         else:
-#             order.items.add(order_item)
-#             messages.info(request, "Item was added to your cart.")
-#             return redirect("core:cart")
-#     else:
-#         ordered_date = timezone.now()
-#         order = Order.objects.create(
-#             user=request.user, ordered_date=ordered_date)
-#         order.items.add(order_item)
-#         messages.info(request, "Item was added to your cart.")
-#     return redirect("core:cart")
-
 @login_required(login_url='/login')
 def add_to_cart(request, slug):
     item = get_object_or_404(Products, slug=slug)
@@ -414,9 +363,14 @@ def remove_single_item_from_cart(request, slug):
 
     if control == 1:  # Update  shopcart
         data = CartProducts.objects.get(item=item, user=request.user)
-        data.quantity -= 1
-        data.save()
-        messages.info(request, "Quantity was updated.")
+        if data.quantity > 1:
+            data.quantity -= 1
+            data.save()
+            messages.info(request, "Quantity was updated.")
+        else:
+            item = get_object_or_404(Products, slug=slug)
+            CartProducts.objects.filter(item=item).delete()
+            messages.success(request, "Your item deleted form Cart.")
 
     return redirect("core:cart")
 

@@ -85,6 +85,10 @@
 
 
 
+
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -119,6 +123,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 rounded mx-auto d-block">
+
                                 <div class="py-3 text-center alert alert-primary">
                                     <h2>Your Shopping Cart Summary</h2>
                                 </div>
@@ -171,18 +176,28 @@
                                             </td>
                                             <td width="10%" class="text-center ">
                                                 <a href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
+                                                   onclick="return confirm('Are you sure to Delete?')"
                                                    class="trash-icon "><i class="far fa-trash-alt "></i></a>
                                             </td>
                                         </tr>
-                                        {% empty %}
-                                        <tr>
-                                            <td colspan="10">Your cart is empty</td>
-                                        </tr>
+
                                         {% endfor %}
+
                                         </tbody>
 
-                                    </table>
+                                        <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td width="10%"  class="text-center " ><strong>Subtotal</strong></td>
+                                            <td width="10%" class="text-center table-success">{{total}}</td>
+                                        </tr>
 
+                                        </tfoot>
+
+                                    </table>
                                     <div class="row justify-content-center">
                                         <div class="col-lg-12">
 
@@ -246,6 +261,7 @@
 
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 
