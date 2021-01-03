@@ -6,16 +6,24 @@ from core.models import CartProducts, Order
 register = template.Library()
 
 
-# register = template.Library()
-#
-#
-# @register.filter
-# def cart_item_count(user):
-#     if user.is_authenticated:
-#         qs = Order.objects.filter(user=user, ordered=False)
-#         if qs.exists():
-#             return qs[0].items.count()
-#     return 0
+@register.simple_tag
+def cartCount(userid):
+    count = CartProducts.objects.filter(user_id=userid).count()
+    return count
+
+
+@register.simple_tag
+def cartTotal(userid):
+    cart = CartProducts.objects.filter(user_id=userid)
+    total = 0
+    for rs in cart:
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
+    return total
+
+
 @register.simple_tag
 def cartPage_li():
     items = CartProducts.objects.filter(isOrdered=False)

@@ -176,6 +176,8 @@ a:link {
 
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -377,8 +379,9 @@ a:link {
                                             <div class="product-grid4">
                                                 <div>
                                                     <br>
-                                                    <a href="{% url 'core:productDetail' item.slug %}"><img class="image"
-                                                                                                       src="{{item.mainImage.url}}"></a>
+                                                    <a href="{% url 'core:productDetail' item.slug %}"><img
+                                                            class="image"
+                                                            src="{{item.mainImage.url}}"></a>
                                                     <span class="product-new-label">{{item.label}}</span>
                                                     <span class="product-discount-label">-{{item.get_percentage}}%</span>
                                                 </div>
@@ -399,8 +402,10 @@ a:link {
                                                     </div>
                                                     <div class="row px-3">
                                                         <div class="add-cart ">
-                                                            <p class="mb-0 sm-font text-white"><i
-                                                                    class="fas fa-cart-plus"></i> ADD TO BAG</p>
+                                                            <a href="{{ item.get_add_to_cart_url }}"
+                                                               style="text-decoration:none;"
+                                                               class="mb-0 sm-font text-white"><i
+                                                                    class="fas fa-cart-plus"></i> ADD TO BAG</a>
                                                         </div>
                                                         <div class="add-order">
                                                             <p class="mb-0 sm-font"><i class="fas fa-heart"></i> ADD TO
