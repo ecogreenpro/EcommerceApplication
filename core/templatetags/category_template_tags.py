@@ -48,6 +48,6 @@ def brand_shop():
     items_li = ""
     for i in items:
         items_li += """<li class="list-group-item d-flex justify-content-between align-items-center"><a 
-        href="/category/{}" style="text-decoration: none;"> {} <span class="badge badge-primary badge-pill">14</span> </a></li>""".format(
+        href="/brand/{}" style="text-decoration: none;"> {} <span class="badge badge-primary badge-pill">14</span> </a></li>""".format(
             i.slug, i.name, i.image)
     return mark_safe(items_li)

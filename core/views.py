@@ -1,4 +1,5 @@
 from django.contrib import messages, auth
+from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from django.views.generic import ListView, DetailView, View
 
 from .forms import ProfileModelForm
 from .models import Products, CartProducts, Order, userProfile
-from .models import Products, Categories
+from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -129,8 +130,8 @@ def updateProfile(request):
     phone = request.POST['phone']
 
     userProfile.objects.filter(user=request.user).update(address=address, city=city,
-                                                                   country=country,
-                                                                   Phone=phone)
+                                                         country=country,
+                                                         Phone=phone)
 
     # if request.method == 'POST':
     #     if profile.is_valid():
@@ -178,11 +179,22 @@ def chat(request):
     return render(request, 'account/chat.html', context)
 
 
+@login_required(login_url='/login')
 def cart(request):
-    context = {}
+    category = Categories.objects.all()  # Access User Session information
+    cart = CartProducts.objects.filter(user=request.user)
+    total = 0
+    for rs in cart:
+        total += rs.item.price * rs.quantity
+    context = {
+        'cart': cart,
+        'category': category,
+        'total': total
+    }
     return render(request, 'cart.html', context)
 
 
+@login_required(login_url='/login')
 def checkout(request):
     context = {}
     return render(request, 'checkout.html', context)
@@ -257,7 +269,7 @@ def notFound(request, exception):
 
 class shop(ListView):
     model = Products
-    paginate_by = 4
+    paginate_by = 16
     template_name = "shop.html"
 
 
@@ -282,6 +294,19 @@ class CategoryView(View):
             'category_image': category.image
         }
         return render(self.request, "category.html", context)
+
+
+class BrandView(View):
+    def get(self, *args, **kwargs):
+        brand = Brands.objects.get(slug=self.kwargs['slug'])
+        item = Products.objects.filter(brand=brand, isactive=True)
+        context = {
+            'object_list': item,
+            'Brand_title': brand.name,
+            'Brand_description': brand.description,
+            'Brand_image': brand.image
+        }
+        return render(self.request, "brand.html", context)
 
 
 # def add_to_cart(request, slug):
@@ -311,26 +336,77 @@ class CategoryView(View):
 #         messages.info(request, "Item was added to your cart.")
 #     return redirect("core:order-summary")
 
+# @login_required(login_url='/login')
+# def add_to_cart(request, slug):
+#     item = get_object_or_404(Products, slug=slug)
+#     order_item = CartProducts.objects.get_or_create(item=item, user=request.user, isOrdered=False)
+#     order_qs = Order.objects.order_item(user=request.user, isOrdered=False)
+#     if order_qs.exists():
+#         order = order_qs[0]
+#         if order.items.filter(item_id=item).exists():
+#             order_item.quantity += 1
+#             order_item.save()
+#             messages.info(request, "Item qty was updated.")
+#             return redirect("core:cart")
+#         else:
+#             order.items.add(order_item)
+#             messages.info(request, "Item was added to your cart.")
+#             return redirect("core:cart")
+#     else:
+#         ordered_date = timezone.now()
+#         order = Order.objects.create(
+#             user=request.user, ordered_date=ordered_date)
+#         order.items.add(order_item)
+#         messages.info(request, "Item was added to your cart.")
+#     return redirect("core:cart")
 
+@login_required(login_url='/login')
 def add_to_cart(request, slug):
     item = get_object_or_404(Products, slug=slug)
-    order_item = CartProducts.objects.get_or_create(item=item, user=request.user, isOrdered=False)
-    order_qs = Order.objects.filter(user=request.user, isOrdered=False)
-    if order_qs.exists():
-        order = order_qs[0]
-        if order.items.filter(item_id=item):
-            order_item.quantity += 1
-            order_item.update()
-            messages.info(request, "Item qty was updated.")
-            return redirect("core:cart")
-        else:
-            order.items.add(order_item)
-            messages.info(request, "Item was added to your cart.")
-            return redirect("core:cart")
+    checkItem = CartProducts.objects.filter(user=request.user, item=item)
+    if checkItem:
+        control = 1
     else:
-        ordered_date = timezone.now()
-        order = Order.objects.create(
-            user=request.user, ordered_date=ordered_date)
-        order.items.add(order_item)
+        control = 0
+
+    if control == 1:  # Update  shopcart
+        data = CartProducts.objects.get(item=item, user=request.user)
+        data.quantity += 1
+        data.save()
+        messages.info(request, "Quantity was updated.")
+    else:
+        data = CartProducts()
+        data.user = request.user
+        data.item = item
+        data.quantity = 1
+        data.isOrdered = False
+        data.save()
         messages.info(request, "Item was added to your cart.")
+
     return redirect("core:cart")
+
+
+@login_required(login_url='/login')
+def remove_single_item_from_cart(request, slug):
+    item = get_object_or_404(Products, slug=slug)
+    checkItem = CartProducts.objects.filter(user=request.user, item=item)
+    if checkItem:
+        control = 1
+    else:
+        control = 0
+
+    if control == 1:  # Update  shopcart
+        data = CartProducts.objects.get(item=item, user=request.user)
+        data.quantity -= 1
+        data.save()
+        messages.info(request, "Quantity was updated.")
+
+    return redirect("core:cart")
+
+
+@login_required(login_url='/login')
+def remove_from_cart(request, slug):
+    item = get_object_or_404(Products, slug=slug)
+    CartProducts.objects.filter(item=item).delete()
+    messages.success(request, "Your item deleted form Cart.")
+    return HttpResponseRedirect("/cart")

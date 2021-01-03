@@ -79,6 +79,12 @@
 
 
 
+
+
+
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -97,6 +103,17 @@
         <br> <br>
         <!--Main View Start-->
         <div id="page-content-wrapper">
+            {% for message in messages %}
+            <br>
+            <div class="col-md-8">
+                <div class="alert alert-info">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <strong>{{message}}!</strong></div>
+
+
+            </div>
+
+            {% endfor %}
             <main role="main"><br>
                 <div class="cart-wrap">
                     <div class="container">
@@ -112,18 +129,18 @@
                                             <th width="15%">No.</th>
                                             <th width="15%">Image</th>
                                             <th width="15%">Product Name</th>
-                                            <th width="15%">Unit Price</th>
+                                            <th width="15%" class="text-center">Unit Price</th>
                                             <th width="15%" class="text-center">Quantity</th>
                                             <th width="15%" class="text-center">Total</th>
                                             <th width="15%"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% cartPage_li %}
-                                        <!--{% for Order_item in object.items.all %}
+                                        <!--{% cartPage_li %}-->
+                                        {% for Order_item in cart %}
                                         <tr>
                                             <th scope="row">{{ forloop.counter }}</th>
-                                            <td width="35%">
+                                            <td width="20%">
                                                 <div class="display-flex align-center">
                                                     <div class="img-product">
                                                         <img src="{{ Order_item.item.mainImage.url }}" alt=""
@@ -132,7 +149,7 @@
                                                 </div>
                                             </td>
                                             <td>{{ Order_item.item.name }}</td>
-                                            <td>
+                                            <td width="10%" class="text-center">
                                                 {% if Order_item.item.discountPrice%}
                                                 {{ Order_item.item.discountPrice }}
                                                 {%else%}
@@ -141,21 +158,27 @@
                                             </td>
 
 
-                                            <td width="10%" class="text-center">
-                                                <a><i class="fas fa-minus mr-3"></i></a>
-                                                {{ Order_item.quantity }}
-                                                <a><i class="fas fa-plus ml-3"></i></a></td>
+                                            <td width="10%" class="text-center"><a
+                                                    href="{% url 'core:remove-single-from-cart' Order_item.item.slug %}"
+                                                    class="trash-icon "><i
+                                                    class="fas fa-minus mr-3"></i></a>{{ Order_item.quantity }}
+                                                <a href="{% url 'core:add-to-cart' Order_item.item.slug %}"
+                                                   class="trash-icon "><i class="fas fa-plus ml-3"></i></a>
+                                            </td>
 
-                                            <td width="15%" class="price" class="text-center">
+                                            <td width="10%" class="text-center">
                                                 {{Order_item.get_final_price}}
                                             </td>
                                             <td width="10%" class="text-center ">
-
-
-                                                <a href="#" class="trash-icon "><i
-                                                        class="far fa-trash-alt "></i></a></td>
+                                                <a href="{% url 'core:remove-from-cart' Order_item.item.slug %}"
+                                                   class="trash-icon "><i class="far fa-trash-alt "></i></a>
+                                            </td>
                                         </tr>
-                                        {% endfor %}-->
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="10">Your cart is empty</td>
+                                        </tr>
+                                        {% endfor %}
                                         </tbody>
 
                                     </table>
@@ -171,7 +194,7 @@
 
                                                             <p class="mb-1 text-left">Subtotal</p>
                                                             <h6 class="mb-1 text-right">
-                                                                {%cartPage_total%}
+                                                                {{total}}
                                                             </h6>
 
                                                         </div>
