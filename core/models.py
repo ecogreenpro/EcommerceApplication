@@ -172,7 +172,7 @@ class Order(models.Model):
 
     email = models.EmailField()
 
-    ordered_date = models.DateTimeField()
+    ordered_date = models.DateTimeField(auto_now_add=True)
     isOrdered = models.BooleanField(default=False)
     address = models.CharField(max_length=100)
     country = models.CharField(max_length=30)

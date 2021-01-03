@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
-
+from django.utils.crypto import get_random_string
 from .forms import ProfileModelForm
 from .models import Products, CartProducts, Order, userProfile
 from .models import Products, Categories, Brands
@@ -199,15 +199,45 @@ def cart(request):
 
 @login_required(login_url='/login')
 def checkout(request):
+    current_user = request.user
     category = Categories.objects.all()  # Access User Session information
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
     total = 0
+
     for rs in cart:
         if rs.item.discountPrice:
             total += rs.item.discountPrice * rs.quantity
         else:
             total += rs.item.price * rs.quantity
+    if request.method == 'POST':
+        data = Order()
+        data.first_name = request.POST['firstName']  # get product quantity from form
+        data.last_name = request.POST['lastName']
+        data.phone_number = request.POST['mobile']
+        data.email = request.POST['email']
+        data.address = request.POST['address']
+        data.district = request.POST['city']
+        data.country = request.POST['country']
+        data.zip_code = request.POST['zip']
+        data.order_note = request.POST['note']
+        data.payment = request.POST['paymentMethod']
+        data.user = current_user
+        data.OrderAmount = total
+        orderNumber = get_random_string(5).upper()  # random cod
+        data.order_Number = orderNumber
+        data.save()
+
+        for rs in cart:
+            detail = Order()
+            detail.items = rs.item
+            detail.save()
+
+        CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
+        request.session['cart_items'] = 0
+        messages.success(request, "Your Order has been completed. Thank you ")
+        return render(request, 'cart.html')
+
     context = {
         'cart': cart,
         'category': category,
