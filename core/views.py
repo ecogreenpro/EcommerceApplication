@@ -185,7 +185,10 @@ def cart(request):
     cart = CartProducts.objects.filter(user=request.user)
     total = 0
     for rs in cart:
-        total += rs.item.price * rs.quantity
+        if rs.item.discountPrice:
+            total += rs.item.discountPrice * rs.quantity
+        else:
+            total += rs.item.price * rs.quantity
     context = {
         'cart': cart,
         'category': category,
