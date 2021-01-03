@@ -37,6 +37,8 @@
 
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -112,12 +114,12 @@
                         <div class="col-md-8 order-md-1 card">
                             <br>
                             <h4 class="mb-3">Billing address</h4>
-                            <form class="needs-validation" novalidate>
+                            <form class="needs-validation" novalidate method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="firstName">First name</label>
                                         <input type="text" class="form-control" id="firstName" placeholder=""
-                                               value="" required>
+                                               value="{{ user.first_name }}" required>
                                         <div class="invalid-feedback">
                                             Valid first name is required.
                                         </div>
@@ -125,7 +127,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="lastName">Last name</label>
                                         <input type="text" class="form-control" id="lastName" placeholder=""
-                                               value="" required>
+                                               value="{{ user.last_name }}" required>
                                         <div class="invalid-feedback">
                                             Valid last name is required.
                                         </div>
@@ -134,8 +136,8 @@
 
                                 <div class="mb-3">
                                     <label for="mobile">Phone <span class="text-muted"></span></label>
-                                    <input type="number" class="form-control" id="mobile"
-                                           placeholder="" required>
+                                    <input type="text" class="form-control" id="mobile"
+                                           placeholder="" value="{{userProfile.Phone}}" required>
                                     <div class="invalid-feedback">
                                         Please enter a valid Phone Number.
                                     </div>
@@ -144,7 +146,7 @@
                                 <div class="mb-3">
                                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
                                     <input type="email" class="form-control" id="email"
-                                           placeholder="you@example.com">
+                                           placeholder="you@example.com" value="{{user.email}}">
                                     <div class="invalid-feedback">
                                         Please enter a valid email address for shipping updates.
                                     </div>
@@ -154,7 +156,9 @@
                                     <label for="address">Address</label>
                                     <textarea name="" class="form-control " id="address"
                                               placeholder="House number and street name, Apartment, suite, flat, etc.."
-                                              rows="2" cols="5" required></textarea>
+                                              required>
+                                        {{userProfile.address}}
+                                    </textarea>
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.
                                     </div>
@@ -164,18 +168,19 @@
                                     <div class="col-md-5 mb-3">
                                         <label for="country">Country</label>
                                         <select class="custom-select d-block w-100" id="country" required>
-                                            <option value="">Choose...</option>
-                                            <option>Bangladesh</option>
+                                            <option selected value="{{userProfile.country}}">{{userProfile.country}}
+                                            </option>
+                                            <option>Others</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid country.
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="state">District</label>
+                                        <label for="state">City</label>
                                         <select class="custom-select d-block w-100" id="state" required>
-                                            <option value="">Choose...</option>
-                                            <option>Dhaka</option>
+                                            <option selected value="{{userProfile.city}}">{{userProfile.city}}</option>
+                                            <option>Others</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please provide a valid district.
@@ -203,23 +208,17 @@
 
                                 <div class="d-block my-3">
                                     <div class="custom-control custom-radio">
-                                        <input id="Cash" name="paymentMethod" type="radio"
+                                        <input id="Cash" value="COD" name="paymentMethod" type="radio"
                                                class="custom-control-input" checked required>
                                         <label class="custom-control-label" for="Cash"> <i
                                                 class="far fa-money-bill-alt"></i> Cash On Delivery</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input id="bkash" name="paymentMethod" type="radio"
+                                        <input id="bkash" value="Bk" name="paymentMethod" type="radio"
                                                class="custom-control-input" required>
                                         <label class="custom-control-label" for="bkash"> <img
                                                 src="{%static 'media/bkash.png'%}" width="40%" height="50px">
                                             bkash</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="Credit" name="paymentMethod" type="radio"
-                                               class="custom-control-input" required>
-                                        <label class="custom-control-label" for="Credit"> <i
-                                                class="far fa-credit-card"></i> Credit or Debit Card</label>
                                     </div>
                                 </div>
 
