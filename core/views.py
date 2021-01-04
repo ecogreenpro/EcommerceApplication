@@ -228,6 +228,7 @@ def checkout(request):
         data.zip_code = request.POST['zip']
         data.order_note = request.POST['note']
         data.payment = request.POST['paymentMethod']
+        data.order_status = request.POST['orderStatus']
         data.user = current_user
         data.OrderAmount = total
         orderNumber = get_random_string(5).upper()  # random cod
