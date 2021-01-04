@@ -236,8 +236,7 @@ def checkout(request):
 
         CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
         request.session['cart_items'] = 0
-        messages.success(request, "Your Order has been completed. Thank you ")
-        return render(request, 'cart.html')
+        return render(request, 'orderComplete.html', {'orderCode':orderNumber})
 
     context = {
         'cart': cart,
