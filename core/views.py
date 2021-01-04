@@ -183,17 +183,21 @@ def chat(request):
 def cart(request):
     category = Categories.objects.all()  # Access User Session information
     cart = CartProducts.objects.filter(user=request.user)
-    total = 0
-    for rs in cart:
-        if rs.item.discountPrice:
-            total += rs.item.discountPrice * rs.quantity
-        else:
-            total += rs.item.price * rs.quantity
-    context = {
-        'cart': cart,
-        'category': category,
-        'total': total
-    }
+    if cart:
+        total = 0
+        for rs in cart:
+            if rs.item.discountPrice:
+                total += rs.item.discountPrice * rs.quantity
+            else:
+                total += rs.item.price * rs.quantity
+        context = {
+            'cart': cart,
+            'category': category,
+            'total': total
+        }
+    else:
+        context={"empty": True}
+
     return render(request, 'cart.html', context)
 
 

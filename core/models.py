@@ -81,7 +81,7 @@ class Products(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brands, on_delete=models.CASCADE)
     label = models.CharField(choices=Label_Choices, max_length=30)
-    stockQuantity = models.CharField(max_length=50, verbose_name="Stock Quantity")
+    stockQuantity = models.IntegerField(default=1, verbose_name="Stock Quantity")
     shortDescription = RichTextUploadingField()
     longDescirption = RichTextUploadingField()
     mainImage = models.ImageField(upload_to='Photos', verbose_name="Main Image")

@@ -68,6 +68,9 @@ img {
 
 
 
+
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -214,6 +217,11 @@ img {
 								                            </span>
                                                             {% endif %}
                                                         </h4>
+                                                        <p><strong>Availability:</strong> {% if object.stockQuantity > 0%}
+                                                            <label class="text-success">In Stock </label>
+                                                            {% else %}
+                                                            <label class="text-danger">Out of Stock</label>
+                                                            {% endif %}</p>
 
                                                     </div>
                                                     <!--<div class="buttons">
@@ -221,10 +229,17 @@ img {
                                                         <input class="form-control" type="number" name="quantity" id="quantity">
                                                     </div>-->
                                                     <div class="buttons">
+                                                        {% if object.stockQuantity > 0 %}
                                                         <a href="{{ object.get_add_to_cart_url }}"
                                                            class="btn btn-outline-warning btn-long cart"> <i
                                                                 class="fa fa-shopping-cart"></i> Add to Cart
                                                         </a>
+
+                                                        {%else%}
+                                                        <label > Out of Stock
+                                                        </label>
+
+                                                        {%endif%}
                                                         <button class="btn btn-light wishlist"><i
                                                                 class="fas fa-heart"></i></button>
                                                     </div>
@@ -369,6 +384,9 @@ img {
         slideMargin: 0,
         thumbItem: 9
     });
+
+
+
 
 
 
