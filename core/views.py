@@ -13,6 +13,7 @@ from .models import Products, CartProducts, Order, userProfile
 from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from vendor.models import SellerRegistration
 
 
 # Create your views here.
@@ -298,6 +299,26 @@ def wishlist(request):
 
 
 def becomeSeller(request):
+    if request.method == 'POST':
+        name = request.POST['Name']
+        companyName = request.POST['companyName']
+        phone = request.POST['mobile']
+        email = request.POST['email']
+        address = request.POST['address']
+        nid = request.POST['NID']
+        tradeLicense = request.POST['TradeLicense']
+        nidImage = request.POST['NIDImage']
+        tradeImage = request.POST['TradeImage']
+
+        becomeSeller = SellerRegistration.objects.create(Name=name, CompanyName=companyName,
+                                                         Phone=phone, Email=email,
+                                                         Address=address, NID=nid,
+                                                         TradeLicense=tradeLicense, NIDImage=nidImage,
+                                                         TradeImage=tradeImage)
+
+        becomeSeller.save()
+        messages.info(request, 'Registration Confirmed')
+
     context = {}
     return render(request, 'becomeSeller.html', context)
 
