@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 from .forms import ProfileModelForm
-from .models import Products, CartProducts, Order, userProfile
+from .models import Products, CartProducts, Order, userProfile, OrderProduct
 from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -197,7 +197,7 @@ def cart(request):
             'total': total
         }
     else:
-        context={"empty": True}
+        context = {"empty": True}
 
     return render(request, 'cart.html', context)
 
@@ -217,7 +217,6 @@ def checkout(request):
             total += rs.item.price * rs.quantity
     if request.method == 'POST':
         data = Order()
-        data.products_id = rs.item_id
         data.first_name = request.POST['firstName']  # get product quantity from form
         data.last_name = request.POST['lastName']
         data.phone_number = request.POST['mobile']
@@ -228,15 +227,29 @@ def checkout(request):
         data.zip_code = request.POST['zip']
         data.order_note = request.POST['note']
         data.payment = request.POST['paymentMethod']
+        data.order_status = request.POST['orderStatus']
         data.user = current_user
-        data.OrderAmount = total
+        data.OrderTotal = total
         orderNumber = get_random_string(5).upper()  # random cod
         data.order_Number = orderNumber
         data.save()
 
+        for rs in cart:
+            productDetails = OrderProduct()
+            productDetails.order_id = data.id
+            productDetails.product_id = rs.item_id
+            productDetails.user_id = current_user.id
+            productDetails.quantity = rs.quantity
+            if rs.item.discountPrice:
+                productDetails.price = rs.item.discountPrice
+            else:
+                productDetails.price = rs.item.price
+            productDetails.amount = rs.get_final_price
+            productDetails.save()
+
         CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
         request.session['cart_items'] = 0
-        return render(request, 'orderComplete.html', {'orderCode':orderNumber})
+        return render(request, 'orderComplete.html', {'orderCode': orderNumber})
 
     context = {
         'cart': cart,
