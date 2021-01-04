@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping
+from .models import Categories, Brands, Products, CartProducts, Order, Coupon, userProfile, Shipping, OrderProduct
 
 
 class CategoriesAdmin(admin.ModelAdmin):
@@ -72,6 +72,18 @@ class ShippingAdmin(admin.ModelAdmin):
     ]
 
 
+class OrderProductAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'price', 'quantity', 'amount']
+    list_filter = ['user']
+
+
+class OrderProductline(admin.TabularInline):
+    model = OrderProduct
+    readonly_fields = ('user', 'product', 'price', 'quantity', 'amount')
+    can_delete = True
+    extra = 0
+
+
 class OderAdmin(admin.ModelAdmin):
     list_display = [
         'first_name',
@@ -79,11 +91,12 @@ class OderAdmin(admin.ModelAdmin):
         'phone_number',
         'address',
         'ordered_date',
-        'OrderAmount',
+        'OrderTotal',
         'order_status',
 
     ]
-    search_fields = ['order_id', 'phone_number']
+    search_fields = ['order_Number', 'phone_number']
+    inlines = [OrderProductline]
 
 
 class userProfileAdmin(admin.ModelAdmin):
@@ -108,4 +121,5 @@ admin.site.register(CartProducts, CartProductsAdmin)
 admin.site.register(Coupon, CouponAdmin)
 admin.site.register(Shipping, ShippingAdmin)
 admin.site.register(Order, OderAdmin)
+admin.site.register(OrderProduct, OrderProductAdmin)
 admin.site.register(userProfile, userProfileAdmin)

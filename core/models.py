@@ -142,6 +142,7 @@ class CartProducts(models.Model):
     def get_amount_saved(self):
         return self.get_total_product_price() - self.get_total_discount_product_price()
 
+    @property
     def get_final_price(self):
         if self.item.discountPrice:
             return self.get_total_discount_product_price()
@@ -165,13 +166,11 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     order_Number = models.CharField(max_length=20)
-    products = models.ForeignKey(Products, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=30)
     email = models.EmailField()
     ordered_date = models.DateTimeField(auto_now_add=True)
-    isOrdered = models.BooleanField(default=False)
     address = models.CharField(max_length=100)
     country = models.CharField(max_length=30)
     district = models.CharField(max_length=30)
@@ -184,7 +183,7 @@ class Order(models.Model):
     shipping = models.ForeignKey(
         'Shipping', on_delete=models.SET_NULL, blank=True, null=True)
     order_status = models.CharField(choices=Status_Choices, max_length=20)
-    OrderAmount = models.FloatField(blank=True, null=True)
+    OrderTotal = models.FloatField(blank=True, null=True)
 
     '''
     1. Item added to cart
@@ -202,6 +201,20 @@ class Order(models.Model):
             total += order_item.get_final_price()
 
         return total
+
+
+class OrderProduct(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+    amount = models.FloatField()
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.product.name
 
 
 class Coupon(models.Model):
