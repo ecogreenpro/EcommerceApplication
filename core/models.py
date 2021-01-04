@@ -165,13 +165,11 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     order_Number = models.CharField(max_length=20)
-    items = models.ManyToManyField(CartProducts)
+    products = models.ForeignKey(Products, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=30)
-
     email = models.EmailField()
-
     ordered_date = models.DateTimeField(auto_now_add=True)
     isOrdered = models.BooleanField(default=False)
     address = models.CharField(max_length=100)
@@ -200,7 +198,7 @@ class Order(models.Model):
 
     def get_total(self):
         total = 0
-        for order_item in self.items.all():
+        for order_item in self.products.all():
             total += order_item.get_final_price()
 
         return total

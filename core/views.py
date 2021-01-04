@@ -217,6 +217,7 @@ def checkout(request):
             total += rs.item.price * rs.quantity
     if request.method == 'POST':
         data = Order()
+        data.products_id = rs.item_id
         data.first_name = request.POST['firstName']  # get product quantity from form
         data.last_name = request.POST['lastName']
         data.phone_number = request.POST['mobile']
@@ -232,11 +233,6 @@ def checkout(request):
         orderNumber = get_random_string(5).upper()  # random cod
         data.order_Number = orderNumber
         data.save()
-
-        for rs in cart:
-            detail = Order()
-            detail.items = rs.item
-            detail.save()
 
         CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
         request.session['cart_items'] = 0
