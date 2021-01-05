@@ -1,5 +1,6 @@
 from django.contrib import messages, auth
 from django.http import HttpResponseRedirect
+from django.template.loader import get_template
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -14,9 +15,13 @@ from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from vendor.models import SellerRegistration
+from io import BytesIO
+from xhtml2pdf import pisa
 
 
 # Create your views here.
+
+
 def header(request):
     context = {}
     return render(request, 'header.html', context)
@@ -166,13 +171,24 @@ def userprofile(request):
 
 
 def userOrder(request):
-    context = {}
+    orders = Order.objects.filter(user=request.user)
+    context = {
+        'userorder': orders
+    }
     return render(request, 'account/userOrder.html', context)
 
 
 def balance(request):
     context = {}
     return render(request, 'account/balance.html', context)
+
+
+def invoice(request):
+    invoice = Order.objects.filter(user=request.user)
+    context = {
+        'invoice': invoice
+    }
+    return render(request, 'account/invoice.html', context)
 
 
 def chat(request):

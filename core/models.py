@@ -17,18 +17,18 @@ Label_Choices = (
     ('Promotion', 'Promotion')
 )
 Payment_Choices = (
-    ('COD', 'Cash on Delivery'),
-    ('Bk', 'Bkash')
+    ('Cash On Delivery', 'Cash on Delivery'),
+    ('Bkash', 'Bkash')
 )
 
 Status_Choices = (
 
-    ('Pr', 'Processing'),
-    ('Pen', 'Pending'),
-    ('Can', 'Canceled'),
-    ('Dlv', 'Delivered'),
-    ('Ref', 'Refund in Process'),
-    ('Refd', 'Refunded')
+    ('Processing', 'Processing'),
+    ('Pending', 'Pending'),
+    ('Canceled', 'Canceled'),
+    ('Delivered', 'Delivered'),
+    ('Refund in Process', 'Refund in Process'),
+    ('Refunded', 'Refunded')
 
 )
 

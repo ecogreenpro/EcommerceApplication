@@ -41,6 +41,8 @@ urlpatterns = [
     path('userprofile/', views.userprofile, name="userprofile"),
     path('updateProfile/', views.updateProfile, name="updateProfile"),
     path('userorder/', views.userOrder, name="userOrder"),
+    path('invoice/', views.invoice, name="invoice"),
+
     path('balance/', views.balance, name="balance"),
     path('chat/', views.chat, name="chat"),
     # path('shop/', views.shop, name="shop"),

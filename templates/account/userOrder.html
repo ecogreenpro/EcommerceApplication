@@ -61,33 +61,28 @@
                             <table class="table">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Order No</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Payment Status</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Order Code</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Order Date</th>
                                     <th scope="col">Delivery Status</th>
+                                    <th scope="col"></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {% for orders in userorder %}
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Silicone Bibs</td>
-                                    <td>520</td>
-                                    <td>2</td>
-                                    <td>Paid</td>
-                                    <td>Processing</td>
+                                    <td scope="row">{{forloop.counter}}</td>
+                                    <td> {{orders.order_Number}} </td>
+                                    <td>{{orders.OrderTotal}}</td>
+                                    <td>{{orders.ordered_date}}</td>
+                                    <td>{{orders.order_status}}</td>
+                                    <td><a href="{%url 'core:invoice'%}" class="btn btn-primary"> Invoice </a></td>
 
 
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-
-                                </tr>
+                                {%endfor%}
                                 </tbody>
                             </table>
 
