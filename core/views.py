@@ -444,3 +444,4 @@ def remove_from_cart(request, slug):
     CartProducts.objects.filter(item=item).delete()
     messages.success(request, "Your item deleted form Cart.")
     return HttpResponseRedirect("/cart")
+

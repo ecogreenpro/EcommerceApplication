@@ -11,9 +11,9 @@ def categories():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """<a href="/category/{}" class="list-group-item list-group-item-action bg-danger text-white"><i 
+        items_li += """<a href="/category/{}" class="list-group-item list-group-item-action text-white" style="background-color: #ac801cc2!important; font-family: 'Rubik';"><i 
         class="fas fa-th-large"></i> {}</a>""".format(
-            i.slug, i.name, i.image)
+            i.slug, i.name)
     return mark_safe(items_li)
 
 
@@ -21,6 +21,8 @@ def categories():
 def categories_shop():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
+
+
     for i in items:
         items_li += """<li class="list-group-item d-flex justify-content-between align-items-center"><a 
         href="/category/{}" style="text-decoration: none;"> {} <span class="badge badge-primary badge-pill">14</span> </a></li>""".format(
@@ -33,12 +35,24 @@ def categories_home():
     items = Categories.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """ <div class="col-lg-4"> <img class="bd-placeholder-img rounded-circle " width="140" height="140"
-                                     src="/media/{}" focusable="false" role="img"/>
-                                <h2> {} </h2>
-                                <a class="btn btn-success" href="/category/{}" role="button">
-                                    Shop </a></div>""".format(
-            i.image, i.name, i.slug)
+        items_li += """ <div class="col-lg-3">
+                                    <div class="product-item">
+                                        <div class="product-title">
+                                            <a style="text-decoration: none;" href="/category/{}">{}</a>
+                                            
+                                        </div>
+                                        <div class="product-image">
+                                            <a style="text-decoration: none;" class="image" href="/category/{}">
+                                                <img src="media/{}" alt="Product Image">
+                                            </a>
+                                        </div>
+                                        <div class="product-price">
+                                            <h3><span> </span><label >Jewellery</label> </h3>
+                                            <a style="text-decoration: none;" href="/category/{}" class="btn" href=""><i class="far fa-eye"></i> Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>""".format(
+            i.slug,i.name, i.slug, i.image,i.slug)
     return mark_safe(items_li)
 
 
