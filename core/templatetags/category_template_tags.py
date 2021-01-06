@@ -24,8 +24,7 @@ def categories_shop():
 
 
     for i in items:
-        items_li += """<li class="list-group-item d-flex justify-content-between align-items-center"><a 
-        href="/category/{}" style="text-decoration: none;"> {} <span class="badge badge-primary badge-pill">14</span> </a></li>""".format(
+        items_li += """<li class="nav-item"><a class="nav-link" href="/category/{}"></i>{}</a></li>""".format(
             i.slug, i.name, i.image)
     return mark_safe(items_li)
 
@@ -61,7 +60,6 @@ def brand_shop():
     items = Brands.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """<li class="list-group-item d-flex justify-content-between align-items-center"><a 
-        href="/brand/{}" style="text-decoration: none;"> {} <span class="badge badge-primary badge-pill">14</span> </a></li>""".format(
-            i.slug, i.name, i.image)
+        items_li += """<li><a href="/brand/{}">{} </a><span>(0)</span></li>""".format(
+            i.slug, i.name)
     return mark_safe(items_li)
