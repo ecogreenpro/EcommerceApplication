@@ -41,9 +41,9 @@
         {%if request.user.is_authenticated%}
 
         {%else%}
-        <a href="{% url 'core:login'%}" class="list-group-item list-group-item-action bg-danger text-white"><i
+        <a href="{% url 'core:login'%}" class="list-group-item list-group-item-action bg-danger text-white" style="background-color: #ac801cc2!important; font-family: 'Rubik';"><i
                 class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="{% url 'core:signup'%}" class="list-group-item list-group-item-action bg-danger text-white"><i
+        <a href="{% url 'core:signup'%}" class="list-group-item list-group-item-action bg-danger text-white" style="background-color: #ac801cc2!important; font-family: 'Rubik';"><i
                 class="fas fa-user-plus"></i> Register</a>
         {%endif%}
 

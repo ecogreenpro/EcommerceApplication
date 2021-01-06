@@ -115,6 +115,8 @@
 
 
 
+
+
 </style>
 
 <footer id="footer-main" class="">
@@ -153,16 +155,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-3">
-                <br>
-
-                <h6 class="mt-3"><a href="{% url 'core:orderTrack' %}">Order Track</a></h6>
-                <h6 class="mt-3"><a href="{% url 'core:becomeSeller' %}">Become Seller</a></h6>
-                <h6 class="mt-3"><a href="{% url 'core:login' %}">Login</a></h6>
-                <h6 class="mt-3"><a href="{% url 'core:userprofile' %}">My Account</a></h6>
-
-            </div>
-            <div class="col-sm-3">
+             <div class="col-sm-3">
                 <h6 class="mt-3">Information</h6>
                 <a href="{% url 'core:about' %}">About</a>
                 <a href="{% url 'core:contact' %}">Contact Us</a>
@@ -170,13 +163,30 @@
                 <a href="{% url 'core:paymentProcess' %}">Payment Process</a>
                 <a href="{% url 'core:refundReturnsPolicy' %}">Refund & Returns Policy</a>
             </div>
-            <div class="col-sm-3">
+             <div class="col-sm-3">
                 <h6 class="mt-3">CUSTOMER SERVICE
                 </h6>
                 <a href="{% url 'core:shop' %}">Shop</a>
                 <a href="#">Wishlist</a>
                 <a href="{% url 'core:cart' %}">Shopping Cart</a>
             </div>
+            <div class="col-sm-3">
+                <br>
+
+                <h6 class="mt-3"><a href="{% url 'core:orderTrack' %}">Order Track</a></h6>
+                <h6 class="mt-3"><a href="{% url 'core:becomeSeller' %}">Become Seller</a></h6>
+                {%if request.user.is_authenticated%}
+
+                {%else%}
+                <h6 class="mt-3"><a href="{% url 'core:login'%}" ><i
+                ></i> Login</a></h6>
+
+                {%endif%}
+                <h6 class="mt-3"><a href="{% url 'core:userprofile' %}">My Account</a></h6>
+
+            </div>
+
+
             <div class="col-sm-3">
                 <h6 class="mt-3"> Contact Us</h6>
                 <hr>
