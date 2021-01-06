@@ -156,6 +156,7 @@ height:513px;
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -270,18 +271,23 @@ height:513px;
                                 <div class="col-md-9">
                                     <div class="header-slider normal-slider">
                                         <div class="header-slider-item">
-                                            <img class="slider-image" src="{% static 'media/1.png' %}"
-                                                 alt="Slider Image"/>
+                                            <a href="{% url 'core:shop'%}">
+                                                <img class="slider-image" src="{% static 'media/1.png' %}"
+                                                     alt="Slider Image"/>
+                                            </a>
                                         </div>
                                         <div class="header-slider-item">
-                                            <img class="slider-image" src="{% static 'media/2.png' %}"
-                                                 alt="Slider Image"/>
+                                            <a  href="{% url 'core:shop'%}">
+                                                <img class="slider-image" src="{% static 'media/2.png' %}"
+                                                     alt="Slider Image"/>
+                                            </a>
 
                                         </div>
                                         <div class="header-slider-item">
-                                            <img class="slider-image" src="{% static 'media/3.png' %}"
-                                                 alt="Slider Image"/>
-
+                                            <a  href="{% url 'core:shop'%}">
+                                                <img class="slider-image" src="{% static 'media/3.png' %}"
+                                                     alt="Slider Image"/>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
