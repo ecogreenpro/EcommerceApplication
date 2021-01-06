@@ -347,6 +347,22 @@ def becomeSeller(request):
     return render(request, 'becomeSeller.html', context)
 
 
+def search(request):
+    try:
+        Search = request.GET.get('search')
+    except:
+        Search = None
+
+    if Search:
+        products = Products.objects.filter(name__icontains=Search)
+        context = {'query': Search, 'Products': products}
+        template = 'result.html'
+    else:
+        template = 'shop.html'
+        context = {}
+    return render(request, template, context)
+
+
 def CategoryNav(request):
     context = {}
     category = Categories.objects.raw("SELECT * FROM core_categories")
@@ -460,4 +476,3 @@ def remove_from_cart(request, slug):
     CartProducts.objects.filter(item=item).delete()
     messages.success(request, "Your item deleted form Cart.")
     return HttpResponseRedirect("/cart")
-
