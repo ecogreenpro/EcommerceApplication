@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-
+    <title>Shop | Jewellery </title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -160,6 +160,7 @@ a:link {
     width: 200px;
     height: 300px;
 }
+
 
 
 
@@ -354,49 +355,50 @@ a:link {
 						</span>
                             </div>
 
-                                    <div class="row">
+                            <div class="row">
 
-                                        {% for item in object_list %}
-                                        {% if item.isactive %}
-                                            <div class="product-grid4">
-                                                <div>
-                                                    <br>
-                                                    <a href="{% url 'core:productDetail' item.slug %}"><img class="image"
-                                                                                                       src="{{item.mainImage.url}}"></a>
-                                                    <span class="product-new-label">{{item.label}}</span>
-                                                    <span class="product-discount-label">-{{item.get_percentage}}%</span>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="title">
-                                                        <a href="{%url 'core:productDetail' item.slug %}"
-                                                           style="text-decoration: none;">
-                                                            {{ item.name|truncatechars_html:25 }} </a>
-                                                    </h3>
+                                {% for item in object_list %}
+                                {% if item.isactive %}
+                                <div class="product-grid4">
+                                    <div>
+                                        <br>
+                                        <a href="{% url 'core:productDetail' item.slug %}"><img class="image"
+                                                                                                src="{{item.mainImage.url}}"></a>
+                                        <span class="product-new-label">{{item.label}}</span>
+                                        <span class="product-discount-label">-{{item.get_percentage}}%</span>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3 class="title">
+                                            <a href="{%url 'core:productDetail' item.slug %}"
+                                               style="text-decoration: none;">
+                                                {{ item.name|truncatechars_html:25 }} </a>
+                                        </h3>
 
-                                                    <div class="price">
-                                                        {% if item.discountPrice %}
-                                                        ৳ {{item.discountPrice}}
-                                                        <span class="text-danger">৳ {{item.price}}</span>
-                                                        {%else%}
-                                                        ৳ {{item.price}}
-                                                        {%endif%}
-                                                    </div>
-                                                    <div class="row px-3">
-                                                        <div class="add-cart ">
-                                                            <a href="{{ item.get_add_to_cart_url }}" style="text-decoration:none;" class="mb-0 sm-font text-white"><i
-                                                                    class="fas fa-cart-plus"></i> ADD TO BAG</a>
-                                                        </div>
-                                                        <div class="add-order">
-                                                            <p class="mb-0 sm-font"><i class="fas fa-heart"></i> ADD TO
-                                                                Wishlist</p>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
+                                        <div class="price">
+                                            {% if item.discountPrice %}
+                                            ৳ {{item.discountPrice}}
+                                            <span class="text-danger">৳ {{item.price}}</span>
+                                            {%else%}
+                                            ৳ {{item.price}}
+                                            {%endif%}
+                                        </div>
+                                        <div class="row px-3">
+                                            <div class="add-cart ">
+                                                <a href="{{ item.get_add_to_cart_url }}" style="text-decoration:none;"
+                                                   class="mb-0 sm-font text-white"><i
+                                                        class="fas fa-cart-plus"></i> ADD TO BAG</a>
+                                            </div>
+                                            <div class="add-order">
+                                                <p class="mb-0 sm-font"><i class="fas fa-heart"></i> ADD TO
+                                                    Wishlist</p>
                                             </div>
 
-                                        {% endif %}
-                                        {%endfor%}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% endif %}
+                                {%endfor%}
 
 
                             </div>

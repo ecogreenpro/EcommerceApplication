@@ -27,6 +27,6 @@ urlpatterns = [
                   path(r'^ckeditor/', include('ckeditor_uploader.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-admin.site.site_header = 'Ecogreen Shop Admin'
-admin.site.site_title = 'Ecogreen Shop'
-admin.site.index_title = 'Ecogreen'
+admin.site.site_header = 'Jewellery Admin'
+admin.site.site_title = 'Jewellery.com.bd'
+admin.site.index_title = 'Jewellery'

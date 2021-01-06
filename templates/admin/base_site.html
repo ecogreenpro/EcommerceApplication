@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% block title %}{{ title }} | {{ site_title|default:_('Ecogreen Admin') }}{% endblock %}
+{% block title %}{{ title }} | {{ site_title|default:_('Jewellery Admin') }}{% endblock %}
 
 {% block extrastyle %}
 <style>
@@ -52,7 +52,7 @@ div.breadcrumbs {
 {% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Ecogreen Admin') }}</a></h1>
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Jewellery Admin') }}</a></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
