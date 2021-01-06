@@ -131,6 +131,19 @@ background:rgb(172 128 28 / 55%);
 
 }
 
+.header .img-text {
+background: rgb(192 158 82 / 64%);
+}
+
+.slider-image{
+width:1135px;
+height:513px;
+}
+
+
+
+
+
 
 
 
@@ -164,7 +177,7 @@ background:rgb(172 128 28 / 55%);
             <div class="container-fluid">
                 <main role="main">
 
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -229,8 +242,50 @@ background:rgb(172 128 28 / 55%);
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </div>
+                    </div>-->
+                    <br>
+                    <div class="header">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="header-img">
+                                        <div class="img-item">
+                                            <img src="{% static 'media/ornaments.png' %}"/>
+                                            <a class="img-text" href="{% url 'core:shop'%}">
+                                                <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
+                                            </a>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="img-item">
+                                            <img  src="{% static 'media/Product/Cover.png' %}"/>
+                                            <a class="img-text" href="{% url 'core:shop'%}">
+                                                <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="header-slider normal-slider">
+                                        <div class="header-slider-item">
+                                            <img class="slider-image" src="{% static 'media/3.png' %}"
+                                                 alt="Slider Image"/>
+                                        </div>
+                                        <div class="header-slider-item">
+                                            <img class="slider-image" src="{% static 'media/1.png' %}" alt="Slider Image"/>
 
+                                        </div>
+                                        <div class="header-slider-item">
+                                            <img class="slider-image" src="{% static 'media/2.png' %}" alt="Slider Image"/>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="category">
                         <div class="container-fluid">
                             <div class="row">
@@ -239,7 +294,7 @@ background:rgb(172 128 28 / 55%);
                                         <img class="image" src="{% static 'media/Product/category-4.jpg' %}"/>
                                         <a style="text-decoration:none" class="category-name"
                                            href="{% url 'core:shop'%}">
-                                            <p>Shop Now</p>
+                                            <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                         </a>
                                     </div>
                                 </div>
@@ -249,14 +304,14 @@ background:rgb(172 128 28 / 55%);
                                              src="{% static 'media/Product/Leather Jewellery Box.jpeg' %}"/>
                                         <a style="text-decoration:none" class="category-name"
                                            href="{% url 'core:shop'%}">
-                                            <p>Shop Now</p>
+                                            <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                         </a>
                                     </div>
                                     <div class="category-item ch-150">
                                         <img class="image" src="{% static 'media/Product/Anklet.png' %}"/>
                                         <a style="text-decoration:none" class="category-name"
                                            href="{% url 'core:shop'%}">
-                                            <p>Shop Now</p>
+                                            <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                         </a>
                                     </div>
                                 </div>
@@ -265,14 +320,14 @@ background:rgb(172 128 28 / 55%);
                                         <img class="image" src="{% static 'media/Product/Cover.png' %}"/>
                                         <a style="text-decoration:none" class="category-name"
                                            href="{% url 'core:shop'%}">
-                                            <p>Shop Now</p>
+                                            <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                         </a>
                                     </div>
                                     <div class="category-item ch-250">
                                         <img class="image" src="{% static 'media/Product/Engagement Ring.png' %}"/>
                                         <a style="text-decoration:none" class="category-name"
                                            href="{% url 'core:shop'%}">
-                                            <p>Shop Now</p>
+                                            <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                         </a>
                                     </div>
                                 </div>
@@ -281,7 +336,7 @@ background:rgb(172 128 28 / 55%);
                                         <img class="image" src="{% static 'media/Product/Necklace Set.jpeg' %}"/>
                                         <a style="text-decoration:none" class="category-name"
                                            href="{% url 'core:shop'%}">
-                                            <p>Shop Now</p>
+                                            <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                         </a>
                                     </div>
                                 </div>
@@ -291,8 +346,8 @@ background:rgb(172 128 28 / 55%);
                     <div class="container-fluid">
                         <div class="product">
                             <div class="section-header">
-                                    <h1> Shop By Catagories</h1>
-                                </div>
+                                <h1> Shop By Catagories</h1>
+                            </div>
                             <div class="row align-items-center product-slider product-slider-3">
                                 {% categories_home %}
                             </div>

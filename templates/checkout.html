@@ -40,6 +40,8 @@
 
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -67,19 +69,21 @@
                         <div class="col-md-4 order-md-2 mb-4 ">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-muted">Your cart</span>
-                                <span class="badge badge-pill badge-success">3</span>
+                                <span class="badge badge-pill " style="background: #B18729; color:#fff;">{% cartCount user.id as count %}
+                                                <span>{{ count }}</span></span>
                             </h4>
                             <ul class="list-group mb-3 card bg-light mb-3">
                                 {% for Order_item in cart %}
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                                     <div>
                                         <h6 class="my-0">{{ Order_item.item.name }}</h6>
-                                        <small class="text-muted">Brief description</small>
+
                                     </div>
                                     <span class="text-muted">{{Order_item.get_final_price}}</span>
                                 </li>
                                 {%endfor%}
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                {%shipping_li%}
+                                <!--<li class="list-group-item d-flex justify-content-between lh-condensed">
                                     <div class="form-group">
                                         <label for="sel1">Shipping Charge:</label>
                                         <select class="form-control" id="sel1">
@@ -88,17 +92,21 @@
                                         </select>
 
                                     </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between bg-light alert alert-success">
+                                </li>-->
+                                <!--<li class="list-group-item d-flex justify-content-between bg-light alert alert-success">
                                     <div class="text-success">
                                         <h6 class="my-0">Promo code</h6>
                                         <small>EXAMPLECODE</small>
                                     </div>
                                     <span class="text-success">-$5</span>
-                                </li>
+                                </li>-->
                                 <li class="list-group-item d-flex justify-content-between">
-                                    <span>Total (USD)</span>
-                                    <strong>{{total}}</strong>
+                                    <div>
+                                        <span>Total </span>
+                                        <small class="text-muted">(include shipping charge)</small>
+                                    </div>
+
+                                    <strong>{{total}} BDT</strong>
                                 </li>
                             </ul>
 
@@ -230,8 +238,7 @@
 
                                 <hr class="mb-4">
                                 <div class="mb-3">
-                                    <button class="btn btn-primary btn-lg " type="submit"><i
-                                            class="fas fa-shopping-basket"></i> Place Order
+                                    <button class="btn  btn-lg " type="submit"style="background: #B18729; color:#fff;"> Place Order
                                     </button>
                                 </div>
 

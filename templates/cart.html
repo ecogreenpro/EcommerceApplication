@@ -70,9 +70,9 @@
             {% for message in messages %}
             <br>
             <div class="col-md-8">
-                <div class="alert alert-info">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                    <strong>{{message}}!</strong></div>
+                <div class="alert " style="background: #B18729; color:#fff;">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="color:#fff;">×</button>
+                    <strong >{{message}}!</strong></div>
 
 
             </div>
@@ -97,7 +97,7 @@
                                 </div>
 
                                 {%else%}
-                                <div class="py-3 text-center alert alert-primary">
+                                <div class="py-3 text-center alert" style="background: #B18729; color:#fff;">
                                     <h2>Your Shopping Cart Summary</h2>
                                 </div>
                                 <div class="table-wishlist py-3">
@@ -213,7 +213,7 @@
                                                             <br>
 
                                                             <button type="button"
-                                                                    class="text-center btn btn-success"><a
+                                                                    class="text-center btn " style="background: #B18729; color:#fff;"><a
                                                                     class="nav-link text-white"
                                                                     href="{% url 'core:checkout'%}">
                                                                 Checkout <i class="fas fa-play"> </i> </a>

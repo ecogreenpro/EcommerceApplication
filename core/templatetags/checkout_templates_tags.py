@@ -30,8 +30,13 @@ def shipping_li():
     shipping_li = ""
     for i in items:
         shipping_li += """
-              <option>{}</option> 
-              <span class="text-muted">{}</span>               
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">Shipping <small class="text-muted">({})</small></h6>
+
+                                    </div>
+                                    <span class="text-muted">{}</span>
+                                </li>               
          """.format(
             i.location, i.charge)
     return mark_safe(shipping_li)

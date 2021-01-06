@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, View
 from django.utils.crypto import get_random_string
 from .forms import ProfileModelForm
-from .models import Products, CartProducts, Order, userProfile, OrderProduct
+from .models import Products, CartProducts, Order, userProfile, OrderProduct, Shipping
 from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -30,12 +30,6 @@ def header(request):
 def footer(request):
     context = {}
     return render(request, 'footer.html', context)
-
-
-# def home(request):
-#     context = {}
-#     product = Products.objects.raw("SELECT * FROM core_products")
-#     return render(request, 'home.html', {"Products": product})
 
 
 def about(request):
@@ -138,31 +132,8 @@ def updateProfile(request):
     userProfile.objects.filter(user=request.user).update(address=address, city=city,
                                                          country=country,
                                                          Phone=phone)
-
-    # if request.method == 'POST':
-    #     if profile.is_valid():
-    #         profile.save()
     messages.info(request, 'Profile Updated ')
     return render(request, 'account/userprofile.html')
-
-
-# def updateProfile(request):
-#     profile = userProfile.objects.get(user=request.user)
-#     form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
-#     confirm = False
-#
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             form.save()
-#             confirm = True
-#
-#     context = {
-#         'profile': profile,
-#         'form': form,
-#         'confirm': confirm,
-#     }
-#
-#     return render(request, 'account/userprofile.html', context)
 
 
 def userprofile(request):
@@ -221,10 +192,11 @@ def cart(request):
 @login_required(login_url='/login')
 def checkout(request):
     current_user = request.user
+    shipping = Shipping.objects.all()
     category = Categories.objects.all()  # Access User Session information
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
-    total = 0
+    total = 100
 
     for rs in cart:
         if rs.item.discountPrice:
@@ -274,42 +246,6 @@ def checkout(request):
         'userProfile': userprofile,
     }
     return render(request, 'checkout.html', context)
-
-
-# class checkoutView(LoginRequiredMixin, View):
-#     def get(self, *args, **kwargs):
-#         try:
-#             order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
-#             context = {
-#                 'object': order
-#             }
-#             return render(self.request, 'checkout.html', context)
-#         except ObjectDoesNotExist:
-#             messages.error(self.request, "You do not have an active order")
-#             return redirect("/")
-
-
-#
-#
-# class CartView(LoginRequiredMixin, View):
-#     def get(self, *args, **kwargs):
-#         try:
-#             order = CartProducts.objects.get(user=self.request.user, isOrdered=False)
-#             context = {
-#                 'object': order
-#             }
-#             return render(self.request, 'cart.html', context)
-#         except ObjectDoesNotExist:
-#             messages.error(self.request, "You do not have an active order")
-#             return redirect("/")
-
-
-# def cart(self, *args, **kwargs,):
-#     order = Order.objects.get(user=self.request.user, isOrdered=False)
-#     context = {
-#         'object': order
-#     }
-#     return render(self.request, 'cart.html', context)
 
 
 def orderTrack(request):
@@ -460,4 +396,3 @@ def remove_from_cart(request, slug):
     CartProducts.objects.filter(item=item).delete()
     messages.success(request, "Your item deleted form Cart.")
     return HttpResponseRedirect("/cart")
-
