@@ -60,6 +60,6 @@ def brand_shop():
     items = Brands.objects.filter(isactive=True).order_by('name')
     items_li = ""
     for i in items:
-        items_li += """<li><a href="/brand/{}">{} </a><span>(0)</span></li>""".format(
+        items_li += """<li><a href="/brand/{}">{} </a><span></span></li>""".format(
             i.slug, i.name)
     return mark_safe(items_li)
