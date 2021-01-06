@@ -247,7 +247,7 @@ a:link {
 
 
                                     <div class="sidebar-widget brands">
-                                        <h2 class="title">Our Brands</h2>
+                                        <h2 class="title">Brands</h2>
                                         <ul>
                                             {%brand_shop%}
                                         </ul>
@@ -345,8 +345,13 @@ a:link {
                                                         ৳ {{item.price}}
                                                         {%endif%}
                                                     </h3>
+                                                    {%if item.stockQuantity > 0%}
                                                     <a class="btn" href="{{item.get_add_to_cart_url}}"><i
                                                             class="fas fa-cart-plus"></i> Bag</a>
+                                                    {%else%}
+                                                    <a class="btn" href="{% url 'core:productDetail' item.slug %}"><i
+                                                            class="far fa-eye"></i> Details</a>
+                                                    {%endif%}
                                                 </div>
                                             </div>
                                         </div>

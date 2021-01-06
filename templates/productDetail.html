@@ -65,6 +65,11 @@ img {
 
     width: 0%;
 }
+.logo_container{
+width:110;
+height:72";
+}
+
 
 
 
@@ -73,7 +78,7 @@ img {
 
     </style>
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+
     <link href="{% static 'css/product-detail-demo.css' %}" rel="stylesheet">
 </head>
 <header>
@@ -211,13 +216,14 @@ img {
                                                                  style="font-size: 1rem; color:red">
                                                                 ৳ {{ object.price }}
                                                             </del>
-                                                            {% else %}
+                                                            {%else%}
                                                             <span class="m-text17">
 									                    ৳ {{object.price}}
 								                            </span>
-                                                            {% endif %}
+                                                            {%endif%}
                                                         </h4>
-                                                        <p><strong>Availability:</strong> {% if object.stockQuantity > 0%}
+                                                        <p><strong>Availability:</strong>
+                                                            {% if object.stockQuantity > 0%}
                                                             <label class="text-success">In Stock </label>
                                                             {% else %}
                                                             <label class="text-danger">Out of Stock</label>
@@ -232,16 +238,14 @@ img {
                                                         {% if object.stockQuantity > 0 %}
                                                         <a href="{{ object.get_add_to_cart_url }}"
                                                            class="btn btn-outline-warning btn-long cart"> <i
-                                                                class="fa fa-shopping-cart"></i> Add to Cart
+                                                                class="fas fa-cart-plus"></i> Add to Cart
                                                         </a>
 
                                                         {%else%}
-                                                        <label > Out of Stock
-                                                        </label>
 
                                                         {%endif%}
-                                                        <button class="btn btn-light wishlist"><i
-                                                                class="fas fa-heart"></i></button>
+                                                        <!--<button class="btn btn-light wishlist"><i
+                                                                class="fas fa-heart"></i></button>-->
                                                     </div>
                                                     <hr>
                                                     <div class="product-description">
@@ -384,6 +388,8 @@ img {
         slideMargin: 0,
         thumbItem: 9
     });
+
+
 
 
 

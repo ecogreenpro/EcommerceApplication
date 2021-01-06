@@ -154,6 +154,8 @@ height:513px;
 
 
 
+
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -258,7 +260,7 @@ height:513px;
                                         <br>
                                         <br>
                                         <div class="img-item">
-                                            <img  src="{% static 'media/Product/Cover.png' %}"/>
+                                            <img src="{% static 'media/Product/Cover.png' %}"/>
                                             <a class="img-text" href="{% url 'core:shop'%}">
                                                 <p><i class="fa fa-shopping-cart"></i> Shop Now</p>
                                             </a>
@@ -272,11 +274,13 @@ height:513px;
                                                  alt="Slider Image"/>
                                         </div>
                                         <div class="header-slider-item">
-                                            <img class="slider-image" src="{% static 'media/1.png' %}" alt="Slider Image"/>
+                                            <img class="slider-image" src="{% static 'media/1.png' %}"
+                                                 alt="Slider Image"/>
 
                                         </div>
                                         <div class="header-slider-item">
-                                            <img class="slider-image" src="{% static 'media/2.png' %}" alt="Slider Image"/>
+                                            <img class="slider-image" src="{% static 'media/2.png' %}"
+                                                 alt="Slider Image"/>
 
                                         </div>
                                     </div>
@@ -391,8 +395,14 @@ height:513px;
                                                     ৳ {{item.price}}
                                                     {%endif%}
                                                 </h3>
-                                                <a class="btn" href="{{item.get_add_to_cart_url}}"><i
+                                                {%if item.stockQuantity > 0%}
+                                                <a class="btn" style="text-decoration:none"
+                                                   href="{{item.get_add_to_cart_url}}"><i
                                                         class="fas fa-cart-plus"></i> Bag</a>
+                                                {%else%}
+                                                <a class="btn" href="{% url 'core:productDetail' item.slug %}"><i
+                                                        class="far fa-eye"></i> Details</a>
+                                                {%endif%}
                                             </div>
                                         </div>
                                     </div>
@@ -453,9 +463,14 @@ height:513px;
                                                     ৳ {{item.price}}
                                                     {%endif%}
                                                 </h3>
-                                                <a style="text-decoration:none" class="btn"
+                                                {%if item.stockQuantity > 0%}
+                                                <a class="btn" style="text-decoration:none"
                                                    href="{{item.get_add_to_cart_url}}"><i
                                                         class="fas fa-cart-plus"></i> Bag</a>
+                                                {%else%}
+                                                <a class="btn" href="{% url 'core:productDetail' item.slug %}"><i
+                                                        class="far fa-eye"></i> Details</a>
+                                                {%endif%}
                                             </div>
                                         </div>
                                     </div>
