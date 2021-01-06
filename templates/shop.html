@@ -207,6 +207,7 @@ a:link {
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -230,158 +231,6 @@ a:link {
             <div class="container-fluid">
                 <main role="main">
                     <br>
-                    <!--<div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-                            <div class="leftbar p-r-20 p-r-0-sm">
-                                &lt;!&ndash;  &ndash;&gt;
-                                <h4 class="m-text14 p-b-7">
-                                    Categories
-                                </h4>
-                                <br>
-
-                                <ul class="list-group list-group-flush">
-
-                                    {% categories_shop %}
-
-                                </ul>
-
-                                <br>
-
-                                <h4 class="m-text14 p-b-7">
-                                    Brands
-                                </h4>
-                                <br>
-
-                                <ul class="list-group list-group-flush">
-                                    {% brand_shop %}
-                                </ul>
-
-                                <br>
-                                &lt;!&ndash;  &ndash;&gt;
-                                <h4 class="m-text14 p-b-32">
-                                    Filters
-                                </h4>
-
-                                <div class="card">
-                                    <article class="card-group-item">
-                                        <header class="card-header">
-                                            <h6 class="title">Range input </h6>
-                                        </header>
-                                        <div class="filter-content">
-                                            <div class="card-body">
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label>Min</label>
-                                                        <input type="number" class="form-control" id="inputEmail4"
-                                                               placeholder="$0">
-                                                    </div>
-                                                    <div class="form-group col-md-6 text-right">
-                                                        <label>Max</label>
-                                                        <input type="number" class="form-control" placeholder="$1,0000">
-                                                    </div>
-                                                </div>
-                                            </div> &lt;!&ndash; card-body.// &ndash;&gt;
-                                        </div>
-                                    </article> &lt;!&ndash; card-group-item.// &ndash;&gt;
-                                    &lt;!&ndash; card-group-item.// &ndash;&gt;
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-                            &lt;!&ndash;  &ndash;&gt;
-                            <div class="flex-sb-m flex-w p-b-35">
-                                <div class="flex-w">
-
-                                    <div class="col-md-4 mb-3">
-                                        <select class="custom-select d-block w-100" id="sorting">
-                                            <option>Default Sorting</option>
-                                            <option>Popularity</option>
-                                            <option>Price: low to high</option>
-                                            <option>Price: high to low</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <span class="s-text8 p-t-5 p-b-5">
-							Showing 1–12 of 16 results
-						</span>
-                            </div>
-
-                                    <div class="row">
-
-                                        {% for item in object_list %}
-                                        {% if item.isactive %}
-                                            <div class="product-grid4">
-                                                <div>
-                                                    <br>
-                                                    <a href="{% url 'core:productDetail' item.slug %}"><img class="image"
-                                                                                                       src="{{item.mainImage.url}}"></a>
-                                                    <span class="product-new-label">{{item.label}}</span>
-                                                    <span class="product-discount-label">-{{item.get_percentage}}%</span>
-                                                </div>
-                                                <div class="product-content">
-                                                    <h3 class="title">
-                                                        <a href="{%url 'core:productDetail' item.slug %}"
-                                                           style="text-decoration: none;">
-                                                            {{ item.name|truncatechars_html:25 }} </a>
-                                                    </h3>
-
-                                                    <div class="price">
-                                                        {% if item.discountPrice %}
-                                                        ৳ {{item.discountPrice}}
-                                                        <span class="text-danger">৳ {{item.price}}</span>
-                                                        {%else%}
-                                                        ৳ {{item.price}}
-                                                        {%endif%}
-                                                    </div>
-                                                    <div class="row px-3">
-                                                        <div class="add-cart ">
-                                                            <a href="{{ item.get_add_to_cart_url }}" style="text-decoration:none;" class="mb-0 sm-font text-white"><i
-                                                                    class="fas fa-cart-plus"></i> ADD TO BAG</a>
-                                                        </div>
-                                                        <div class="add-order">
-                                                            <p class="mb-0 sm-font"><i class="fas fa-heart"></i> ADD TO
-                                                                Wishlist</p>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        {% endif %}
-                                        {%endfor%}
-
-
-                            </div>
-                            <br>
-                            <div class="pagination_rounded float-right" style="text-align: center;">
-                                {% if is_paginated %}
-                                <ul>
-                                    {% if page_obj.has_previous %}
-                                    <li><a class="prev" href="?page={{ page_obj.previous_page_number}}"
-                                           aria-label="Previous" style="text-decoration: none;"><i
-                                            class="fa fa-angle-left"
-                                            aria-hidden="true"></i> Prev</a></li>
-                                    {% endif %}
-                                    <li><a href="#" style="text-decoration: none;">{{page_obj.number}} </a></li>
-                                    <li>of</li>
-                                    <li><a href="#" style="text-decoration: none;">{{page_obj.paginator.num_pages}} </a>
-                                    </li>
-                                    {% if page_obj.has_next %}
-                                    <li><a href="?page={{ page_obj.next_page_number}}" class="next"
-                                           style="text-decoration: none;"> Next <i class="fa fa-angle-right"
-                                                                                   aria-hidden="true"></i></a></li>
-                                    {% endif %}
-                                </ul>
-                                {% endif %}
-                            </div>
-                        </div>
-
-
-                        <br>
-                    </div>-->
                     <div class="product-view">
                         <div class="container-fluid">
                             <div class="row">
@@ -425,10 +274,6 @@ a:link {
                                             <div class="product-view-top">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <div class="product-search">
-                                                            <input type="email" value="Search">
-                                                            <button><i class="fa fa-search"></i></button>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="product-short">
@@ -512,17 +357,21 @@ a:link {
                                     <!-- Pagination Start -->
                                     <div class="col-md-12">
                                         <nav aria-label="Page navigation example">
+                                            {%if is_paginated%}
                                             <ul class="pagination justify-content-center">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                </li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                {%if page_obj.has_previous%}
                                                 <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
+                                                    <a class="page-link" href="?page={{ page_obj.previous_page_number}}">Previous</a>
                                                 </li>
+                                                {% endif %}
+                                                <li class="page-item active"><a class="page-link" href="#">{{page_obj.paginator.num_pages}} </a></li>
+                                                {%if page_obj.has_next%}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page={{ page_obj.next_page_number}}">Next</a>
+                                                </li>
+                                                {% endif %}
                                             </ul>
+                                            {% endif %}
                                         </nav>
                                     </div>
                                     <!-- Pagination Start -->
