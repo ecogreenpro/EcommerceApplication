@@ -1,8 +1,12 @@
 {% extends "admin/base.html" %}
+{%load static%}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Jewellery Admin') }}{% endblock %}
 
 {% block extrastyle %}
+<head>
+<link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
+</head>
 <style>
 
 #header {

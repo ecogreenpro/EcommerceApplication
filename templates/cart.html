@@ -8,7 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
     <title>My Cart| Jewellery</title>
-
+    <link rel="shortcut icon" type="image/png" href="{% static 'media/Jewellery-FavIco-01-01.png' %}"/>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
 
     <!-- Bootstrap core CSS -->
@@ -49,6 +49,7 @@
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -71,8 +72,9 @@
             <br>
             <div class="col-md-8">
                 <div class="alert " style="background: #B18729; color:#fff;">
-                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="color:#fff;">×</button>
-                    <strong >{{message}}!</strong></div>
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="color:#fff;">×
+                    </button>
+                    <strong>{{message}}!</strong></div>
 
 
             </div>
@@ -213,7 +215,8 @@
                                                             <br>
 
                                                             <button type="button"
-                                                                    class="text-center btn " style="background: #B18729; color:#fff;"><a
+                                                                    class="text-center btn "
+                                                                    style="background: #B18729; color:#fff;"><a
                                                                     class="nav-link text-white"
                                                                     href="{% url 'core:checkout'%}">
                                                                 Checkout <i class="fas fa-play"> </i> </a>

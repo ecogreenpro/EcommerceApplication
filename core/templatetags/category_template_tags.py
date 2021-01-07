@@ -41,8 +41,8 @@ def categories_home():
                                             
                                         </div>
                                         <div class="product-image">
-                                            <a style="text-decoration: none;" class="image" href="/category/{}">
-                                                <img src="media/{}" alt="Product Image">
+                                            <a style="text-decoration: none;"  href="/category/{}">
+                                                <img class="image" src="media/{}" alt="Product Image">
                                             </a>
                                         </div>
                                         <div class="product-price">
