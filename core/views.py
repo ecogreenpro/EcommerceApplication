@@ -224,6 +224,7 @@ def checkout(request):
 
         for rs in cart:
             productDetails = OrderProduct()
+            product = Products.objects.get(id=rs.item_id)
             productDetails.order_id = data.id
             productDetails.product_id = rs.item_id
             productDetails.user_id = current_user.id
@@ -233,6 +234,8 @@ def checkout(request):
             else:
                 productDetails.price = rs.item.price
             productDetails.amount = rs.get_final_price
+            product.stockQuantity -= rs.quantity
+            product.save()
             productDetails.save()
 
         CartProducts.objects.filter(user=request.user).delete()  # Clear & Delete shopcart
