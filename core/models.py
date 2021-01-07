@@ -79,7 +79,7 @@ class Products(models.Model):
     price = models.FloatField()
     discountPrice = models.FloatField(blank=True, null=True, verbose_name="Discount Price")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brands, on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brands, on_delete=models.CASCADE,  null=True)
     label = models.CharField(choices=Label_Choices, max_length=30)
     stockQuantity = models.IntegerField(default=1, verbose_name="Stock Quantity")
     shortDescription = RichTextUploadingField()

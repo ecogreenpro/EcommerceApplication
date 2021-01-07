@@ -42,6 +42,7 @@
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
@@ -220,13 +221,13 @@
 
                                 <div class="d-block my-3">
                                     <div class="custom-control custom-radio">
-                                        <input id="Cash" value="COD" name="paymentMethod" type="radio"
+                                        <input id="Cash" value="Cash On Delivery" name="paymentMethod" type="radio"
                                                class="custom-control-input" checked required>
                                         <label class="custom-control-label" for="Cash"> <i
                                                 class="far fa-money-bill-alt"></i> Cash On Delivery</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input id="bkash" value="Bk" name="paymentMethod" type="radio"
+                                        <input id="bkash" value="Bkash" name="paymentMethod" type="radio"
                                                class="custom-control-input" required>
                                         <label class="custom-control-label" for="bkash"> <img
                                                 src="{%static 'media/bkash.png'%}" width="40%" height="50px">
@@ -238,7 +239,8 @@
 
                                 <hr class="mb-4">
                                 <div class="mb-3">
-                                    <button class="btn  btn-lg " type="submit"style="background: #B18729; color:#fff;"> Place Order
+                                    <button class="btn  btn-lg " type="submit" style="background: #B18729; color:#fff;">
+                                        Place Order
                                     </button>
                                 </div>
 
