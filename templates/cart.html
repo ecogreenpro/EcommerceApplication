@@ -128,7 +128,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ Order_item.item.name }}</td>
+                                            <td><a href="{% url 'core:productDetail' Order_item.item.slug %}" style="text-decoration:none;"> {{ Order_item.item.name }}</a></td>
                                             <td width="10%" class="text-center">
                                                 {% if Order_item.item.discountPrice%}
                                                 {{ Order_item.item.discountPrice }}
