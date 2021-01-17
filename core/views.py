@@ -154,12 +154,33 @@ def balance(request):
     return render(request, 'account/balance.html', context)
 
 
-def invoice(request):
-    invoice = Order.objects.filter(user=request.user)
-    context = {
-        'invoice': invoice
-    }
-    return render(request, 'account/invoice.html', context)
+# def invoice(request):
+#     invoiceDetails = Order.objects.filter(Order.order_Number)
+#     context = {
+#         'invoice': invoiceDetails
+#     }
+#     return render(request, 'account/invoice.html', context)
+
+class invoiceView(View):
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(order_Number=self.kwargs['order_Number'])
+        orderProdcut = OrderProduct.objects.filter(order=order)
+        context = {
+            'Product': orderProdcut,
+            'Billed_firstName': order.first_name,
+            'Billed_lastName': order.last_name,
+            'Phone': order.phone_number,
+            'Email': order.email,
+            'Address': order.address,
+            'District': order.district,
+            'Country': order.country,
+            'OrderDate': order.ordered_date,
+            'OrderNo': order.order_Number,
+            'oderTotal': order.OrderTotal,
+            'Delivery': order.payment,
+            'OrderNote': order.order_note,
+        }
+        return render(self.request, "account/invoice.html", context)
 
 
 def chat(request):
@@ -196,6 +217,7 @@ def checkout(request):
     category = Categories.objects.all()  # Access User Session information
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
+    shipping = Shipping.objects.all()
     total = 100
 
     for rs in cart:

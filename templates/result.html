@@ -19,194 +19,190 @@
 
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-      }
-   .image {
-    width: 220px;
-    height: 300px
-}
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .image {
+            width: 220px;
+            height: 300px
+        }
 
 
+        .product-item .product-image .product-action a {
+            background: rgb(172 128 28 / 55%);
+        }
 
-.product-item .product-image .product-action a{
-background:rgb(172 128 28 / 55%);
-}
-.product-item .product-image .product-action a:hover {
-    color: #AC801C;
-    background: #fff;
-    border: 1px solid #AC801C;
-}
-.product-item:hover .product-price .btn,
-.product-item .product-price  .btn:hover  {
-    color: #fff;
-    background: #AC801C;
-}
-.product-item .product-price .btn {
-    float: right;
-    border: none;
-    color: #AC801C;
-    background: #fff;
-}
+        .product-item .product-image .product-action a:hover {
+            color: #AC801C;
+            background: #fff;
+            border: 1px solid #AC801C;
+        }
 
-.product-item:hover .product-title {
-    background: #AC801C;
-}
-.product-item .product-title {
-    padding: 15px;
-    text-align: center;
-    background: #AC801C;
-    transition: all .3s;
-}
-.product-item .product-price {
-    padding: 20px;
-    background: #AC801C;
-    transition: all .3s;
-}
-.product-item .product-image .product-action {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgb(172 128 28 / 58%);
-    transition: all .3s;
-    font-size: 0;
-    z-index: 1;
-    opacity: 0;
-}
-.product-item .product-image .product-action a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-    padding: 7px 0 10px 0;
-    font-size: 16px;
-    text-align: center;
-    color: #ffffff;
-    background: #ac801c;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    transition: all .3s;
-    margin-top: 50px;
-}
+        .product-item:hover .product-price .btn,
+        .product-item .product-price .btn:hover {
+            color: #fff;
+            background: #AC801C;
+        }
 
-.product-price {
-    background: #AC801C;
-}
-.call-to-action {
-    position: relative;
-    padding: 30px 0;
-    background: #ac801c;
-}
-.product .section-header {
-    color: #9e6d00;
-    background: #ffffff;
-    text-align: center;
+        .product-item .product-price .btn {
+            float: right;
+            border: none;
+            color: #AC801C;
+            background: #fff;
+        }
 
-}
+        .product-item:hover .product-title {
+            background: #AC801C;
+        }
 
+        .product-item .product-title {
+            padding: 15px;
+            text-align: center;
+            background: #AC801C;
+            transition: all .3s;
+        }
 
-}
-.pagination_rounded,
-.pagination_square {
-  margin: auto;
-  width: 60%;
-  border: 3px solid #73AD21;
-  padding: 10px;
-}
+        .product-item .product-price {
+            padding: 20px;
+            background: #AC801C;
+            transition: all .3s;
+        }
 
-.pagination_rounded ul {
-    margin: 0;
-    padding: 0;
-    list-style: none
-}
+        .product-item .product-image .product-action {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(172 128 28 / 58%);
+            transition: all .3s;
+            font-size: 0;
+            z-index: 1;
+            opacity: 0;
+        }
 
-.pagination_rounded li:first-child {
-    margin-left: 0px
-}
+        .product-item .product-image .product-action a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+            padding: 7px 0 10px 0;
+            font-size: 16px;
+            text-align: center;
+            color: #ffffff;
+            background: #ac801c;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            transition: all .3s;
+            margin-top: 50px;
+        }
 
-.pagination_rounded ul li {
-    float: left;
-    margin-left: 20px
-}
+        .product-price {
+            background: #AC801C;
+        }
 
-.pagination_rounded ul li a:hover {
-    background: #4285f4;
-    color: #fff;
-    border: 1px solid #4285f4
-}
+        .call-to-action {
+            position: relative;
+            padding: 30px 0;
+            background: #ac801c;
+        }
 
-a:link {
-    text-decoration: none
-}
+        .product .section-header {
+            color: #9e6d00;
+            background: #ffffff;
+            text-align: center;
 
-.pagination_rounded .prev {
-    margin-left: 0px;
-    border-radius: 35px;
-    width: 90px;
-    height: 34px;
-    line-height: 34px
-}
-
-.pagination_rounded ul li a {
-    float: left;
-    color: #4285f4;
-    border-radius: 50%;
-    line-height: 30px;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    margin-bottom: 40px;
-    border: 1px solid #e0e0e0
-}
-
-.pagination_rounded .prev i {
-    margin-right: 10px
-}
-
-.pagination_rounded .next {
-    border-radius: 35px;
-    width: 90px;
-    height: 34px;
-    line-height: 34px
-}
-
-.visible-xs {
-    display: none !important
-}
-.image {
-    width: 200px;
-    height: 300px;
-}
+        }
 
 
+        }
+        .pagination_rounded,
+        .pagination_square {
+            margin: auto;
+            width: 60%;
+            border: 3px solid #73AD21;
+            padding: 10px;
+        }
 
+        .pagination_rounded ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
 
+        .pagination_rounded li:first-child {
+            margin-left: 0px
+        }
 
+        .pagination_rounded ul li {
+            float: left;
+            margin-left: 20px
+        }
 
+        .pagination_rounded ul li a:hover {
+            background: #4285f4;
+            color: #fff;
+            border: 1px solid #4285f4
+        }
 
+        a:link {
+            text-decoration: none
+        }
 
+        .pagination_rounded .prev {
+            margin-left: 0px;
+            border-radius: 35px;
+            width: 90px;
+            height: 34px;
+            line-height: 34px
+        }
 
+        .pagination_rounded ul li a {
+            float: left;
+            color: #4285f4;
+            border-radius: 50%;
+            line-height: 30px;
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0
+        }
 
+        .pagination_rounded .prev i {
+            margin-right: 10px
+        }
 
+        .pagination_rounded .next {
+            border-radius: 35px;
+            width: 90px;
+            height: 34px;
+            line-height: 34px
+        }
 
+        .visible-xs {
+            display: none !important
+        }
 
-
-
+        .image {
+            width: 200px;
+            height: 300px;
+        }
 
 
     </style>
@@ -360,16 +356,18 @@ a:link {
                                     </div>
 
                                     <!-- Pagination Start -->
-                                     <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <nav aria-label="Page navigation example">
                                             {%if is_paginated%}
                                             <ul class="pagination justify-content-center">
                                                 {%if page_obj.has_previous%}
                                                 <li class="page-item">
-                                                    <a class="page-link" href="?page={{ page_obj.previous_page_number}}">Previous</a>
+                                                    <a class="page-link"
+                                                       href="?page={{ page_obj.previous_page_number}}">Previous</a>
                                                 </li>
                                                 {% endif %}
-                                                <li class="page-item active"><a class="page-link" href="#">{{page_obj.paginator.num_pages}} </a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">{{page_obj.paginator.num_pages}} </a>
+                                                </li>
                                                 {%if page_obj.has_next%}
                                                 <li class="page-item">
                                                     <a class="page-link" href="?page={{ page_obj.next_page_number}}">Next</a>
