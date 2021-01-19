@@ -240,7 +240,7 @@ def checkout(request):
         data.order_status = request.POST['orderStatus']
         data.user = current_user
         data.OrderTotal = total
-        orderNumber = get_random_string(5).upper()  # random cod
+        orderNumber = get_random_string(5).upper()  # random code
         data.order_Number = orderNumber
         data.save()
 
