@@ -112,7 +112,7 @@ def createUser(request):
     else:
         if User.objects.filter(username=username).exists():
             messages.warning(request, 'This username already taken,Please Choose another one')
-            return redirect('signup')
+            return redirect('core:signup')
         else:
             userRegistration = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                                         email=email,
