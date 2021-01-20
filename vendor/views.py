@@ -1,9 +1,10 @@
 from django.contrib import messages
-from django.shortcuts import render
-
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from vendor.forms import SellerRegistrationForm
+from vendor.models import sellerProfile
 
 
 def vendorDashboard(request):
@@ -49,6 +50,7 @@ def topSelling(request):
 def accountsReport(request):
     context = {}
     return render(request, 'vendor/accountsReport.html', context)
+
 
 def becomeSeller(request):
     if request.method == 'POST':

@@ -40,3 +40,4 @@ def shipping_li():
          """.format(
             i.location, i.charge)
     return mark_safe(shipping_li)
+

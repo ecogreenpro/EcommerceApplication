@@ -11,7 +11,8 @@ from .views import (
     # checkoutView,
     BrandView,
     remove_from_cart,
-    remove_single_item_from_cart, invoiceView
+    remove_single_item_from_cart,
+    invoiceView
 
 )
 
@@ -31,7 +32,7 @@ urlpatterns = [
     path('add-to-cart/<slug>/', add_to_cart, name='add-to-cart'),
     path('remove-from-cart/<slug>/', remove_from_cart, name='remove-from-cart'),
     path('remove-single-item-cart/<slug>/', remove_single_item_from_cart, name='remove-single-from-cart'),
-    #path('become-seller/', views.becomeSeller, name="becomeSeller"),
+    # path('become-seller/', views.becomeSeller, name="becomeSeller"),
     path('login/', views.login, name="login"),
     path('logout/', views.logout, name="logout"),
     # path('dashboard/', views.dashboard, name="dashboard"),
@@ -42,7 +43,7 @@ urlpatterns = [
     path('userprofile/', views.userprofile, name="userprofile"),
     path('updateProfile/', views.updateProfile, name="updateProfile"),
     path('userorder/', views.userOrder, name="userOrder"),
-    path('invoice/<order_Number>/', invoiceView.as_view(), name='invoice'),
+    # path('invoice/<order_Number>/', views.invoice, name="invoice"),
 
     # path('balance/', views.balance, name="balance"),
     path('chat/', views.chat, name="chat"),
@@ -52,6 +53,7 @@ urlpatterns = [
     path('product/<slug>/', productDetail.as_view(), name='productDetail'),
     path('category/<slug>/', CategoryView.as_view(), name='category'),
     path('brand/<slug>/', BrandView.as_view(), name='brand'),
+    path('invoice/<order_Number>/', invoiceView.as_view(), name='invoice'),
     # path('cart/', CartView.as_view(), name='cart'),
     # path('checkout/', checkoutView.as_view(), name='checkout'),
     path('', home.as_view(), name='home'),

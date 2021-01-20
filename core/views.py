@@ -14,7 +14,7 @@ from .models import Products, CartProducts, Order, userProfile, OrderProduct, Sh
 from .models import Products, Categories, Brands
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-from vendor.models import SellerRegistration
+from vendor.models import sellerProfile
 from io import BytesIO
 from xhtml2pdf import pisa
 
@@ -112,7 +112,7 @@ def createUser(request):
     else:
         if User.objects.filter(username=username).exists():
             messages.warning(request, 'This username already taken,Please Choose another one')
-            return redirect('signup')
+            return redirect('core:signup')
         else:
             userRegistration = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                                         email=email,
@@ -153,6 +153,13 @@ def balance(request):
     context = {}
     return render(request, 'account/balance.html', context)
 
+
+# def invoice(request):
+#     invoiceDetails = Order.objects.filter(Order.order_Number)
+#     context = {
+#         'invoice': invoiceDetails
+#     }
+#     return render(request, 'account/invoice.html', context)
 
 class invoiceView(View):
     def get(self, *args, **kwargs):
@@ -210,6 +217,7 @@ def checkout(request):
     category = Categories.objects.all()  # Access User Session information
     userprofile = userProfile.objects.get(user=request.user)
     cart = CartProducts.objects.filter(user=request.user)
+    shipping = Shipping.objects.all()
     total = 100
 
     for rs in cart:
@@ -232,7 +240,7 @@ def checkout(request):
         data.order_status = request.POST['orderStatus']
         data.user = current_user
         data.OrderTotal = total
-        orderNumber = get_random_string(5).upper()  # random cod
+        orderNumber = get_random_string(5).upper()  # random code
         data.order_Number = orderNumber
         data.save()
 
@@ -273,31 +281,6 @@ def orderTrack(request):
 def wishlist(request):
     context = {}
     return render(request, 'wishlist.html', context)
-
-
-# def becomeSeller(request):
-#     if request.method == 'POST':
-#         name = request.POST['Name']
-#         companyName = request.POST['companyName']
-#         phone = request.POST['mobile']
-#         email = request.POST['email']
-#         address = request.POST['address']
-#         nid = request.POST['NID']
-#         tradeLicense = request.POST['TradeLicense']
-#         nidImage = request.POST['NIDImage']
-#         tradeImage = request.POST['TradeImage']
-#
-#         becomeSeller = SellerRegistration.objects.create(Name=name, CompanyName=companyName,
-#                                                          Phone=phone, Email=email,
-#                                                          Address=address, NID=nid,
-#                                                          TradeLicense=tradeLicense, NIDImage=nidImage,
-#                                                          TradeImage=tradeImage)
-#
-#         becomeSeller.save()
-#         messages.info(request, 'Registration Confirmed')
-#
-#     context = {}
-#     return render(request, 'becomeSeller.html', context)
 
 
 def search(request):

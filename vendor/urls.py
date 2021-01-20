@@ -11,6 +11,7 @@ urlpatterns = [
     path('vendoer-review-manager/', views.vendorReviewManager, name="vendorReviewManager"),
     path('vendoer-sales-report/', views.salesReport, name="salesReport"),
     path('vendoer-topSell-report/', views.topSelling, name="topSelling"),
+    path('become-seller/', views.becomeSeller, name="becomeSeller"),
     path('vendoer-accounts-report/', views.accountsReport, name="accountsReport"),
     path('become-seller/', views.becomeSeller, name="becomeSeller"),
 ]

@@ -108,17 +108,6 @@ class Products(models.Model):
     def products_photo(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.mainImage.url))
 
-    # <<<<<<< Updated upstream
-    #     # def get_percentage(self):
-    #     #     Percentage = self.price - (self.price * self.discountPrice / 100)
-    #     #     return (int)(Percentage)
-    # =======
-    #     @property
-    #     def get_percentage(self):
-    #         Percentage = ((self.price - self.discountPrice)*100)/self.price
-    #         return (int)(Percentage)
-    # >>>>>>> Stashed changes
-
     products_photo.short_description = 'Image'
     products_photo.allow_tags = True
 
@@ -253,7 +242,7 @@ class userProfile(models.Model):
         return self.user.first_name
 
     def get_absolute_url(self):
-        return reverse("core:categories", kwargs={'slug': self.slug})
+        return reverse("core:userProfile", kwargs={'slug': self.slug})
 
     def userPhoto(self):
         return mark_safe('<img src="{}" width="70" height ="70" />'.format(self.image.url))
