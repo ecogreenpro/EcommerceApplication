@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls import handler400
 from . import views
+
 urlpatterns = [
     path('vendor-dashboard/', views.vendorDashboard, name="vendorDashboard"),
     path('all-product/', views.allProduct, name="allProduct"),
@@ -11,5 +12,5 @@ urlpatterns = [
     path('vendoer-sales-report/', views.salesReport, name="salesReport"),
     path('vendoer-topSell-report/', views.topSelling, name="topSelling"),
     path('vendoer-accounts-report/', views.accountsReport, name="accountsReport"),
-
+    path('become-seller/', views.becomeSeller, name="becomeSeller"),
 ]

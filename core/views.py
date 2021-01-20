@@ -154,12 +154,26 @@ def balance(request):
     return render(request, 'account/balance.html', context)
 
 
-def invoice(request):
-    invoice = Order.objects.filter(user=request.user)
-    context = {
-        'invoice': invoice
-    }
-    return render(request, 'account/invoice.html', context)
+class invoiceView(View):
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(order_Number=self.kwargs['order_Number'])
+        orderProdcut = OrderProduct.objects.filter(order=order)
+        context = {
+            'Product': orderProdcut,
+            'Billed_firstName': order.first_name,
+            'Billed_lastName': order.last_name,
+            'Phone': order.phone_number,
+            'Email': order.email,
+            'Address': order.address,
+            'District': order.district,
+            'Country': order.country,
+            'OrderDate': order.ordered_date,
+            'OrderNo': order.order_Number,
+            'oderTotal': order.OrderTotal,
+            'Delivery': order.payment,
+            'OrderNote': order.order_note,
+        }
+        return render(self.request, "account/invoice.html", context)
 
 
 def chat(request):
@@ -261,29 +275,29 @@ def wishlist(request):
     return render(request, 'wishlist.html', context)
 
 
-def becomeSeller(request):
-    if request.method == 'POST':
-        name = request.POST['Name']
-        companyName = request.POST['companyName']
-        phone = request.POST['mobile']
-        email = request.POST['email']
-        address = request.POST['address']
-        nid = request.POST['NID']
-        tradeLicense = request.POST['TradeLicense']
-        nidImage = request.POST['NIDImage']
-        tradeImage = request.POST['TradeImage']
-
-        becomeSeller = SellerRegistration.objects.create(Name=name, CompanyName=companyName,
-                                                         Phone=phone, Email=email,
-                                                         Address=address, NID=nid,
-                                                         TradeLicense=tradeLicense, NIDImage=nidImage,
-                                                         TradeImage=tradeImage)
-
-        becomeSeller.save()
-        messages.info(request, 'Registration Confirmed')
-
-    context = {}
-    return render(request, 'becomeSeller.html', context)
+# def becomeSeller(request):
+#     if request.method == 'POST':
+#         name = request.POST['Name']
+#         companyName = request.POST['companyName']
+#         phone = request.POST['mobile']
+#         email = request.POST['email']
+#         address = request.POST['address']
+#         nid = request.POST['NID']
+#         tradeLicense = request.POST['TradeLicense']
+#         nidImage = request.POST['NIDImage']
+#         tradeImage = request.POST['TradeImage']
+#
+#         becomeSeller = SellerRegistration.objects.create(Name=name, CompanyName=companyName,
+#                                                          Phone=phone, Email=email,
+#                                                          Address=address, NID=nid,
+#                                                          TradeLicense=tradeLicense, NIDImage=nidImage,
+#                                                          TradeImage=tradeImage)
+#
+#         becomeSeller.save()
+#         messages.info(request, 'Registration Confirmed')
+#
+#     context = {}
+#     return render(request, 'becomeSeller.html', context)
 
 
 def search(request):

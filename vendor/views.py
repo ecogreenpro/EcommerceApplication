@@ -1,7 +1,11 @@
+from django.contrib import messages
 from django.shortcuts import render
 
 
 # Create your views here.
+from vendor.forms import SellerRegistrationForm
+
+
 def vendorDashboard(request):
     context = {}
     return render(request, 'vendor/vendorDashboard.html', context)
@@ -45,3 +49,15 @@ def topSelling(request):
 def accountsReport(request):
     context = {}
     return render(request, 'vendor/accountsReport.html', context)
+
+def becomeSeller(request):
+    if request.method == 'POST':
+        form = SellerRegistrationForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Registration Confirmed')
+            return render(request, 'account/login.html')
+    else:
+        form = SellerRegistrationForm()
+    return render(request, 'becomeSeller.html', {'form': form})
